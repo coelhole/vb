@@ -6,6 +6,7 @@ Begin VB.Form FrmHelloWorld
    ClientTop       =   345
    ClientWidth     =   4680
    LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
    ScaleHeight     =   3195
    ScaleWidth      =   4680
    StartUpPosition =   2  'CenterScreen
