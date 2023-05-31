@@ -6,14 +6,15 @@ Begin VB.Form FrmOnlyNumberTextBox
    ClientTop       =   345
    ClientWidth     =   15180
    LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
    ScaleHeight     =   1455
    ScaleWidth      =   15180
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox MinhaCaixaDeTexto 
       Height          =   375
-      Left            =   240
+      Left            =   263
       TabIndex        =   0
-      Top             =   480
+      Top             =   540
       Width           =   14655
    End
 End
