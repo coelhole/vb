@@ -1,16 +1,17 @@
 VERSION 5.00
 Begin VB.Form frmLogin 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "Seja bem-vindo ao Sistema de Gestão Integrada"
    ClientHeight    =   1455
-   ClientLeft      =   60
-   ClientTop       =   345
-   ClientWidth     =   8445
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   8400
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   1455
-   ScaleWidth      =   8445
+   ScaleWidth      =   8400
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtSenha 
       BeginProperty Font 
@@ -67,16 +68,16 @@ Begin VB.Form frmLogin
    Begin VB.Label lblSenha 
       Alignment       =   1  'Right Justify
       Caption         =   "Senha"
-      Height          =   255
+      Height          =   248
       Left            =   240
       TabIndex        =   2
-      Top             =   720
+      Top             =   760
       Width           =   855
    End
    Begin VB.Label lblUsuario 
       Alignment       =   1  'Right Justify
       Caption         =   "Usuário"
-      Height          =   255
+      Height          =   248
       Left            =   240
       TabIndex        =   0
       Top             =   240
@@ -95,11 +96,27 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
-    If KeyAscii <> 8 And (KeyAscii < 97 Or KeyAscii > 122) Then KeyAscii = 0
+    If KeyAscii <> 8 And (KeyAscii < 97 Or KeyAscii > 122) And (KeyAscii < 65 Or KeyAscii > 90) Then
+        KeyAscii = 0
+    End If
+End Sub
+
+Private Sub txtUsuario_KeyUp(KeyCode As Integer, Shift As Integer)
+    If Len(txtUsuario.Text) > 1 And KeyCode = vbKeyReturn Then
+        txtSenha.SetFocus
+    End If
 End Sub
 
 Private Sub txtSenha_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then KeyAscii = 0
+    If KeyAscii = 32 Then
+        KeyAscii = 0
+    End If
+End Sub
+
+Private Sub txtSenha_KeyUp(KeyCode As Integer, Shift As Integer)
+    If Len(txtUsuario.Text) > 1 And Len(txtSenha.Text) > 0 And KeyCode = vbKeyReturn Then
+        cmdEntrar.SetFocus
+    End If
 End Sub
 
 Private Sub cmdEntrar_Click()
