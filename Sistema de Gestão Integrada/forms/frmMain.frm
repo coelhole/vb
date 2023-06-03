@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin VB.Form frmMain 
    Caption         =   "Form1"
-   ClientHeight    =   3195
+   ClientHeight    =   10125
    ClientLeft      =   8850
    ClientTop       =   4605
-   ClientWidth     =   11130
+   ClientWidth     =   20085
    LinkTopic       =   "Form1"
-   ScaleHeight     =   3195
-   ScaleWidth      =   11130
+   ScaleHeight     =   10125
+   ScaleWidth      =   20085
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
 End
