@@ -29,6 +29,7 @@ Begin VB.Form frmLogin
       MaxLength       =   64
       PasswordChar    =   "*"
       TabIndex        =   3
+      ToolTipText     =   "Forneça aqui a senha do usuário informado"
       Top             =   720
       Width           =   4935
    End
@@ -46,6 +47,7 @@ Begin VB.Form frmLogin
       Left            =   1200
       MaxLength       =   32
       TabIndex        =   1
+      ToolTipText     =   "Informe um nome de usuário válido (apenas letras, maiúsculas ou minúsculas, duas ou mais, mas não mais do que 32)"
       Top             =   200
       Width           =   4935
    End
@@ -120,7 +122,7 @@ Private Sub txtSenha_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub cmdEntrar_Click()
-    If txtUsuario.Text = "" Then
+    If txtUsuario.Text = EMPTY_STRING Then
         MsgBox "Informe um usuário!", vbInformation, SOFTWARE_NAME
         txtUsuario.SetFocus
         Exit Sub
@@ -132,7 +134,7 @@ Private Sub cmdEntrar_Click()
         Exit Sub
     End If
 
-    If txtSenha.Text = "" Then
+    If txtSenha.Text = EMPTY_STRING Then
         MsgBox "Informe a senha do usuário!", vbInformation, SOFTWARE_NAME
         txtSenha.SetFocus
         Exit Sub
@@ -140,9 +142,9 @@ Private Sub cmdEntrar_Click()
 
     If auth(txtUsuario.Text, txtSenha.Text) Then
         Unload Me
-        frmMain.Show
+        frmMain.statusbar.Panels(2).Text = "Usuário: " & userID & " " & userName & "  "
+        frmMain.Show vbModal
     Else
-        MsgBox "A autenticação falhou!" & vbCrLf & "Verifique o nome de usuário e a senha.", vbExclamation, SOFTWARE_NAME
         txtSenha.SetFocus
     End If
 End Sub
