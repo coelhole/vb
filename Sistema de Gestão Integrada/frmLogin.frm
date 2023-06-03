@@ -96,7 +96,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
-    If KeyAscii <> 8 And (KeyAscii < 97 Or KeyAscii > 122) And (KeyAscii < 65 Or KeyAscii > 90) Then
+    If KeyAscii <> 8 And (KeyAscii < 65 Or KeyAscii > 90) And (KeyAscii < 97 Or KeyAscii > 122) Then
         KeyAscii = 0
     End If
 End Sub
