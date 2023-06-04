@@ -4,7 +4,7 @@ Begin VB.Form frmMain
    Caption         =   "Form1"
    ClientHeight    =   10125
    ClientLeft      =   8850
-   ClientTop       =   4605
+   ClientTop       =   4890
    ClientWidth     =   20085
    LinkTopic       =   "Form1"
    ScaleHeight     =   10125
@@ -43,6 +43,18 @@ Begin VB.Form frmMain
          EndProperty
       EndProperty
    End
+   Begin VB.Menu mnArquivo 
+      Caption         =   "Arquivo"
+      Begin VB.Menu mnArquivo_Sair 
+         Caption         =   "Sair"
+      End
+   End
+   Begin VB.Menu mnUsuario 
+      Caption         =   "Usuário"
+      Begin VB.Menu mnUsuario_Relogar 
+         Caption         =   "Sair e entrar com outro usuário"
+      End
+   End
 End
 Attribute VB_Name = "frmMain"
 Attribute VB_GlobalNameSpace = False
@@ -53,4 +65,13 @@ Option Explicit
 
 Private Sub Form_Load()
     Me.Caption = SOFTWARE_NAME & " v. " & App.Major & "." & App.Minor & "." & App.Revision
+End Sub
+
+Private Sub mnArquivo_Sair_Click()
+    Unload Me
+End Sub
+
+Private Sub mnUsuario_Relogar_Click()
+    Unload Me
+    frmLogin.Show vbModal
 End Sub

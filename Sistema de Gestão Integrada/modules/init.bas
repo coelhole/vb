@@ -7,8 +7,6 @@ Sub Main()
     databaseName = "SGE"
     databaseUser = "postgres"
     databasePassword = "masterkey"
-    
-    frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-    
+
     frmLogin.Show vbModal
 End Sub

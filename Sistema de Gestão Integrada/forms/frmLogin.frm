@@ -142,6 +142,7 @@ Private Sub cmdEntrar_Click()
 
     If auth(txtUsuario.Text, txtSenha.Text) Then
         Unload Me
+        frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
         frmMain.statusbar.Panels(2).Text = "Usuário: " & userID & " " & userName & "  "
         frmMain.Show vbModal
     Else
