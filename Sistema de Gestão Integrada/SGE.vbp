@@ -5,7 +5,6 @@ Form=forms\frmLogin.frm
 Module=banco; modules\banco.bas
 Form=forms\frmMain.frm
 Module=constantes; modules\constantes.bas
-Module=params; modules\params.bas
 Object={831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0; MSCOMCTL.OCX
 Module=init; modules\init.bas
 IconForm="frmLogin"

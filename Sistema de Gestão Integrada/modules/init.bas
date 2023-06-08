@@ -8,5 +8,8 @@ Sub Main()
     databaseUser = "postgres"
     databasePassword = "masterkey"
 
+    Set databaseConnection = newDatabaseConnection
+    databaseConnection.Open
+
     frmLogin.Show vbModal
 End Sub
