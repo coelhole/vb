@@ -178,6 +178,73 @@ END;
 $body$
 LANGUAGE plpgsql;
 --
+-- Definition for function 001AR15_17_before_trg_func : 
+--
+CREATE FUNCTION "LC"."001AR15_17_before_trg_func" (
+)
+RETURNS trigger
+AS 
+$body$
+BEGIN
+	IF (TG_OP = 'INSERT') THEN
+		INSERT INTO "LC"."001AR13"("NUM3","AL3","AL2","GNMID","NUM3SPR","NUM3M49","NUM3ISO","AL3ISO","AL2ISO","ACTV", "T")
+		VALUES (NEW."NUM3",NEW."AL3",NEW."AL2",NEW."GNMID",NEW."NUM3SPR",NEW."NUM3M49",NEW."NUM3ISO",NEW."AL3ISO",NEW."AL2ISO",NEW."ACTV", NEW."T");
+
+		INSERT INTO "LC"."001AR01"("NUM3","AL3","AL2","GNMID","NUM3SPR","NUM3M49","NUM3ISO","AL3ISO","AL2ISO","ARTP","ACTV","T")
+		VALUES (NEW."NUM3",NEW."AL3",NEW."AL2",NEW."GNMID",NEW."NUM3SPR",NEW."NUM3M49",NEW."NUM3ISO",NEW."AL3ISO",NEW."AL2ISO",3,NEW."ACTV",NEW."T");
+	END IF;
+
+	IF (TG_OP = 'UPDATE') THEN
+		IF NEW."RID"<>OLD."RID" THEN
+			RAISE EXCEPTION 'O campo RID é imutável!';
+        END IF;
+
+		IF NEW."NUM3"<>OLD."NUM3" THEN
+			RAISE EXCEPTION 'O campo NUM3 é imutável!';
+        END IF;
+
+		IF NEW."AL3"<>OLD."AL3" THEN
+			RAISE EXCEPTION 'O campo AL3 é imutável!';
+        END IF;
+
+		IF NEW."AL2"<>OLD."AL2" THEN
+			RAISE EXCEPTION 'O campo AL2 é imutável!';
+        END IF;
+
+		NEW."T" = NOW();
+
+		UPDATE "LC"."001AR13" SET
+			"GNMID" = NEW."GNMID",
+			"NUM3SPR" = NEW."NUM3SPR",
+			"NUM3M49" = NEW."NUM3M49",
+			"NUM3ISO" = NEW."NUM3ISO",
+			"AL3ISO" = NEW."AL3ISO",
+			"AL2ISO" = NEW."AL2ISO",
+			"ACTV" = NEW."ACTV",
+			"T" = NEW."T"
+		WHERE
+			"NUM3" = OLD."NUM3";
+
+		UPDATE
+        	"LC"."001AR01"
+		SET
+    		"GNMID" = NEW."GNMID",
+    		"NUM3SPR" = NEW."NUM3SPR",
+    		"NUM3M49" = NEW."NUM3M49",
+    		"NUM3ISO" = NEW."NUM3ISO",
+    		"AL3ISO" = NEW."AL3ISO",
+    		"AL2ISO" = NEW."AL2ISO",
+    		"ACTV" = NEW."ACTV",
+        	"T" = NEW."T"
+    	WHERE
+    		"NUM3" = OLD."NUM3";
+	END IF;
+	
+    RETURN NEW;
+END;
+$body$
+LANGUAGE plpgsql;
+--
 -- Structure for table 001AR01 : 
 --
 CREATE TABLE "LC"."001AR01" (
@@ -307,9 +374,63 @@ CREATE DOMAIN public."ALNUM2" AS
   char(2)
     CONSTRAINT "ALNUM2_CHK" CHECK ((VALUE ~ '[0-9A-Z][0-9A-Z]'::text));
 --
--- Definition for index UQ01_LC001AR01 : 
+-- Structure for table 001AR13 : 
 --
 SET search_path = "LC", pg_catalog;
+CREATE TABLE "LC"."001AR13" (
+    "RID" serial NOT NULL,
+    "NUM3" public."NUM3" NOT NULL,
+    "AL3" public."AL3" NOT NULL,
+    "AL2" public."AL2" NOT NULL,
+    "GNMID" integer,
+    "NUM3SPR" public."NUM3" NOT NULL,
+    "NUM3M49" boolean NOT NULL,
+    "NUM3ISO" boolean NOT NULL,
+    "AL3ISO" boolean NOT NULL,
+    "AL2ISO" boolean NOT NULL,
+    "ACTV" boolean NOT NULL,
+    "T" timestamp without time zone DEFAULT now() NOT NULL
+)
+WITH (oids = false);
+--
+-- Structure for table 001AR15 : 
+--
+CREATE TABLE "LC"."001AR15" (
+    "RID" serial NOT NULL,
+    "NUM3" public."NUM3" NOT NULL,
+    "AL3" public."AL3" NOT NULL,
+    "AL2" public."AL2" NOT NULL,
+    "GNMID" integer,
+    "NUM3SPR" public."NUM3" NOT NULL,
+    "NUM3M49" boolean NOT NULL,
+    "NUM3ISO" boolean NOT NULL,
+    "AL3ISO" boolean NOT NULL,
+    "AL2ISO" boolean NOT NULL,
+    "ACTV" boolean NOT NULL,
+    "T" timestamp without time zone DEFAULT now() NOT NULL
+)
+WITH (oids = false);
+--
+-- Structure for table 001AR17 : 
+--
+CREATE TABLE "LC"."001AR17" (
+    "RID" serial NOT NULL,
+    "NUM3" public."NUM3" NOT NULL,
+    "AL3" public."AL3" NOT NULL,
+    "AL2" public."AL2" NOT NULL,
+    "GNMID" integer,
+    "NUM3SPR" public."NUM3" NOT NULL,
+    "NUM3M49" boolean NOT NULL,
+    "NUM3ISO" boolean NOT NULL,
+    "AL3ISO" boolean NOT NULL,
+    "AL2ISO" boolean NOT NULL,
+    "ACTV" boolean NOT NULL,
+    "T" timestamp without time zone DEFAULT now() NOT NULL
+)
+WITH (oids = false);
+--
+-- Definition for index UQ01_LC001AR01 : 
+--
 ALTER TABLE ONLY "001AR01"
     ADD CONSTRAINT "UQ01_LC001AR01"
     UNIQUE ("RID");
@@ -400,6 +521,54 @@ ALTER TABLE ONLY "001AR11"
     ADD CONSTRAINT "FK_LC001AR11_01"
     FOREIGN KEY ("NUM3SPR") REFERENCES "001AR09"("NUM3") ON DELETE RESTRICT;
 --
+-- Definition for index UQ01_LC001AR13 : 
+--
+ALTER TABLE ONLY "001AR13"
+    ADD CONSTRAINT "UQ01_LC001AR13"
+    UNIQUE ("RID");
+--
+-- Definition for index PK_LC001AR13 : 
+--
+ALTER TABLE ONLY "001AR13"
+    ADD CONSTRAINT "PK_LC001AR13"
+    PRIMARY KEY ("NUM3");
+--
+-- Definition for index UQ01_LC001AR15 : 
+--
+ALTER TABLE ONLY "001AR15"
+    ADD CONSTRAINT "UQ01_LC001AR15"
+    UNIQUE ("RID");
+--
+-- Definition for index PK_LC001AR15 : 
+--
+ALTER TABLE ONLY "001AR15"
+    ADD CONSTRAINT "PK_LC001AR15"
+    PRIMARY KEY ("NUM3");
+--
+-- Definition for index UQ01_LC001AR17 : 
+--
+ALTER TABLE ONLY "001AR17"
+    ADD CONSTRAINT "UQ01_LC001AR17"
+    UNIQUE ("RID");
+--
+-- Definition for index PK_LC001AR17 : 
+--
+ALTER TABLE ONLY "001AR17"
+    ADD CONSTRAINT "PK_LC001AR17"
+    PRIMARY KEY ("NUM3");
+--
+-- Definition for index FK_LC001AR17_01 : 
+--
+ALTER TABLE ONLY "001AR17"
+    ADD CONSTRAINT "FK_LC001AR17_01"
+    FOREIGN KEY ("NUM3SPR") REFERENCES "001AR11"("NUM3") ON DELETE RESTRICT;
+--
+-- Definition for index FK_LC001AR15_01 : 
+--
+ALTER TABLE ONLY "001AR15"
+    ADD CONSTRAINT "FK_LC001AR15_01"
+    FOREIGN KEY ("NUM3SPR") REFERENCES "001AR09"("NUM3") ON DELETE RESTRICT;
+--
 -- Definition for trigger USR001_BFR_TRG : 
 --
 SET search_path = "USR", pg_catalog;
@@ -429,6 +598,20 @@ CREATE TRIGGER "LC001AR11_BFR_TRG"
     BEFORE INSERT OR UPDATE OF "RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV" ON "001AR11"
     FOR EACH ROW
     EXECUTE PROCEDURE "001AR09_11_before_trg_func" ();
+--
+-- Definition for trigger LC001AR15_BFR_TRG : 
+--
+CREATE TRIGGER "LC001AR15_BFR_TRG"
+    BEFORE INSERT OR UPDATE OF "RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV" ON "001AR15"
+    FOR EACH ROW
+    EXECUTE PROCEDURE "001AR15_17_before_trg_func" ();
+--
+-- Definition for trigger LC001AR17_BFR_TRG : 
+--
+CREATE TRIGGER "LC001AR17_BFR_TRG"
+    BEFORE INSERT OR UPDATE OF "RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV" ON "001AR17"
+    FOR EACH ROW
+    EXECUTE PROCEDURE "001AR15_17_before_trg_func" ();
 --
 -- Comments
 --
@@ -522,3 +705,43 @@ COMMENT ON COLUMN "LC"."001AR11"."ACTV" IS 'active [ativo]';
 COMMENT ON COLUMN "LC"."001AR11"."T" IS 'timestamp [marca de tempo]';
 SET search_path = public, pg_catalog;
 COMMENT ON DOMAIN "ALNUM2" IS '2-alphanumeric string [string alfanumérica de dois caracteres]';
+SET search_path = "LC", pg_catalog;
+COMMENT ON TABLE "LC"."001AR13" IS 'country/territory codes [códigos de países/territórios]';
+COMMENT ON COLUMN "LC"."001AR13"."RID" IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN "LC"."001AR13"."NUM3" IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
+COMMENT ON COLUMN "LC"."001AR13"."AL3" IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR13"."AL2" IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR13"."GNMID" IS 'geoname ID [ID do nome geográfico]';
+COMMENT ON COLUMN "LC"."001AR13"."NUM3SPR" IS 'super region numeric-3 code [código de 3 dígitos numéricos da super-região]';
+COMMENT ON COLUMN "LC"."001AR13"."NUM3M49" IS 'is numeric-3 key an UN-M49 code? [o código de 3 dígitos numéricos é um código M49-ONU?]';
+COMMENT ON COLUMN "LC"."001AR13"."NUM3ISO" IS 'is numeric-3 key an ISO 3166-1 numeric code? [o código de 3 dígitos numéricos é um código ISO 3166-1 numérico?]';
+COMMENT ON COLUMN "LC"."001AR13"."AL3ISO" IS 'is alpha-3 key an ISO 3166-1 alpha-3 code? [o código de 3 letras é um código ISO 3166-1 de 3 letras?]';
+COMMENT ON COLUMN "LC"."001AR13"."AL2ISO" IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
+COMMENT ON COLUMN "LC"."001AR13"."ACTV" IS 'active [ativo]';
+COMMENT ON COLUMN "LC"."001AR13"."T" IS 'timestamp [marca de tempo]';
+COMMENT ON TABLE "LC"."001AR15" IS 'country or territory codes - table 1 [códigos de países ou territórios - tabela 1]';
+COMMENT ON COLUMN "LC"."001AR15"."RID" IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN "LC"."001AR15"."NUM3" IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
+COMMENT ON COLUMN "LC"."001AR15"."AL3" IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR15"."AL2" IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR15"."GNMID" IS 'geoname ID [ID do nome geográfico]';
+COMMENT ON COLUMN "LC"."001AR15"."NUM3SPR" IS 'super region numeric-3 code [código de 3 dígitos numéricos da super-região]';
+COMMENT ON COLUMN "LC"."001AR15"."NUM3M49" IS 'is numeric-3 key an UN-M49 code? [o código de 3 dígitos numéricos é um código M49-ONU?]';
+COMMENT ON COLUMN "LC"."001AR15"."NUM3ISO" IS 'is numeric-3 key an ISO 3166-1 numeric code? [o código de 3 dígitos numéricos é um código ISO 3166-1 numérico?]';
+COMMENT ON COLUMN "LC"."001AR15"."AL3ISO" IS 'is alpha-3 key an ISO 3166-1 alpha-3 code? [o código de 3 letras é um código ISO 3166-1 de 3 letras?]';
+COMMENT ON COLUMN "LC"."001AR15"."AL2ISO" IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
+COMMENT ON COLUMN "LC"."001AR15"."ACTV" IS 'active [ativo]';
+COMMENT ON COLUMN "LC"."001AR15"."T" IS 'timestamp [marca de tempo]';
+COMMENT ON TABLE "LC"."001AR17" IS 'country or territory codes - table 2 [códigos de países ou territórios - tabela 2]';
+COMMENT ON COLUMN "LC"."001AR17"."RID" IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN "LC"."001AR17"."NUM3" IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
+COMMENT ON COLUMN "LC"."001AR17"."AL3" IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR17"."AL2" IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
+COMMENT ON COLUMN "LC"."001AR17"."GNMID" IS 'geoname ID [ID do nome geográfico]';
+COMMENT ON COLUMN "LC"."001AR17"."NUM3SPR" IS 'super region numeric-3 code [código de 3 dígitos numéricos da super-região]';
+COMMENT ON COLUMN "LC"."001AR17"."NUM3M49" IS 'is numeric-3 key an UN-M49 code? [o código de 3 dígitos numéricos é um código M49-ONU?]';
+COMMENT ON COLUMN "LC"."001AR17"."NUM3ISO" IS 'is numeric-3 key an ISO 3166-1 numeric code? [o código de 3 dígitos numéricos é um código ISO 3166-1 numérico?]';
+COMMENT ON COLUMN "LC"."001AR17"."AL3ISO" IS 'is alpha-3 key an ISO 3166-1 alpha-3 code? [o código de 3 letras é um código ISO 3166-1 de 3 letras?]';
+COMMENT ON COLUMN "LC"."001AR17"."AL2ISO" IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
+COMMENT ON COLUMN "LC"."001AR17"."ACTV" IS 'active [ativo]';
+COMMENT ON COLUMN "LC"."001AR17"."T" IS 'timestamp [marca de tempo]';
