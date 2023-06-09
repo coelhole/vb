@@ -63,10 +63,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub Command1_Click()
-    frmSplashScreen.Show vbModal
-End Sub
-
 Private Sub Form_Load()
     Me.Caption = SOFTWARE_NAME & " v. " & App.Major & "." & App.Minor & "." & App.Revision
 End Sub
