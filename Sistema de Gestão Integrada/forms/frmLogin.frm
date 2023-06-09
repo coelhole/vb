@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form frmLogin 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "Seja bem-vindo ao Sistema de Gestão Integrada"
+   Caption         =   "Seja bem-vindo ao Sistema de Gestão Empresarial"
    ClientHeight    =   1455
    ClientLeft      =   45
    ClientTop       =   330
@@ -142,8 +142,8 @@ Private Sub cmdEntrar_Click()
 
     If auth(txtUsuario.Text, txtSenha.Text) Then
         Unload Me
-        frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-        frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+        frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+        frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
         frmMain.Show vbModal
     Else
         txtSenha.SetFocus
@@ -152,5 +152,6 @@ End Sub
 
 Private Sub cmdSair_Click()
     Unload Me
+    Set frmLogin = Nothing
     End
 End Sub
