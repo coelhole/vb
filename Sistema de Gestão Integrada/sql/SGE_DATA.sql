@@ -1,143 +1,644 @@
-﻿-- SQL Manager for PostgreSQL 5.9.5.52424
--- ---------------------------------------
--- Host      : localhost
--- Database  : SGE
--- Version   : PostgreSQL 9.3.25, compiled by Visual C++ build 1600, 32-bit
+﻿/* Data for the 'usr.t001' table  (Records 1 - 1) */
 
+INSERT INTO usr.t001 ("usrnm", "pwdhsh", "actv")
+VALUES 
+  (E'dba', E'e076b520fa688ac2b7d0815613ef2d0c5ef26445', True);
 
+/* Data for the 'lc.t001ar05' table  (Records 1 - 6) */
 
-SET search_path = "LC", pg_catalog;
---
--- Data for table "LC"."001AR05" (LIMIT 0,6)
---
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (1, '002', 'FFF', 'FF', 6255146, true, false, false, false, true, '2023-06-03 22:08:51.989');
+INSERT INTO lc.t001ar05 ("num3", "al3", "al2", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
+VALUES 
+  (E'002', E'FFF', E'FF', True, False, False, False, 6255146, NULL, True),
+  (E'009', E'UUU', E'UU', True, False, False, False, 6255151, NULL, True),
+  (E'010', E'ATA', E'AQ', True, True, True, True, 6255152, NULL, True),
+  (E'019', E'AME', E'AA', True, False, False, False, 10861432, NULL, True),
+  (E'142', E'ABB', E'AB', True, False, False, False, 6255147, NULL, True),
+  (E'150', E'EEE', E'EB', True, False, False, False, 6255148, NULL, True);
 
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (2, '009', 'UUU', 'UU', 6255151, true, false, false, false, true, '2023-06-03 22:08:51.989');
+/* Data for the 'lc.t001ar09' table  (Records 1 - 16) */
 
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (3, '010', 'ATA', 'AQ', 6255152, true, true, true, true, true, '2023-06-03 22:08:51.989');
+INSERT INTO lc.t001ar09 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
+VALUES 
+  (E'003', E'NNN', E'NN', E'019', True, False, False, False, 6255149, NULL, True),
+  (E'015', E'NFF', E'NK', E'002', True, False, False, False, 7729887, NULL, True),
+  (E'030', E'ABH', E'AH', E'142', True, False, False, False, 7729894, NULL, True),
+  (E'035', E'ABJ', E'AJ', E'142', True, False, False, False, 7729896, NULL, True),
+  (E'039', E'SER', E'SP', E'150', True, False, False, False, 9408658, NULL, True),
+  (E'053', E'ANZ', E'AY', E'009', True, False, False, False, 7729898, NULL, True),
+  (E'054', E'UML', E'UL', E'009', True, False, False, False, 7729899, NULL, True),
+  (E'057', E'UMC', E'UC', E'009', True, False, False, False, 7729900, NULL, True),
+  (E'061', E'UPL', E'UP', E'009', True, False, False, False, 7729901, NULL, True),
+  (E'062', E'ABV', E'AV', E'142', True, False, False, False, NULL, NULL, True),
+  (E'145', E'ABK', E'AK', E'142', True, False, False, False, 7729897, NULL, True),
+  (E'151', E'EER', E'ED', E'150', True, False, False, False, 7729884, NULL, True),
+  (E'154', E'NEE', E'ND', E'150', True, False, False, False, 7729883, NULL, True),
+  (E'155', E'WEE', E'WE', E'150', True, False, False, False, 9408659, NULL, True),
+  (E'202', E'SSA', E'SQ', E'002', True, False, False, False, 12212804, NULL, True),
+  (E'419', E'LAC', E'LN', E'019', True, False, False, False, 7730009, NULL, True);
 
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (4, '019', 'AME', 'AA', 10861432, true, false, false, false, true, '2023-06-03 22:08:51.989');
+/* Data for the 'lc.t001ar11' table  (Records 1 - 11) */
 
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (5, '142', 'ABB', 'AB', 6255147, true, false, false, false, true, '2023-06-03 22:08:51.989');
+INSERT INTO lc.t001ar11 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
+VALUES 
+  (E'005', E'SRR', E'SW', E'419', True, False, False, False, 6255150, NULL, True),
+  (E'011', E'WFF', E'WQ', E'202', True, False, False, False, 7729885, NULL, True),
+  (E'013', E'CAA', E'CE', E'419', True, False, False, False, 7729892, NULL, True),
+  (E'014', E'EFF', E'EK', E'202', True, False, False, False, 7729889, NULL, True),
+  (E'017', E'MFF', E'MJ', E'202', True, False, False, False, 7729886, NULL, True),
+  (E'018', E'SFF', E'ZF', E'202', True, False, False, False, 9406051, NULL, True),
+  (E'021', E'NNM', E'NM', E'003', True, False, False, False, 7729890, NULL, True),
+  (E'029', E'CRB', E'CB', E'419', True, False, False, False, 7729891, NULL, True),
+  (E'034', E'ADA', E'DA', E'062', True, False, False, False, 7729895, NULL, True),
+  (E'143', E'ADS', E'DS', E'062', True, False, False, False, 7729893, NULL, True),
+  (E'830', E'IMC', E'IA', E'154', True, False, False, False, 3042400, NULL, True);
 
-INSERT INTO "001AR05" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (6, '150', 'EEE', 'EB', 6255148, true, false, false, false, true, '2023-06-03 22:08:51.989');
+/* Data for the 'lc.t001ar15' table  (Records 1 - 138) */
 
-SET search_path = "USR", pg_catalog;
---
--- Data for table "USR"."001" (LIMIT 0,1)
---
-INSERT INTO "001" ("USRID", "USRNM", "PWDHSH", "ACTV", "T")
-VALUES (1, 'dba', 'e076b520fa688ac2b7d0815613ef2d0c5ef26445', true, '2023-06-03 16:52:56');
+INSERT INTO lc.t001ar15 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "edgar", "actv")
+VALUES 
+  (E'128', E'CTE', E'CT', E'057', True, True, True, True, 7521592, NULL, NULL, False),
+  (E'200', E'CSK', E'CS', E'151', True, True, True, True, 8505031, NULL, NULL, False),
+  (E'274', E'GZS', E'GZ', E'145', True, False, False, False, 281132, NULL, NULL, False),
+  (E'278', E'DDR', E'DD', E'155', True, True, True, True, 8354410, NULL, NULL, False),
+  (E'280', E'DEU', E'DE', E'155', True, True, True, True, 11612754, NULL, NULL, False),
+  (E'396', E'JTN', E'JT', E'057', True, True, True, True, 5854931, NULL, NULL, False),
+  (E'488', E'MID', E'MI', E'057', True, True, True, True, 5854943, NULL, NULL, False),
+  (E'582', E'PCI', E'PC', E'057', True, True, True, True, 7670833, NULL, NULL, False),
+  (E'650', E'RKI', E'RK', E'030', True, False, False, False, 1855629, NULL, NULL, True),
+  (E'705', E'SVN', E'SI', E'039', True, True, True, True, 3190538, NULL, E'2A', True),
+  (E'703', E'SVK', E'SK', E'151', True, True, True, True, 3057568, NULL, E'2B', True),
+  (E'798', E'TUV', E'TV', E'061', True, True, True, True, 2110297, NULL, E'2G', True),
+  (E'804', E'UKR', E'UA', E'151', True, True, True, True, 690791, NULL, E'2H', True),
+  (E'581', E'UMI', E'UM', E'057', True, True, True, True, 5854968, NULL, E'2J', True),
+  (E'548', E'VUT', E'VU', E'054', True, True, True, True, 2134431, NULL, E'2L', True),
+  (E'276', E'DEU', E'DE', E'155', True, True, True, True, 2921044, NULL, E'2M', True),
+  (E'203', E'CZE', E'CZ', E'151', True, True, True, True, 3077311, NULL, E'2N', True),
+  (E'268', E'GEO', E'GE', E'145', True, True, True, True, 614540, NULL, E'2Q', True),
+  (E'008', E'ALB', E'AL', E'039', True, True, True, True, 783754, NULL, E'B3', True),
+  (E'012', E'DZA', E'DZ', E'015', True, True, True, True, 2589581, NULL, E'B4', True),
+  (E'016', E'ASM', E'AS', E'061', True, True, True, True, 5880801, NULL, E'B5', True),
+  (E'020', E'AND', E'AD', E'039', True, True, True, True, 3041565, NULL, E'B6', True),
+  (E'784', E'ARE', E'AE', E'145', True, True, True, True, 290557, NULL, E'C0', True),
+  (E'036', E'AUS', E'AU', E'053', True, True, True, True, 2077456, NULL, E'C3', True),
+  (E'040', E'AUT', E'AT', E'155', True, True, True, True, 2782113, NULL, E'C4', True),
+  (E'048', E'BHR', E'BH', E'145', True, True, True, True, 290291, NULL, E'C6', True),
+  (E'056', E'BEL', E'BE', E'155', True, True, True, True, 2802361, NULL, E'C9', True),
+  (E'090', E'SLB', E'SB', E'054', True, True, True, True, 2103350, NULL, E'D7', True),
+  (E'096', E'BRN', E'BN', E'035', True, True, True, True, 1820814, NULL, E'D9', True),
+  (E'100', E'BGR', E'BG', E'151', True, True, True, True, 732800, NULL, E'E0', True),
+  (E'104', E'MMR', E'MM', E'035', True, True, True, True, 1327865, NULL, E'E1', True),
+  (E'116', E'KHM', E'KH', E'035', True, True, True, True, 1831722, NULL, E'E3', True),
+  (E'156', E'CHN', E'CN', E'030', True, True, True, True, 1814991, NULL, E'F4', True),
+  (E'158', E'TWN', E'TW', E'030', False, True, True, True, 1668284, NULL, E'F5', True),
+  (E'162', E'CXR', E'CX', E'053', True, True, True, True, 2078138, NULL, E'F6', True),
+  (E'166', E'CCK', E'CC', E'053', True, True, True, True, 1547376, NULL, E'F7', True),
+  (E'184', E'COK', E'CK', E'061', True, True, True, True, 1899402, NULL, E'G1', True),
+  (E'196', E'CYP', E'CY', E'145', True, True, True, True, 146669, NULL, E'G4', True),
+  (E'208', E'DNK', E'DK', E'154', True, True, True, True, 2623032, NULL, E'G7', True),
+  (E'316', E'GUM', E'GU', E'057', True, True, True, True, 4043988, NULL, E'GU', True),
+  (E'818', E'EGY', E'EG', E'015', True, True, True, True, 357994, NULL, E'H2', True),
+  (E'234', E'FRO', E'FO', E'154', True, True, True, True, 2622320, NULL, E'H6', True),
+  (E'242', E'FJI', E'FJ', E'054', True, True, True, True, 2205218, NULL, E'H8', True),
+  (E'246', E'FIN', E'FI', E'154', True, True, True, True, 660013, NULL, E'H9', True),
+  (E'250', E'FRA', E'FR', E'155', True, True, True, True, 3017382, NULL, E'I0', True),
+  (E'258', E'PYF', E'PF', E'061', True, True, True, True, 4030656, NULL, E'I4', True),
+  (E'292', E'GIB', E'GI', E'039', True, True, True, True, 2411586, NULL, E'J1', True),
+  (E'296', E'KIR', E'KI', E'057', True, True, True, True, 4030945, NULL, E'J2', True),
+  (E'720', E'YMD', E'YD', E'145', True, True, True, True, 8505034, NULL, NULL, False),
+  (E'051', E'ARM', E'AM', E'145', True, True, True, True, 174982, NULL, E'1B', True),
+  (E'810', E'SUN', E'SU', E'151', True, True, True, True, 8354411, NULL, NULL, False),
+  (E'849', E'PUS', E'PU', E'057', True, True, True, True, NULL, NULL, NULL, False),
+  (E'872', E'WAK', E'WK', E'057', True, True, True, True, 4041685, NULL, NULL, False),
+  (E'031', E'AZE', E'AZ', E'145', True, True, True, True, 587116, NULL, E'1D', True),
+  (E'886', E'YAR', E'YA', E'145', True, True, False, False, NULL, NULL, NULL, False),
+  (E'890', E'YUG', E'YU', E'039', True, True, True, True, 7500737, NULL, NULL, False),
+  (E'891', E'YUG', E'YU', E'039', True, True, True, True, 8505033, NULL, NULL, False),
+  (E'070', E'BIH', E'BA', E'039', True, True, True, True, 3277605, NULL, E'1E', True),
+  (E'112', E'BLR', E'BY', E'151', True, True, True, True, 630336, NULL, E'1F', True),
+  (E'233', E'EST', E'EE', E'154', True, True, True, True, 453733, NULL, E'1H', True),
+  (E'583', E'FSM', E'FM', E'057', True, True, True, True, 2081918, NULL, E'1K', True),
+  (E'191', E'HRV', E'HR', E'039', True, True, True, True, 3202326, NULL, E'1M', True),
+  (E'440', E'LTU', E'LT', E'154', True, True, True, True, 597427, NULL, E'1Q', True),
+  (E'428', E'LVA', E'LV', E'154', True, True, True, True, 458258, NULL, E'1R', True),
+  (E'498', E'MDA', E'MD', E'151', True, True, True, True, 617790, NULL, E'1S', True),
+  (E'584', E'MHL', E'MH', E'057', True, True, True, True, 2080185, NULL, E'1T', True),
+  (E'807', E'MKD', E'MK', E'039', True, True, True, True, 718075, NULL, E'1U', True),
+  (E'580', E'MNP', E'MP', E'057', True, True, True, True, 4041468, NULL, E'1V', True),
+  (E'540', E'NCL', E'NC', E'054', True, True, True, True, 2139685, NULL, E'1W', True),
+  (E'275', E'PSE', E'PS', E'145', True, True, True, True, 6254930, NULL, E'1X', True),
+  (E'585', E'PLW', E'PW', E'057', True, True, True, True, 1559582, NULL, E'1Y', True),
+  (E'643', E'RUS', E'RU', E'151', True, True, True, True, 2017370, NULL, E'1Z', True),
+  (E'300', E'GRC', E'GR', E'039', True, True, True, True, 390903, NULL, E'J3', True),
+  (E'344', E'HKG', E'HK', E'030', True, True, True, True, 1819730, NULL, E'K3', True),
+  (E'334', E'HMD', E'HM', E'053', True, True, True, True, 1547314, NULL, E'K4', True),
+  (E'348', E'HUN', E'HU', E'151', True, True, True, True, 719819, NULL, E'K5', True),
+  (E'352', E'ISL', E'IS', E'154', True, True, True, True, 2629691, NULL, E'K6', True),
+  (E'360', E'IDN', E'ID', E'035', True, True, True, True, 1643084, NULL, E'K8', True),
+  (E'368', E'IRQ', E'IQ', E'145', True, True, True, True, 99237, NULL, E'L0', True),
+  (E'372', E'IRL', E'IE', E'154', True, True, True, True, 2963597, NULL, E'L2', True),
+  (E'376', E'ISR', E'IL', E'145', True, True, True, True, 294640, NULL, E'L3', True),
+  (E'380', E'ITA', E'IT', E'039', True, True, True, True, 3175395, NULL, E'L6', True),
+  (E'744', E'SJM', E'SJ', E'154', True, True, True, True, 607072, NULL, E'L9', True),
+  (E'392', E'JPN', E'JP', E'030', True, True, True, True, 1861060, NULL, E'M0', True),
+  (E'400', E'JOR', E'JO', E'145', True, True, True, True, 248816, NULL, E'M2', True),
+  (E'408', E'PRK', E'KP', E'030', True, True, True, True, 1873107, NULL, E'M4', True),
+  (E'410', E'KOR', E'KR', E'030', True, True, True, True, 1835841, NULL, E'M5', True),
+  (E'414', E'KWT', E'KW', E'145', True, True, True, True, 285570, NULL, E'M6', True),
+  (E'418', E'LAO', E'LA', E'035', True, True, True, True, 1655842, NULL, E'M7', True),
+  (E'422', E'LBN', E'LB', E'145', True, True, True, True, 272103, NULL, E'M8', True),
+  (E'434', E'LBY', E'LY', E'015', True, True, True, True, 2215636, NULL, E'N1', True),
+  (E'438', E'LIE', E'LI', E'155', True, True, True, True, 3042058, NULL, E'N2', True),
+  (E'442', E'LUX', E'LU', E'155', True, True, True, True, 2960313, NULL, E'N4', True),
+  (E'446', E'MAC', E'MO', E'030', True, True, True, True, 1821275, NULL, E'N5', True),
+  (E'458', E'MYS', E'MY', E'035', True, True, True, True, 1733045, NULL, E'N8', True),
+  (E'470', E'MLT', E'MT', E'039', True, True, True, True, 2562770, NULL, E'O1', True),
+  (E'492', E'MCO', E'MC', E'155', True, True, True, True, 2993457, NULL, E'O9', True),
+  (E'496', E'MNG', E'MN', E'030', True, True, True, True, 2029969, NULL, E'P0', True),
+  (E'504', E'MAR', E'MA', E'015', True, True, True, True, 2542007, NULL, E'P2', True),
+  (E'512', E'OMN', E'OM', E'145', True, True, True, True, 286963, NULL, E'P4', True),
+  (E'520', E'NRU', E'NR', E'057', True, True, True, True, 2110425, NULL, E'P5', True),
+  (E'528', E'NLD', E'NL', E'155', True, True, True, True, 2750405, NULL, E'P7', True),
+  (E'704', E'VNM', E'VN', E'035', True, True, True, True, 1562822, NULL, E'Q1', True),
+  (E'554', E'NZL', E'NZ', E'053', True, True, True, True, 2186224, NULL, E'Q2', True),
+  (E'570', E'NIU', E'NU', E'061', True, True, True, True, 4036232, NULL, E'Q6', True),
+  (E'574', E'NFK', E'NF', E'053', True, True, True, True, 2155115, NULL, E'Q7', True),
+  (E'578', E'NOR', E'NO', E'154', True, True, True, True, 3144096, NULL, E'Q8', True),
+  (E'598', E'PNG', E'PG', E'054', True, True, True, True, 2088628, NULL, E'R2', True),
+  (E'608', E'PHL', E'PH', E'035', True, True, True, True, 1694008, NULL, E'R6', True),
+  (E'612', E'PCN', E'PN', E'061', True, True, True, True, 4030699, NULL, E'R8', True),
+  (E'616', E'POL', E'PL', E'151', True, True, True, True, 798544, NULL, E'R9', True),
+  (E'620', E'PRT', E'PT', E'039', True, True, True, True, 2264397, NULL, E'S1', True),
+  (E'634', E'QAT', E'QA', E'145', True, True, True, True, 289688, NULL, E'S3', True),
+  (E'642', E'ROU', E'RO', E'151', True, True, True, True, 798549, NULL, E'S5', True),
+  (E'674', E'SMR', E'SM', E'039', True, True, True, True, 3168068, NULL, E'S8', True),
+  (E'682', E'SAU', E'SA', E'145', True, True, True, True, 102358, NULL, E'T0', True),
+  (E'887', E'YEM', E'YE', E'145', True, True, True, True, 69543, NULL, E'T7', True),
+  (E'702', E'SGP', E'SG', E'035', True, True, True, True, 1880251, NULL, E'U0', True),
+  (E'724', E'ESP', E'ES', E'039', True, True, True, True, 2510769, NULL, E'U3', True),
+  (E'732', E'ESH', E'EH', E'015', True, True, True, True, 2461445, NULL, E'U5', True),
+  (E'729', E'SDN', E'SD', E'015', True, True, True, True, 366755, NULL, E'V2', True),
+  (E'752', E'SWE', E'SE', E'154', True, True, True, True, 2661886, NULL, E'V7', True),
+  (E'756', E'CHE', E'CH', E'155', True, True, True, True, 2658434, NULL, E'V8', True),
+  (E'760', E'SYR', E'SY', E'145', True, True, True, True, 163843, NULL, E'V9', True),
+  (E'764', E'THA', E'TH', E'035', True, True, True, True, 1605651, NULL, E'W1', True),
+  (E'772', E'TKL', E'TK', E'061', True, True, True, True, 4031074, NULL, E'W3', True),
+  (E'776', E'TON', E'TO', E'061', True, True, True, True, 4032283, NULL, E'W4', True),
+  (E'788', E'TUN', E'TN', E'015', True, True, True, True, 2464461, NULL, E'W6', True),
+  (E'792', E'TUR', E'TR', E'145', True, True, True, True, 298795, NULL, E'W8', True),
+  (E'826', E'GBR', E'GB', E'154', True, True, True, True, 2635167, NULL, E'X0', True),
+  (E'336', E'VAT', E'VA', E'039', True, True, True, True, 3164670, NULL, E'X4', True),
+  (E'876', E'WLF', E'WF', E'061', True, True, True, True, 4034749, NULL, E'X8', True),
+  (E'882', E'WSM', E'WS', E'061', True, True, True, True, 4034894, NULL, E'Y0', True),
+  (E'248', E'ALA', E'AX', E'154', True, True, True, True, 661882, NULL, E'Y6', True),
+  (E'833', E'IMN', E'IM', E'154', True, True, True, True, 3042225, NULL, E'Y8', True),
+  (E'688', E'SRB', E'RS', E'039', True, True, True, True, 6290252, NULL, E'Z2', True),
+  (E'626', E'TLS', E'TL', E'035', True, True, True, True, 1966436, NULL, E'Z3', True),
+  (E'499', E'MNE', E'ME', E'039', True, True, True, True, 3194884, NULL, E'Z5', True);
 
-SET search_path = "LC", pg_catalog;
---
--- Data for table "LC"."001AR09" (LIMIT 0,16)
---
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (1, '003', 'NNN', 'NN', 6255149, '019', true, false, false, false, true, '2023-06-04 11:38:18.833');
+/* Data for the 'lc.t001ar17' table  (Records 1 - 129) */
 
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (2, '015', 'NFF', 'NK', 7729887, '002', true, false, false, false, true, '2023-06-04 11:38:18.833');
+INSERT INTO lc.t001ar17 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "edgar", "actv")
+VALUES 
+  (E'532', E'ANT', E'AN', E'029', True, False, True, True, 8505032, NULL, NULL, False),
+  (E'531', E'CUW', E'CW', E'029', True, True, True, True, 7626836, NULL, NULL, True),
+  (E'534', E'SXM', E'SX', E'029', True, True, True, True, 7609695, NULL, NULL, True),
+  (E'535', E'BES', E'BQ', E'029', True, True, True, True, 7626844, NULL, NULL, True),
+  (E'680', E'CRQ', E'CQ', E'830', True, True, True, True, 3042282, NULL, NULL, True),
+  (E'060', E'BMU', E'BM', E'021', True, True, True, True, 3573345, NULL, E'D0', True),
+  (E'084', E'BLZ', E'BZ', E'013', True, True, True, True, 3582678, NULL, E'D1', True),
+  (E'064', E'BTN', E'BT', E'034', True, True, True, True, 1252634, NULL, E'D2', True),
+  (E'068', E'BOL', E'BO', E'005', True, True, True, True, 3923057, NULL, E'D3', True),
+  (E'074', E'BVT', E'BV', E'005', True, True, True, True, 3371123, NULL, E'D4', True),
+  (E'076', E'BRA', E'BR', E'005', True, True, True, True, 3469034, NULL, E'D5', True),
+  (E'086', E'IOT', E'IO', E'014', True, True, True, True, 1282588, NULL, E'D6', True),
+  (E'092', E'VGB', E'VG', E'029', True, True, True, True, 3577718, NULL, E'D8', True),
+  (E'108', E'BDI', E'BI', E'014', True, True, True, True, 433561, NULL, E'E2', True),
+  (E'120', E'CMR', E'CM', E'017', True, True, True, True, 2233387, NULL, E'E4', True),
+  (E'132', E'CPV', E'CV', E'011', True, True, True, True, 3374766, NULL, E'E8', True),
+  (E'136', E'CYM', E'KY', E'029', True, True, True, True, 3580718, NULL, E'E9', True),
+  (E'140', E'CAF', E'CF', E'017', True, True, True, True, 239880, NULL, E'F0', True),
+  (E'144', E'LKA', E'LK', E'034', True, True, True, True, 1227603, NULL, E'F1', True),
+  (E'148', E'TCD', E'TD', E'017', True, True, True, True, 2434508, NULL, E'F2', True),
+  (E'152', E'CHL', E'CL', E'005', True, True, True, True, 3895114, NULL, E'F3', True),
+  (E'170', E'COL', E'CO', E'005', True, True, True, True, 3686110, NULL, E'F8', True),
+  (E'174', E'COM', E'KM', E'014', True, True, True, True, 921929, NULL, E'F9', True),
+  (E'178', E'COG', E'CG', E'017', True, True, True, True, 2260494, NULL, E'G0', True),
+  (E'188', E'CRI', E'CR', E'013', True, True, True, True, 3624060, NULL, E'G2', True),
+  (E'192', E'CUB', E'CU', E'029', True, True, True, True, 3562981, NULL, E'G3', True),
+  (E'204', E'BEN', E'BJ', E'011', True, True, True, True, 2395170, NULL, E'G6', True),
+  (E'214', E'DOM', E'DO', E'029', True, True, True, True, 3508796, NULL, E'G8', True),
+  (E'212', E'DMA', E'DM', E'029', True, True, True, True, 3575830, NULL, E'G9', True),
+  (E'218', E'ECU', E'EC', E'005', True, True, True, True, 3658394, NULL, E'H1', True),
+  (E'222', E'SLV', E'SV', E'013', True, True, True, True, 3585968, NULL, E'H3', True),
+  (E'226', E'GNQ', E'GQ', E'017', True, True, True, True, 2309096, NULL, E'H4', True),
+  (E'231', E'ETH', E'ET', E'014', True, True, True, True, 337996, NULL, E'H5', True),
+  (E'238', E'FLK', E'FK', E'005', True, True, True, True, 3474414, NULL, E'H7', True),
+  (E'254', E'GUF', E'GF', E'005', True, True, True, True, 3381670, NULL, E'I3', True),
+  (E'266', E'GAB', E'GA', E'017', True, True, True, True, 2400553, NULL, E'I5', True),
+  (E'270', E'GMB', E'GM', E'011', True, True, True, True, 2413451, NULL, E'I6', True),
+  (E'288', E'GHA', E'GH', E'011', True, True, True, True, 2300660, NULL, E'J0', True),
+  (E'304', E'GRL', E'GL', E'021', True, True, True, True, 3425505, NULL, E'J4', True),
+  (E'308', E'GRD', E'GD', E'029', True, True, True, True, 3580239, NULL, E'J5', True),
+  (E'312', E'GLP', E'GP', E'029', True, True, True, True, 3579143, NULL, E'J6', True),
+  (E'320', E'GTM', E'GT', E'013', True, True, True, True, 3595528, NULL, E'J8', True),
+  (E'728', E'SSD', E'SS', E'014', True, True, True, True, 7909807, NULL, NULL, True),
+  (E'660', E'AIA', E'AI', E'029', True, True, True, True, 3573511, NULL, E'1A', True),
+  (E'533', E'ABW', E'AW', E'029', True, True, True, True, 3577279, NULL, E'1C', True),
+  (E'262', E'DJI', E'DJ', E'014', True, True, True, True, 223816, NULL, E'1G', True),
+  (E'232', E'ERI', E'ER', E'014', True, True, True, True, 338010, NULL, E'1J', True),
+  (E'239', E'SGS', E'GS', E'005', True, True, True, True, 3474415, NULL, E'1L', True),
+  (E'417', E'KGZ', E'KG', E'143', True, True, True, True, 1527747, NULL, E'1N', True),
+  (E'398', E'KAZ', E'KZ', E'143', True, True, True, True, 1522867, NULL, E'1P', True),
+  (E'260', E'ATF', E'TF', E'014', True, True, True, True, 1546748, NULL, E'2C', True),
+  (E'762', E'TJK', E'TJ', E'143', True, True, True, True, 1220409, NULL, E'2D', True),
+  (E'795', E'TKM', E'TM', E'143', True, True, True, True, 1218197, NULL, E'2E', True),
+  (E'860', E'UZB', E'UZ', E'143', True, True, True, True, 1512440, NULL, E'2K', True),
+  (E'175', E'MYT', E'YT', E'014', True, True, True, True, 1024031, NULL, E'2P', True),
+  (E'072', E'BWA', E'BW', E'018', True, True, True, True, 933860, NULL, E'B1', True),
+  (E'004', E'AFG', E'AF', E'034', True, True, True, True, 1149361, NULL, E'B2', True),
+  (E'024', E'AGO', E'AO', E'017', True, True, True, True, 3351879, NULL, E'B7', True),
+  (E'028', E'ATG', E'AG', E'029', True, True, True, True, 3576396, NULL, E'B9', True),
+  (E'032', E'ARG', E'AR', E'005', True, True, True, True, 3865483, NULL, E'C1', True),
+  (E'044', E'BHS', E'BS', E'029', True, True, True, True, 3572887, NULL, E'C5', True),
+  (E'050', E'BGD', E'BD', E'034', True, True, True, True, 1210997, NULL, E'C7', True),
+  (E'052', E'BRB', E'BB', E'029', True, True, True, True, 3374084, NULL, E'C8', True),
+  (E'324', E'GIN', E'GN', E'011', True, True, True, True, 2420477, NULL, E'J9', True),
+  (E'328', E'GUY', E'GY', E'005', True, True, True, True, 3378535, NULL, E'K0', True),
+  (E'332', E'HTI', E'HT', E'029', True, True, True, True, 3723988, NULL, E'K1', True),
+  (E'340', E'HND', E'HN', E'013', True, True, True, True, 3608932, NULL, E'K2', True),
+  (E'356', E'IND', E'IN', E'034', True, True, True, True, 1269750, NULL, E'K7', True),
+  (E'364', E'IRN', E'IR', E'034', True, True, True, True, 130758, NULL, E'K9', True),
+  (E'384', E'CIV', E'CI', E'011', True, True, True, True, 2287781, NULL, E'L7', True),
+  (E'388', E'JAM', E'JM', E'029', True, True, True, True, 3489940, NULL, E'L8', True),
+  (E'404', E'KEN', E'KE', E'014', True, True, True, True, 192950, NULL, E'M3', True),
+  (E'426', E'LSO', E'LS', E'018', True, True, True, True, 932692, NULL, E'M9', True),
+  (E'430', E'LBR', E'LR', E'011', True, True, True, True, 2275384, NULL, E'N0', True),
+  (E'450', E'MDG', E'MG', E'014', True, True, True, True, 1062947, NULL, E'N6', True),
+  (E'454', E'MWI', E'MW', E'014', True, True, True, True, 927384, NULL, E'N7', True),
+  (E'462', E'MDV', E'MV', E'034', True, True, True, True, 1282028, NULL, E'N9', True),
+  (E'466', E'MLI', E'ML', E'011', True, True, True, True, 2453866, NULL, E'O0', True),
+  (E'474', E'MTQ', E'MQ', E'029', True, True, True, True, 3570311, NULL, E'O2', True),
+  (E'478', E'MRT', E'MR', E'011', True, True, True, True, 2378080, NULL, E'O3', True),
+  (E'480', E'MUS', E'MU', E'014', True, True, True, True, 934292, NULL, E'O4', True),
+  (E'484', E'MEX', E'MX', E'013', True, True, True, True, 3996063, NULL, E'O5', True),
+  (E'500', E'MSR', E'MS', E'029', True, True, True, True, 3578097, NULL, E'P1', True),
+  (E'508', E'MOZ', E'MZ', E'014', True, True, True, True, 1036973, NULL, E'P3', True),
+  (E'524', E'NPL', E'NP', E'034', True, True, True, True, 1282988, NULL, E'P6', True),
+  (E'530', E'ANT', E'AN', E'029', False, True, True, True, 8505032, NULL, E'P8', False),
+  (E'630', E'PRI', E'PR', E'029', True, True, True, True, 4566966, NULL, E'PR', True),
+  (E'558', E'NIC', E'NI', E'013', True, True, True, True, 3617476, NULL, E'Q3', True),
+  (E'562', E'NER', E'NE', E'011', True, True, True, True, 2440476, NULL, E'Q4', True),
+  (E'566', E'NGA', E'NG', E'011', True, True, True, True, 2328926, NULL, E'Q5', True),
+  (E'586', E'PAK', E'PK', E'034', True, True, True, True, 1168579, NULL, E'R0', True),
+  (E'591', E'PAN', E'PA', E'013', True, True, True, True, 3703430, NULL, E'R1', True),
+  (E'600', E'PRY', E'PY', E'005', True, True, True, True, 3437598, NULL, E'R4', True),
+  (E'604', E'PER', E'PE', E'005', True, True, True, True, 3932488, NULL, E'R5', True),
+  (E'624', E'GNB', E'GW', E'011', True, True, True, True, 2372248, NULL, E'S0', True),
+  (E'638', E'REU', E'RE', E'014', True, True, True, True, 935317, NULL, E'S4', True),
+  (E'646', E'RWA', E'RW', E'014', True, True, True, True, 49518, NULL, E'S6', True),
+  (E'678', E'STP', E'ST', E'017', True, True, True, True, 2410758, NULL, E'S9', True),
+  (E'686', E'SEN', E'SN', E'011', True, True, True, True, 2245662, NULL, E'T1', True),
+  (E'690', E'SYC', E'SC', E'014', True, True, True, True, 241170, NULL, E'T2', True),
+  (E'710', E'ZAF', E'ZA', E'018', True, True, True, True, 953987, NULL, E'T3', True),
+  (E'516', E'NAM', E'NA', E'018', True, True, True, True, 3355338, NULL, E'T6', True),
+  (E'694', E'SLE', E'SL', E'011', True, True, True, True, 2403846, NULL, E'T8', True),
+  (E'706', E'SOM', E'SO', E'014', True, True, True, True, 51537, NULL, E'U1', True),
+  (E'659', E'KNA', E'KN', E'029', True, True, True, True, 3575174, NULL, E'U7', True),
+  (E'654', E'SHN', E'SH', E'011', True, True, True, True, 3370751, NULL, E'U8', True),
+  (E'662', E'LCA', E'LC', E'029', True, True, True, True, 3576468, NULL, E'U9', True),
+  (E'666', E'SPM', E'PM', E'021', True, True, True, True, 3424932, NULL, E'V0', True),
+  (E'670', E'VCT', E'VC', E'029', True, True, True, True, 3577815, NULL, E'V1', True),
+  (E'740', E'SUR', E'SR', E'005', True, True, True, True, 3382998, NULL, E'V3', True),
+  (E'748', E'SWZ', E'SZ', E'018', True, True, True, True, 934841, NULL, E'V6', True),
+  (E'850', E'VIR', E'VI', E'029', True, True, True, True, 4796775, NULL, E'VI', True),
+  (E'834', E'TZA', E'TZ', E'014', True, True, True, True, 149590, NULL, E'W0', True),
+  (E'768', E'TGO', E'TG', E'011', True, True, True, True, 2363686, NULL, E'W2', True),
+  (E'780', E'TTO', E'TT', E'029', True, True, True, True, 3573591, NULL, E'W5', True),
+  (E'796', E'TCA', E'TC', E'029', True, True, True, True, 3576916, NULL, E'W7', True),
+  (E'800', E'UGA', E'UG', E'014', True, True, True, True, 226074, NULL, E'W9', True),
+  (E'840', E'USA', E'US', E'021', True, True, True, True, 6252001, NULL, E'X1', True),
+  (E'854', E'BFA', E'BF', E'011', True, True, True, True, 2361809, NULL, E'X2', True),
+  (E'858', E'URY', E'UY', E'005', True, True, True, True, 3439705, NULL, E'X3', True),
+  (E'862', E'VEN', E'VE', E'005', True, True, True, True, 3625428, NULL, E'X5', True),
+  (E'180', E'COD', E'CD', E'017', True, True, True, True, 203312, NULL, E'Y3', True),
+  (E'894', E'ZMB', E'ZM', E'014', True, True, True, True, 895949, NULL, E'Y4', True),
+  (E'716', E'ZWE', E'ZW', E'014', True, True, True, True, 878675, NULL, E'Y5', True),
+  (E'831', E'GGY', E'GG', E'830', True, True, True, True, 3042362, NULL, E'Y7', True),
+  (E'832', E'JEY', E'JE', E'830', True, True, True, True, 3042142, NULL, E'Y9', True),
+  (E'652', E'BLM', E'BL', E'029', True, True, True, True, 3578476, NULL, E'Z0', True),
+  (E'663', E'MAF', E'MF', E'029', True, True, True, True, 3578421, NULL, E'Z1', True),
+  (E'124', E'CAN', E'CA', E'021', True, True, True, True, 6251999, NULL, E'Z4', True);
 
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (3, '030', 'ABH', 'AH', 7729894, '142', true, false, false, false, true, '2023-06-04 11:38:18.833');
+/* Data for the 'lc.t840ar01' table  (Records 1 - 309) */
 
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (4, '035', 'ABJ', 'AJ', 7729896, '142', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (5, '039', 'SER', 'SP', 9408658, '150', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (6, '053', 'ANZ', 'AY', 7729898, '009', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (7, '054', 'UML', 'UL', 7729899, '009', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (8, '057', 'UMC', 'UC', 7729900, '009', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (9, '061', 'UPL', 'UP', 7729901, '009', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (10, '062', 'ABV', 'AV', NULL, '142', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (11, '145', 'ABK', 'AK', 7729897, '142', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (12, '151', 'EER', 'ED', 7729884, '150', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (13, '154', 'NEE', 'ND', 7729883, '150', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (14, '155', 'WEE', 'WE', 9408659, '150', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (15, '202', 'SSA', 'SQ', 12212804, '002', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
-INSERT INTO "001AR09" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (16, '419', 'LAC', 'LN', 7730009, '019', true, false, false, false, true, '2023-06-04 11:38:18.833');
-
---
--- Data for table "LC"."001AR11" (LIMIT 0,11)
---
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (1, '005', 'SRR', 'SW', 6255150, '419', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (2, '011', 'WFF', 'WQ', 7729885, '202', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (3, '013', 'CAA', 'CE', 7729892, '419', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (4, '014', 'EFF', 'EK', 7729889, '202', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (5, '017', 'MFF', 'MJ', 7729886, '202', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (6, '018', 'SFF', 'ZF', 9406051, '202', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (7, '021', 'NNM', 'NM', 7729890, '003', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (8, '029', 'CRB', 'CB', 7729891, '419', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (9, '034', 'ADA', 'DA', 7729895, '062', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (10, '143', 'ADS', 'DS', 7729893, '062', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
-INSERT INTO "001AR11" ("RID", "NUM3", "AL3", "AL2", "GNMID", "NUM3SPR", "NUM3M49", "NUM3ISO", "AL3ISO", "AL2ISO", "ACTV", "T")
-VALUES (11, '830', 'IMC', 'IA', 3042400, '154', true, false, false, false, true, '2023-06-04 14:39:12.389');
-
---
--- Data for sequence "LC"."001AR05_RID_seq"
---
-SELECT pg_catalog.setval('"001AR05_RID_seq"', 6, true);
---
--- Data for sequence "USR"."001_USRID_seq"
---
-SET search_path = "USR", pg_catalog;
-SELECT pg_catalog.setval('"001_USRID_seq"', 2, false);
---
--- Data for sequence "LC"."001AR09_RID_seq"
---
-SET search_path = "LC", pg_catalog;
-SELECT pg_catalog.setval('"001AR09_RID_seq"', 16, true);
---
--- Data for sequence "LC"."001AR11_RID_seq"
---
-SELECT pg_catalog.setval('"001AR11_RID_seq"', 11, true);
+INSERT INTO lc.t840ar01 ("edgar", "actv")
+VALUES 
+  (E'1A', True),
+  (E'1B', True),
+  (E'1C', True),
+  (E'1D', True),
+  (E'1E', True),
+  (E'1F', True),
+  (E'1G', True),
+  (E'1H', True),
+  (E'1J', True),
+  (E'1K', True),
+  (E'1L', True),
+  (E'1M', True),
+  (E'1N', True),
+  (E'1P', True),
+  (E'1Q', True),
+  (E'1R', True),
+  (E'1S', True),
+  (E'1T', True),
+  (E'1U', True),
+  (E'1V', True),
+  (E'1W', True),
+  (E'1X', True),
+  (E'1Y', True),
+  (E'1Z', True),
+  (E'2A', True),
+  (E'2B', True),
+  (E'2C', True),
+  (E'2D', True),
+  (E'2E', True),
+  (E'2G', True),
+  (E'2H', True),
+  (E'2J', True),
+  (E'2K', True),
+  (E'2L', True),
+  (E'2M', True),
+  (E'2N', True),
+  (E'2P', True),
+  (E'2Q', True),
+  (E'A0', True),
+  (E'A1', True),
+  (E'A2', True),
+  (E'A3', True),
+  (E'A4', True),
+  (E'A5', True),
+  (E'A6', True),
+  (E'A7', True),
+  (E'A8', True),
+  (E'A9', True),
+  (E'AK', True),
+  (E'AL', True),
+  (E'AR', True),
+  (E'AZ', True),
+  (E'B0', True),
+  (E'B1', True),
+  (E'B2', True),
+  (E'B3', True),
+  (E'B4', True),
+  (E'B5', True),
+  (E'B6', True),
+  (E'B7', True),
+  (E'B8', True),
+  (E'B9', True),
+  (E'C0', True),
+  (E'C1', True),
+  (E'C3', True),
+  (E'C4', True),
+  (E'C5', True),
+  (E'C6', True),
+  (E'C7', True),
+  (E'C8', True),
+  (E'C9', True),
+  (E'CA', True),
+  (E'CO', True),
+  (E'CT', True),
+  (E'D0', True),
+  (E'D1', True),
+  (E'D2', True),
+  (E'D3', True),
+  (E'D4', True),
+  (E'D5', True),
+  (E'D6', True),
+  (E'D7', True),
+  (E'D8', True),
+  (E'D9', True),
+  (E'DC', True),
+  (E'DE', True),
+  (E'E0', True),
+  (E'E1', True),
+  (E'E2', True),
+  (E'E3', True),
+  (E'E4', True),
+  (E'E8', True),
+  (E'E9', True),
+  (E'F0', True),
+  (E'F1', True),
+  (E'F2', True),
+  (E'F3', True),
+  (E'F4', True),
+  (E'F5', True),
+  (E'F6', True),
+  (E'F7', True),
+  (E'F8', True),
+  (E'F9', True),
+  (E'FL', True),
+  (E'G0', True),
+  (E'G1', True),
+  (E'G2', True),
+  (E'G3', True),
+  (E'G4', True),
+  (E'G6', True),
+  (E'G7', True),
+  (E'G8', True),
+  (E'G9', True),
+  (E'GA', True),
+  (E'GU', True),
+  (E'H1', True),
+  (E'H2', True),
+  (E'H3', True),
+  (E'H4', True),
+  (E'H5', True),
+  (E'H6', True),
+  (E'H7', True),
+  (E'H8', True),
+  (E'H9', True),
+  (E'HI', True),
+  (E'I0', True),
+  (E'I3', True),
+  (E'I4', True),
+  (E'I5', True),
+  (E'I6', True),
+  (E'IA', True),
+  (E'ID', True),
+  (E'IL', True),
+  (E'IN', True),
+  (E'J0', True),
+  (E'J1', True),
+  (E'J2', True),
+  (E'J3', True),
+  (E'J4', True),
+  (E'J5', True),
+  (E'J6', True),
+  (E'J8', True),
+  (E'J9', True),
+  (E'K0', True),
+  (E'K1', True),
+  (E'K2', True),
+  (E'K3', True),
+  (E'K4', True),
+  (E'K5', True),
+  (E'K6', True),
+  (E'K7', True),
+  (E'K8', True),
+  (E'K9', True),
+  (E'KS', True),
+  (E'KY', True),
+  (E'L0', True),
+  (E'L2', True),
+  (E'L3', True),
+  (E'L6', True),
+  (E'L7', True),
+  (E'L8', True),
+  (E'L9', True),
+  (E'LA', True),
+  (E'M0', True),
+  (E'M2', True),
+  (E'M3', True),
+  (E'M4', True),
+  (E'M5', True),
+  (E'M6', True),
+  (E'M7', True),
+  (E'M8', True),
+  (E'M9', True),
+  (E'MA', True),
+  (E'MD', True),
+  (E'ME', True),
+  (E'MI', True),
+  (E'MN', True),
+  (E'MO', True),
+  (E'MS', True),
+  (E'MT', True),
+  (E'N0', True),
+  (E'N1', True),
+  (E'N2', True),
+  (E'N4', True),
+  (E'N5', True),
+  (E'N6', True),
+  (E'N7', True),
+  (E'N8', True),
+  (E'N9', True),
+  (E'NC', True),
+  (E'ND', True),
+  (E'NE', True),
+  (E'NH', True),
+  (E'NJ', True),
+  (E'NM', True),
+  (E'NV', True),
+  (E'NY', True),
+  (E'O0', True),
+  (E'O1', True),
+  (E'O2', True),
+  (E'O3', True),
+  (E'O4', True),
+  (E'O5', True),
+  (E'O9', True),
+  (E'OH', True),
+  (E'OK', True),
+  (E'OR', True),
+  (E'P0', True),
+  (E'P1', True),
+  (E'P2', True),
+  (E'P3', True),
+  (E'P4', True),
+  (E'P5', True),
+  (E'P6', True),
+  (E'P7', True),
+  (E'P8', True),
+  (E'PA', True),
+  (E'PR', True),
+  (E'Q1', True),
+  (E'Q2', True),
+  (E'Q3', True),
+  (E'Q4', True),
+  (E'Q5', True),
+  (E'Q6', True),
+  (E'Q7', True),
+  (E'Q8', True),
+  (E'R0', True),
+  (E'R1', True),
+  (E'R2', True),
+  (E'R4', True),
+  (E'R5', True),
+  (E'R6', True),
+  (E'R8', True),
+  (E'R9', True),
+  (E'RI', True),
+  (E'S0', True),
+  (E'S1', True),
+  (E'S3', True),
+  (E'S4', True),
+  (E'S5', True),
+  (E'S6', True),
+  (E'S8', True),
+  (E'S9', True),
+  (E'SC', True),
+  (E'SD', True),
+  (E'T0', True),
+  (E'T1', True),
+  (E'T2', True),
+  (E'T3', True),
+  (E'T6', True),
+  (E'T7', True),
+  (E'T8', True),
+  (E'TN', True),
+  (E'TX', True),
+  (E'U0', True),
+  (E'U1', True),
+  (E'U3', True),
+  (E'U5', True),
+  (E'U7', True),
+  (E'U8', True),
+  (E'U9', True),
+  (E'UT', True),
+  (E'V0', True),
+  (E'V1', True),
+  (E'V2', True),
+  (E'V3', True),
+  (E'V6', True),
+  (E'V7', True),
+  (E'V8', True),
+  (E'V9', True),
+  (E'VA', True),
+  (E'VI', True),
+  (E'VT', True),
+  (E'W0', True),
+  (E'W1', True),
+  (E'W2', True),
+  (E'W3', True),
+  (E'W4', True),
+  (E'W5', True),
+  (E'W6', True),
+  (E'W7', True),
+  (E'W8', True),
+  (E'W9', True),
+  (E'WA', True),
+  (E'WI', True),
+  (E'WV', True),
+  (E'WY', True),
+  (E'X0', True),
+  (E'X1', True),
+  (E'X2', True),
+  (E'X3', True),
+  (E'X4', True),
+  (E'X5', True),
+  (E'X8', True),
+  (E'XX', True),
+  (E'Y0', True),
+  (E'Y3', True),
+  (E'Y4', True),
+  (E'Y5', True),
+  (E'Y6', True),
+  (E'Y7', True),
+  (E'Y8', True),
+  (E'Y9', True),
+  (E'Z0', True),
+  (E'Z1', True),
+  (E'Z2', True),
+  (E'Z3', True),
+  (E'Z4', True),
+  (E'Z5', True);

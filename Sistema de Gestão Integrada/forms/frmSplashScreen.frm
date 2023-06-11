@@ -104,6 +104,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_Load()
+    Me.Caption = "Seja bem-vindo ao " & SOFTWARE_NAME
     splashScreenBorder.Left = 8
     splashScreenBorder.Top = 8
     splashScreenBorder.Width = Me.Width - 32
@@ -118,5 +119,5 @@ End Sub
 Private Sub Timer1_Timer()
     Unload Me
     Set frmSplashScreen = Nothing
-    frmLogin.Show vbModal
+    frmLogin.Show vbModeless
 End Sub

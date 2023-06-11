@@ -64,3 +64,15 @@ Public Sub freeRecordset(recordset_ As ADODB.Recordset)
 
     Set recordset_ = Nothing
 End Sub
+
+Public Function databaseConnectionExecute(CommandText As String, Optional RecordsAffected As Long, Optional Options As Long = -1) As ADODB.Recordset
+    openDatabaseConnection databaseConnection
+    Set databaseConnectionExecute = databaseConnection.Execute(CommandText, RecordsAffected, Options)
+End Function
+
+Public Function vDBMS() As String
+    Dim rsVersion As ADODB.Recordset
+    Set rsVersion = databaseConnectionExecute("select version()")
+    vDBMS = rsVersion.Fields(0).Value
+    freeRecordset rsVersion
+End Function

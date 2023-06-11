@@ -12,6 +12,7 @@ Begin VB.Form frmLogin
    MinButton       =   0   'False
    ScaleHeight     =   1455
    ScaleWidth      =   8400
+   ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtSenha 
       BeginProperty Font 
@@ -144,7 +145,7 @@ Private Sub cmdEntrar_Click()
         Unload Me
         frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
         frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
-        frmMain.Show vbModal
+        frmMain.Show vbModeless
     Else
         txtSenha.SetFocus
     End If

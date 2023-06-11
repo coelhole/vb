@@ -8,7 +8,7 @@ Public Function auth(username_, password_ As String) As Boolean
     auth = False
 
     Dim rsUsuario As ADODB.Recordset
-    Set rsUsuario = databaseConnection.Execute("select ""USRID"", ""ACTV"" from ""USR"".""001"" where ""USRNM"" = '" & username_ & "' and encode(digest('" & password_ & "', 'sha1'), 'hex') = ""PWDHSH""")
+    Set rsUsuario = databaseConnection.Execute("SELECT usrid, actv FROM usr.t001 WHERE usrnm = '" & username_ & "' AND encode(digest('" & password_ & "', 'sha1'), 'hex') = pwdhsh")
 
     If rsUsuario.BOF Then
         MsgBox "Não há um usuário" & vbCrLf & "com o nome de usuário e a senha fornecidos", vbExclamation, SOFTWARE_NAME
