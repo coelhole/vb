@@ -8,12 +8,12 @@ VALUES
 
 INSERT INTO lc.t001ar05 ("num3", "al3", "al2", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
 VALUES 
-  (E'002', E'FFF', E'FF', True, False, False, False, 6255146, NULL, True),
-  (E'009', E'UUU', E'UU', True, False, False, False, 6255151, NULL, True),
-  (E'010', E'ATA', E'AQ', True, True, True, True, 6255152, NULL, True),
   (E'019', E'AME', E'AA', True, False, False, False, 10861432, NULL, True),
-  (E'142', E'ABB', E'AB', True, False, False, False, 6255147, NULL, True),
-  (E'150', E'EEE', E'EB', True, False, False, False, 6255148, NULL, True);
+  (E'142', E'ABB', E'AB', True, False, False, False, 6255147, E'a', True),
+  (E'150', E'EEE', E'EB', True, False, False, False, 6255148, E'e', True),
+  (E'009', E'UUU', E'UU', True, False, False, False, 6255151, E'po', True),
+  (E'010', E'ATA', E'AQ', True, True, True, True, 6255152, E't', True),
+  (E'002', E'FFF', E'FF', True, False, False, False, 6255146, E'f', True);
 
 /* Data for the 'lc.t001ar09' table  (Records 1 - 16) */
 

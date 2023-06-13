@@ -5,6 +5,8 @@ Public username As String
 Public userid As Integer
 
 Public Function auth(username_, password_ As String) As Boolean
+    On Error GoTo auth_error:
+
     auth = False
 
     Dim rsUsuario As ADODB.Recordset
@@ -22,5 +24,16 @@ Public Function auth(username_, password_ As String) As Boolean
         End If
     End If
 
+    GoTo fim
+
+auth_error:
+    If (Err.Number = -2147467259) And (Not extensionExists("pgcrypto")) Then
+        databaseConnectionExecute "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
+        auth = auth(username_, password_)
+    Else
+        Err.Raise Err.Number, Err.Source, Err.Description, Err.HelpFile, Err.HelpContext
+    End If
+
+fim:
     freeRecordset rsUsuario
 End Function

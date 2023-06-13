@@ -134,8 +134,8 @@ BEGIN
 		INSERT INTO lc.t001ar07(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,actv,t)
 		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.actv,NEW.t);
 
-		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,artp,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,2,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
+		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,2,NEW.actv,NEW.t);
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
@@ -205,8 +205,8 @@ BEGIN
 		INSERT INTO lc.t001ar13(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,edgar,actv,t)
 		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.edgar,NEW.actv, NEW.t);
 
-		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,edgar,artp,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.edgar,3,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
+		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,3,NEW.actv,NEW.t);
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
@@ -252,7 +252,6 @@ BEGIN
     		al2iso = NEW.al2iso,
             gnmid = NEW.gnmid,
             marc = NEW.marc,
-            edgar = NEW.edgar,
     		actv = NEW.actv,
         	t = NEW.t
     	WHERE
@@ -276,9 +275,8 @@ CREATE TABLE lc.t001ar01 (
     num3iso boolean NOT NULL,
     al3iso boolean NOT NULL,
     al2iso boolean NOT NULL,
-	gnmid public.positive,
+    gnmid public.positive,
     marc char(8),
-    edgar public."ALNUM2",
     artp smallint NOT NULL,
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL,
@@ -346,19 +344,19 @@ CREATE SEQUENCE lc.seq_t001ar13_rid
     NO MINVALUE
     CACHE 1;
 --
--- Structure for table t840ar01 : 
+-- Structure for table t840ar03 : 
 --
-CREATE TABLE lc.t840ar01 (
-    rid integer DEFAULT nextval(('lc.seq_t840ar01_rid'::text)::regclass) NOT NULL,
+CREATE TABLE lc.t840ar03 (
+    rid integer DEFAULT nextval(('lc.seq_t840ar03_rid'::text)::regclass) NOT NULL,
     edgar public."ALNUM2" NOT NULL,
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t840ar01_rid : 
+-- Definition for sequence seq_t840ar03_rid : 
 --
-CREATE SEQUENCE lc.seq_t840ar01_rid
+CREATE SEQUENCE lc.seq_t840ar03_rid
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -593,6 +591,16 @@ WHERE ((t001ar01.actv = true) AND (t001ar01.marc IS NOT NULL))
 ORDER BY t001ar01.marc, t001ar01.num3;
 
 --
+-- Structure for table t840ar01 : 
+--
+CREATE TABLE lc.t840ar01 (
+    rid integer DEFAULT nextval(('lc.seq_t840ar01_rid'::text)::regclass) NOT NULL,
+    marc char(8) NOT NULL,
+    caption varchar(64) NOT NULL,
+    t timestamp(0) without time zone DEFAULT now() NOT NULL
+)
+WITH (oids = false);
+--
 -- Definition for index u01_lc_t001ar01 : 
 --
 ALTER TABLE ONLY t001ar01
@@ -703,17 +711,29 @@ ALTER TABLE ONLY t001ar17
     ADD CONSTRAINT u01_lc_t001ar17
     UNIQUE (rid);
 --
+-- Definition for index pk_lc_t840ar03 : 
+--
+ALTER TABLE ONLY t840ar03
+    ADD CONSTRAINT pk_lc_t840ar03
+    PRIMARY KEY (edgar);
+--
+-- Definition for index u01_t840ar03 : 
+--
+ALTER TABLE ONLY t840ar03
+    ADD CONSTRAINT u01_t840ar03
+    UNIQUE (rid);
+--
 -- Definition for index pk_lc_t840ar01 : 
 --
 ALTER TABLE ONLY t840ar01
     ADD CONSTRAINT pk_lc_t840ar01
-    PRIMARY KEY (edgar);
+    PRIMARY KEY (rid);
 --
--- Definition for index u01_t840ar01 : 
+-- Definition for index u01_lc_t840ar01 : 
 --
 ALTER TABLE ONLY t840ar01
-    ADD CONSTRAINT u01_t840ar01
-    UNIQUE (rid);
+    ADD CONSTRAINT u01_lc_t840ar01
+    UNIQUE (marc);
 --
 -- Definition for trigger usr_t001_bfr_trg : 
 --
@@ -723,23 +743,9 @@ CREATE TRIGGER usr_t001_bfr_trg
     FOR EACH ROW
     EXECUTE PROCEDURE t001_bfr_trg_func ();
 --
--- Definition for trigger lc_t001ar05_bfr_trg : 
---
-SET search_path = lc, pg_catalog;
-CREATE TRIGGER lc_t001ar05_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3m49, num3iso, al3iso, al2iso, actv ON t001ar05
-    FOR EACH ROW
-    EXECUTE PROCEDURE t001ar05_bfr_trg_func ();
---
--- Definition for trigger lc_t001ar09_bfr_trg : 
---
-CREATE TRIGGER lc_t001ar09_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, actv ON t001ar09
-    FOR EACH ROW
-    EXECUTE PROCEDURE t001ar09_11_bfr_trg_func ();
---
 -- Definition for trigger lc_t001ar11_bfr_trg : 
 --
+SET search_path = lc, pg_catalog;
 CREATE TRIGGER lc_t001ar11_bfr_trg
     BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, actv ON t001ar11
     FOR EACH ROW
@@ -759,21 +765,44 @@ CREATE TRIGGER lc_t001ar17_bfr_trg
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar15_17_bfr_trg_func ();
 --
+-- Definition for trigger lc_t001ar05_bfr_trg : 
+--
+CREATE TRIGGER lc_t001ar05_bfr_trg
+    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar05
+    FOR EACH ROW
+    EXECUTE PROCEDURE t001ar05_bfr_trg_func ();
+--
+-- Definition for trigger lc_t001ar09_bfr_trg : 
+--
+CREATE TRIGGER lc_t001ar09_bfr_trg
+    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, num3spr, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar09
+    FOR EACH ROW
+    EXECUTE PROCEDURE t001ar09_11_bfr_trg_func ();
+--
 -- Comments
 --
 COMMENT ON SCHEMA public IS 'standard public schema';
 COMMENT ON SCHEMA lc IS 'locale info [informações de localização]';
+COMMENT ON SCHEMA usr IS 'user info [informações de usuário]';
+SET search_path = public, pg_catalog;
+COMMENT ON DOMAIN "AL2" IS '2-upper case letters [duas letras em caixa alta]';
+COMMENT ON DOMAIN "AL3" IS '3-upper case letters [3 letras em caixa alta]';
+COMMENT ON DOMAIN num3 IS '3-numeric digit [3 dígitos numéricos]';
+COMMENT ON DOMAIN "ALNUM2" IS '2-alphanumeric string [string alfanumérica de dois caracteres]';
+COMMENT ON DOMAIN positive IS 'positive integer [inteiro positivo]';
+SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar01 IS 'country or area codes [códigos para países ou áreas geográficas]';
 COMMENT ON COLUMN lc.t001ar01.rid IS 'row identifier [identificador (ID) da linha]';
 COMMENT ON COLUMN lc.t001ar01.num3 IS 'country or area numeric-3 code [código de país ou área de 3 dígitos numéricos]';
 COMMENT ON COLUMN lc.t001ar01.al3 IS 'alpha-3 code [código de país ou área de 3 letras]';
 COMMENT ON COLUMN lc.t001ar01.al2 IS 'alpha-2 code [código de país ou área de 2 letras]';
-COMMENT ON COLUMN lc.t001ar01.gnmid IS 'geoname ID [ID do nome geográfico]';
 COMMENT ON COLUMN lc.t001ar01.num3spr IS 'super region numeric-3 code [código de país ou área, de 3 dígitos numéricos, da super-região]';
 COMMENT ON COLUMN lc.t001ar01.num3m49 IS 'is numeric-3 key an UN-M49 code? [o código de 3 dígitos numéricos é um código M49-ONU?]';
 COMMENT ON COLUMN lc.t001ar01.num3iso IS 'is numeric-3 key an ISO 3166-1 numeric code? [o código de 3 dígitos numéricos é um código ISO 3166-1 numérico?]';
 COMMENT ON COLUMN lc.t001ar01.al3iso IS 'is alpha-3 key an ISO 3166-1 alpha-3 code? [o código de 3 letras é um código ISO 3166-1 de 3 letras?]';
 COMMENT ON COLUMN lc.t001ar01.al2iso IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
+COMMENT ON COLUMN lc.t001ar01.gnmid IS 'geoname ID [ID do nome geográfico]';
+COMMENT ON COLUMN lc.t001ar01.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
 COMMENT ON COLUMN lc.t001ar01.artp IS 'area type [tipo de área]
 
 1 = continente
@@ -781,9 +810,9 @@ COMMENT ON COLUMN lc.t001ar01.artp IS 'area type [tipo de área]
 3 = país/território';
 COMMENT ON COLUMN lc.t001ar01.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar01.t IS 'timestamp [marca de tempo]';
-COMMENT ON COLUMN lc.t001ar01.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
-COMMENT ON COLUMN lc.t001ar01.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
-COMMENT ON SCHEMA usr IS 'user info [informações de usuário]';
+COMMENT ON CONSTRAINT chk01_lc_t001ar01 ON t001ar01 IS '1 = continent
+2 = subcontinent
+3 = country/territory';
 SET search_path = usr, pg_catalog;
 COMMENT ON TABLE usr.t001 IS 'user login data [dados de login do usuário]';
 COMMENT ON COLUMN usr.t001.usrid IS 'user ID [número ID (identificador) do usuário]';
@@ -791,11 +820,6 @@ COMMENT ON COLUMN usr.t001.usrnm IS 'username [nome de usuário]';
 COMMENT ON COLUMN usr.t001.pwdhsh IS 'password SHA-1 hash [hash SHA-1 da senha]';
 COMMENT ON COLUMN usr.t001.actv IS 'active [o usuário está ativo?]';
 COMMENT ON COLUMN usr.t001.t IS 'insert/last update timestamp [marca temporal da inserção/última atualização]';
-SET search_path = public, pg_catalog;
-COMMENT ON DOMAIN "AL2" IS '2-upper case letters [duas letras em caixa alta]';
-COMMENT ON DOMAIN "AL3" IS '3-upper case letters [3 letras em caixa alta]';
-COMMENT ON DOMAIN num3 IS '3-numeric digit [3 dígitos numéricos]';
-COMMENT ON DOMAIN "ALNUM2" IS '2-alphanumeric string [string alfanumérica de dois caracteres]';
 SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar13 IS 'country/territory codes [códigos de países/territórios]';
 COMMENT ON COLUMN lc.t001ar13.rid IS 'row identifier [identificador (ID) da linha]';
@@ -812,11 +836,11 @@ COMMENT ON COLUMN lc.t001ar13.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar13.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
 COMMENT ON COLUMN lc.t001ar13.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar13.t IS 'timestamp [marca de tempo]';
-COMMENT ON TABLE lc.t840ar01 IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) state and country codes [códigos EDGAR para estados e países]';
-COMMENT ON COLUMN lc.t840ar01.rid IS 'row identifier [identificador (ID) da linha]';
-COMMENT ON COLUMN lc.t840ar01.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
-COMMENT ON COLUMN lc.t840ar01.actv IS 'active [ativo]';
-COMMENT ON COLUMN lc.t840ar01.t IS 'timestamp [marca de tempo]';
+COMMENT ON TABLE lc.t840ar03 IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) state and country codes [códigos EDGAR para estados e países]';
+COMMENT ON COLUMN lc.t840ar03.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t840ar03.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
+COMMENT ON COLUMN lc.t840ar03.actv IS 'active [ativo]';
+COMMENT ON COLUMN lc.t840ar03.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar05 IS 'continent codes [códigos para continentes]';
 COMMENT ON COLUMN lc.t001ar05.rid IS 'row identifier [identificador (ID) da linha]';
 COMMENT ON COLUMN lc.t001ar05.num3 IS 'continent numeric-3 code [código de 3 dígitos numéricos para o continente]';
@@ -874,9 +898,6 @@ COMMENT ON COLUMN lc.t001ar11.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar11.t IS 'timestamp [marca de tempo]';
 COMMENT ON VIEW lc.vcc IS 'country and territory codes [código de países e territórios]';
 COMMENT ON VIEW lc.vedcc IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) country codes';
-SET search_path = public, pg_catalog;
-COMMENT ON DOMAIN positive IS 'positive integer [inteiro positivo]';
-SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar15 IS 'country or territory codes - table 1 [códigos de países ou territórios - tabela 1]';
 COMMENT ON COLUMN lc.t001ar15.rid IS 'row identifier [identificador (ID) da linha]';
 COMMENT ON COLUMN lc.t001ar15.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
@@ -912,6 +933,8 @@ COMMENT ON DOMAIN cctld IS 'country code top-level domain (ccTLD) [domínio de n
 SET search_path = lc, pg_catalog;
 COMMENT ON VIEW lc.vmrccc IS 'MARC (Machine Readable Cataloging) country codes';
 COMMENT ON VIEW lc.vmrcgc IS 'MARC (Machine Readable Cataloging) geographic area codes';
-COMMENT ON CONSTRAINT chk01_lc_t001ar01 ON t001ar01 IS '1 = continent
-2 = subcontinent
-3 = country/territory';
+COMMENT ON TABLE lc.t840ar01 IS 'MARC (Machine Readable Cataloging) Code List for Geographic Areas [lista de códigos MARC para áreas geográficas]';
+COMMENT ON COLUMN lc.t840ar01.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t840ar01.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
+COMMENT ON COLUMN lc.t840ar01.caption IS 'code caption [legenda do código]';
+COMMENT ON COLUMN lc.t840ar01.t IS 'timestamp [marca de tempo]';

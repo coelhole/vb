@@ -76,3 +76,11 @@ Public Function vDBMS() As String
     vDBMS = rsVersion.Fields(0).Value
     freeRecordset rsVersion
 End Function
+
+Public Function extensionExists(extensionName As String) As Boolean
+    Dim rsExtensionExists As ADODB.Recordset
+    Set rsExtensionExists = databaseConnectionExecute("SELECT true as ext_exists FROM pg_extension WHERE extname = '" & extensionName & "'")
+    extensionExists = Not rsExtensionExists.BOF
+    If extensionExists Then extensionExists = rsExtensionExists.Fields(0).Value
+    freeRecordset rsExtensionExists
+End Function
