@@ -347,11 +347,16 @@ CREATE SEQUENCE lc.seq_t001ar13_rid
 -- Structure for table t840ar03 : 
 --
 CREATE TABLE lc.t840ar03 (
-    rid integer DEFAULT nextval(('lc.seq_t840ar03_rid'::text)::regclass) NOT NULL,
-    edgar public."ALNUM2" NOT NULL,
-    actv boolean NOT NULL,
-    t timestamp without time zone DEFAULT now() NOT NULL
-)
+  rid integer DEFAULT nextval(('lc.seq_t840ar03_rid'::text)::regclass) NOT NULL,
+  edgar public."ALNUM2" NOT NULL,
+  caption VARCHAR(64) NOT NULL,
+  artp SMALLINT NOT NULL,
+  actv BOOLEAN NOT NULL,
+  t TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+  CONSTRAINT pk_lc_t840ar03 PRIMARY KEY(edgar),
+  CONSTRAINT u01_t840ar03 UNIQUE(rid),
+  CONSTRAINT chk01_lc_t840ar03 CHECK ((artp > 0) AND (artp < 5))
+) 
 WITH (oids = false);
 --
 -- Definition for sequence seq_t840ar03_rid : 
@@ -839,8 +844,20 @@ COMMENT ON COLUMN lc.t001ar13.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t840ar03 IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) state and country codes [códigos EDGAR para estados e países]';
 COMMENT ON COLUMN lc.t840ar03.rid IS 'row identifier [identificador (ID) da linha]';
 COMMENT ON COLUMN lc.t840ar03.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
+COMMENT ON COLUMN lc.t840ar03.caption IS 'code caption [legenda do código]';
+COMMENT ON COLUMN lc.t840ar03.artp IS 'area type [tipo de área]
+
+1 = Estado dos Estados Unidos da América
+2 = Província do Canadá
+3 = País/Território
+4 = Outro';
 COMMENT ON COLUMN lc.t840ar03.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t840ar03.t IS 'timestamp [marca de tempo]';
+COMMENT ON CONSTRAINT chk01_lc_t840ar03 ON lc.t840ar03
+IS '1 = Estado dos Estados Unidos da América
+2 = Província do Canadá
+3 = País
+4 = Outro';
 COMMENT ON TABLE lc.t001ar05 IS 'continent codes [códigos para continentes]';
 COMMENT ON COLUMN lc.t001ar05.rid IS 'row identifier [identificador (ID) da linha]';
 COMMENT ON COLUMN lc.t001ar05.num3 IS 'continent numeric-3 code [código de 3 dígitos numéricos para o continente]';
