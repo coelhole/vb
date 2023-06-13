@@ -84,3 +84,10 @@ Public Function extensionExists(extensionName As String) As Boolean
     If extensionExists Then extensionExists = rsExtensionExists.Fields(0).Value
     freeRecordset rsExtensionExists
 End Function
+
+Public Function sha1(str As String) As String
+    Dim rsSHA1 As ADODB.Recordset
+    Set rsSHA1 = databaseConnectionExecute("SELECT encode(digest('" & str & "', 'sha1'), 'hex')")
+    sha1 = rsSHA1.Fields(0).Value
+    freeRecordset rsSHA1
+End Function

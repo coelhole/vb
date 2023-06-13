@@ -141,14 +141,26 @@ Private Sub cmdEntrar_Click()
         Exit Sub
     End If
 
-    If auth(txtUsuario.Text, txtSenha.Text) Then
-        Unload Me
-        frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-        frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
-        frmMain.Show vbModeless
-    Else
-        txtSenha.SetFocus
-    End If
+    Select Case auth(txtUsuario.Text, txtSenha.Text)
+        Case AUTH_OK
+            Unload Me
+            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.Show vbModeless
+        Case AUTH_USERNOTFOUND
+            MsgBox "Usuário não encontrado!", vbExclamation, SOFTWARE_NAME
+            txtUsuario.SetFocus
+        Case AUTH_WRONGPASSWORD
+            MsgBox "Senha inválida!", vbExclamation, SOFTWARE_NAME
+            txtSenha.SetFocus
+        Case AUTH_USERINACTIVE
+            MsgBox "Usuário não ativo!", vbExclamation, SOFTWARE_NAME
+            txtUsuario.SetFocus
+        Case AUTH_INTERNAL
+            '
+        Case Else
+            '
+    End Select
 End Sub
 
 Private Sub cmdSair_Click()

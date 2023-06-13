@@ -4,23 +4,33 @@ Option Explicit
 Public username As String
 Public userid As Integer
 
-Public Function auth(username_, password_ As String) As Boolean
+Public Enum AuthStatus
+    AUTH_OK = 1
+    AUTH_USERNOTFOUND
+    AUTH_WRONGPASSWORD
+    AUTH_USERINACTIVE
+    AUTH_INTERNAL
+End Enum
+
+Public Function auth(username_, password_ As String) As AuthStatus
     On Error GoTo auth_error:
 
-    auth = False
+    auth = AUTH_INTERNAL
 
     Dim rsUsuario As ADODB.Recordset
-    Set rsUsuario = databaseConnection.Execute("SELECT usrid, actv FROM usr.t001 WHERE usrnm = '" & username_ & "' AND encode(digest('" & password_ & "', 'sha1'), 'hex') = pwdhsh")
+    Set rsUsuario = databaseConnection.Execute("SELECT usrid, pwdhsh, actv FROM usr.t001 WHERE usrnm = '" & username_ & "'")
 
     If rsUsuario.BOF Then
-        MsgBox "Não há um usuário" & vbCrLf & "com o nome de usuário e a senha fornecidos", vbExclamation, SOFTWARE_NAME
+        auth = AUTH_USERNOTFOUND
     Else
-        If Not CBool(rsUsuario.Fields(1).Value) Then
-            MsgBox "Usuário não ativo!", vbExclamation, SOFTWARE_NAME
+        If Not (rsUsuario.Fields(1).Value = sha1(password_)) Then
+            auth = AUTH_WRONGPASSWORD
+        ElseIf Not CBool(rsUsuario.Fields(2).Value) Then
+            auth = AUTH_USERINACTIVE
         Else
             username = username_
             userid = CInt(rsUsuario.Fields(0).Value)
-            auth = True
+            auth = AUTH_OK
         End If
     End If
 
