@@ -353,8 +353,6 @@ CREATE TABLE lc.t840ar03 (
   artp SMALLINT NOT NULL,
   actv BOOLEAN NOT NULL,
   t TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-  CONSTRAINT pk_lc_t840ar03 PRIMARY KEY(edgar),
-  CONSTRAINT u01_t840ar03 UNIQUE(rid),
   CONSTRAINT chk01_lc_t840ar03 CHECK ((artp > 0) AND (artp < 5))
 ) 
 WITH (oids = false);
@@ -606,6 +604,15 @@ CREATE TABLE lc.t840ar01 (
 )
 WITH (oids = false);
 --
+-- Definition for sequence seq_t001ar17_rid : 
+--
+CREATE SEQUENCE lc.seq_t840ar01_rid
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 2147483647
+    NO MINVALUE
+    CACHE 1;
+--
 -- Definition for index u01_lc_t001ar01 : 
 --
 ALTER TABLE ONLY t001ar01
@@ -797,7 +804,7 @@ COMMENT ON DOMAIN "ALNUM2" IS '2-alphanumeric string [string alfanumérica de do
 COMMENT ON DOMAIN positive IS 'positive integer [inteiro positivo]';
 SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar01 IS 'country or area codes [códigos para países ou áreas geográficas]';
-COMMENT ON COLUMN lc.t001ar01.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar01.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar01.num3 IS 'country or area numeric-3 code [código de país ou área de 3 dígitos numéricos]';
 COMMENT ON COLUMN lc.t001ar01.al3 IS 'alpha-3 code [código de país ou área de 3 letras]';
 COMMENT ON COLUMN lc.t001ar01.al2 IS 'alpha-2 code [código de país ou área de 2 letras]';
@@ -827,7 +834,7 @@ COMMENT ON COLUMN usr.t001.actv IS 'active [o usuário está ativo?]';
 COMMENT ON COLUMN usr.t001.t IS 'insert/last update timestamp [marca temporal da inserção/última atualização]';
 SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar13 IS 'country/territory codes [códigos de países/territórios]';
-COMMENT ON COLUMN lc.t001ar13.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar13.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar13.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar13.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar13.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -842,7 +849,7 @@ COMMENT ON COLUMN lc.t001ar13.edgar IS 'EDGAR (Electronic Data Gathering, Analys
 COMMENT ON COLUMN lc.t001ar13.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar13.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t840ar03 IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) state and country codes [códigos EDGAR para estados e países]';
-COMMENT ON COLUMN lc.t840ar03.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t840ar03.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t840ar03.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
 COMMENT ON COLUMN lc.t840ar03.caption IS 'code caption [legenda do código]';
 COMMENT ON COLUMN lc.t840ar03.artp IS 'area type [tipo de área]
@@ -859,7 +866,7 @@ IS '1 = Estado dos Estados Unidos da América
 3 = País
 4 = Outro';
 COMMENT ON TABLE lc.t001ar05 IS 'continent codes [códigos para continentes]';
-COMMENT ON COLUMN lc.t001ar05.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar05.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar05.num3 IS 'continent numeric-3 code [código de 3 dígitos numéricos para o continente]';
 COMMENT ON COLUMN lc.t001ar05.al3 IS 'continent alpha-3 code [código de 3 letras para o continente]';
 COMMENT ON COLUMN lc.t001ar05.al2 IS 'continent alpha-2 code [código de 2 letras para o continente]';
@@ -872,7 +879,7 @@ COMMENT ON COLUMN lc.t001ar05.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar05.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar05.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar07 IS 'subcontinent codes [códigos para subcontinentes]';
-COMMENT ON COLUMN lc.t001ar07.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar07.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar07.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar07.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar07.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -886,7 +893,7 @@ COMMENT ON COLUMN lc.t001ar07.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar07.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar07.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar09 IS 'subcontinent codes - table 1 [códigos para subcontinentes - tabela 1]';
-COMMENT ON COLUMN lc.t001ar09.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar09.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar09.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar09.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar09.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -900,7 +907,7 @@ COMMENT ON COLUMN lc.t001ar09.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar09.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar09.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar11 IS 'subcontinent codes - table 2 [códigos para subcontinentes - tabela 2]';
-COMMENT ON COLUMN lc.t001ar11.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar11.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar11.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar11.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar11.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -916,7 +923,7 @@ COMMENT ON COLUMN lc.t001ar11.t IS 'timestamp [marca de tempo]';
 COMMENT ON VIEW lc.vcc IS 'country and territory codes [código de países e territórios]';
 COMMENT ON VIEW lc.vedcc IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) country codes';
 COMMENT ON TABLE lc.t001ar15 IS 'country or territory codes - table 1 [códigos de países ou territórios - tabela 1]';
-COMMENT ON COLUMN lc.t001ar15.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar15.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar15.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar15.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar15.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -931,7 +938,7 @@ COMMENT ON COLUMN lc.t001ar15.edgar IS 'EDGAR (Electronic Data Gathering, Analys
 COMMENT ON COLUMN lc.t001ar15.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar15.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar17 IS 'country or territory codes - table 2 [códigos de países ou territórios - tabela 2]';
-COMMENT ON COLUMN lc.t001ar17.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t001ar17.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t001ar17.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar17.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar17.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -951,7 +958,7 @@ SET search_path = lc, pg_catalog;
 COMMENT ON VIEW lc.vmrccc IS 'MARC (Machine Readable Cataloging) country codes';
 COMMENT ON VIEW lc.vmrcgc IS 'MARC (Machine Readable Cataloging) geographic area codes';
 COMMENT ON TABLE lc.t840ar01 IS 'MARC (Machine Readable Cataloging) Code List for Geographic Areas [lista de códigos MARC para áreas geográficas]';
-COMMENT ON COLUMN lc.t840ar01.rid IS 'row identifier [identificador (ID) da linha]';
+COMMENT ON COLUMN lc.t840ar01.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
 COMMENT ON COLUMN lc.t840ar01.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
 COMMENT ON COLUMN lc.t840ar01.caption IS 'code caption [legenda do código]';
 COMMENT ON COLUMN lc.t840ar01.t IS 'timestamp [marca de tempo]';
