@@ -434,7 +434,7 @@ CREATE TABLE lc.t001ar09 (
     al3iso boolean NOT NULL,
     al2iso boolean NOT NULL,
     gnmid public.positive,
-    marc char(2),
+    marc char(4),
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
@@ -462,7 +462,7 @@ CREATE TABLE lc.t001ar11 (
     al3iso boolean NOT NULL,
     al2iso boolean NOT NULL,
     gnmid public.positive,
-    marc char(2),
+    marc char(4),
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )

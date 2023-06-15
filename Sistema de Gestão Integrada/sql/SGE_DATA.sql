@@ -19,38 +19,38 @@ VALUES
 
 INSERT INTO lc.t001ar09 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
 VALUES 
-  (E'003', E'NNN', E'NN', E'019', True, False, False, False, 6255149, NULL, True),
-  (E'015', E'NFF', E'NK', E'002', True, False, False, False, 7729887, NULL, True),
-  (E'030', E'ABH', E'AH', E'142', True, False, False, False, 7729894, NULL, True),
-  (E'035', E'ABJ', E'AJ', E'142', True, False, False, False, 7729896, NULL, True),
-  (E'039', E'SER', E'SP', E'150', True, False, False, False, 9408658, NULL, True),
   (E'053', E'ANZ', E'AY', E'009', True, False, False, False, 7729898, NULL, True),
-  (E'054', E'UML', E'UL', E'009', True, False, False, False, 7729899, NULL, True),
-  (E'057', E'UMC', E'UC', E'009', True, False, False, False, 7729900, NULL, True),
-  (E'061', E'UPL', E'UP', E'009', True, False, False, False, 7729901, NULL, True),
+  (E'054', E'UML', E'UL', E'009', True, False, False, False, 7729899, E'pome', True),
+  (E'057', E'UMC', E'UC', E'009', True, False, False, False, 7729900, E'pott', True),
+  (E'061', E'UPL', E'UP', E'009', True, False, False, False, 7729901, E'pops', True),
   (E'062', E'ABV', E'AV', E'142', True, False, False, False, NULL, NULL, True),
   (E'145', E'ABK', E'AK', E'142', True, False, False, False, 7729897, NULL, True),
-  (E'151', E'EER', E'ED', E'150', True, False, False, False, 7729884, NULL, True),
-  (E'154', E'NEE', E'ND', E'150', True, False, False, False, 7729883, NULL, True),
-  (E'155', E'WEE', E'WE', E'150', True, False, False, False, 9408659, NULL, True),
-  (E'202', E'SSA', E'SQ', E'002', True, False, False, False, 12212804, NULL, True),
-  (E'419', E'LAC', E'LN', E'019', True, False, False, False, 7730009, NULL, True);
+  (E'015', E'NFF', E'NK', E'002', True, False, False, False, 7729887, E'ff', True),
+  (E'202', E'SSA', E'SQ', E'002', True, False, False, False, 12212804, E'fb', True),
+  (E'419', E'LAC', E'LN', E'019', True, False, False, False, 7730009, E'cl', True),
+  (E'030', E'ABH', E'AH', E'142', True, False, False, False, 7729894, E'ae', True),
+  (E'035', E'ABJ', E'AJ', E'142', True, False, False, False, 7729896, E'as', True),
+  (E'151', E'EER', E'ED', E'150', True, False, False, False, 7729884, E'ee', True),
+  (E'154', E'NEE', E'ND', E'150', True, False, False, False, 7729883, E'en', True),
+  (E'039', E'SER', E'SP', E'150', True, False, False, False, 9408658, E'es', True),
+  (E'155', E'WEE', E'WE', E'150', True, False, False, False, 9408659, E'ew', True),
+  (E'003', E'NNN', E'NN', E'019', True, False, False, False, 6255149, E'n', True);
 
 /* Data for the 'lc.t001ar11' table  (Records 1 - 11) */
 
 INSERT INTO lc.t001ar11 ("num3", "al3", "al2", "num3spr", "num3m49", "num3iso", "al3iso", "al2iso", "gnmid", "marc", "actv")
 VALUES 
-  (E'005', E'SRR', E'SW', E'419', True, False, False, False, 6255150, NULL, True),
-  (E'011', E'WFF', E'WQ', E'202', True, False, False, False, 7729885, NULL, True),
-  (E'013', E'CAA', E'CE', E'419', True, False, False, False, 7729892, NULL, True),
-  (E'014', E'EFF', E'EK', E'202', True, False, False, False, 7729889, NULL, True),
-  (E'017', E'MFF', E'MJ', E'202', True, False, False, False, 7729886, NULL, True),
-  (E'018', E'SFF', E'ZF', E'202', True, False, False, False, 9406051, NULL, True),
-  (E'021', E'NNM', E'NM', E'003', True, False, False, False, 7729890, NULL, True),
-  (E'029', E'CRB', E'CB', E'419', True, False, False, False, 7729891, NULL, True),
-  (E'034', E'ADA', E'DA', E'062', True, False, False, False, 7729895, NULL, True),
-  (E'143', E'ADS', E'DS', E'062', True, False, False, False, 7729893, NULL, True),
-  (E'830', E'IMC', E'IA', E'154', True, False, False, False, 3042400, NULL, True);
+  (E'011', E'WFF', E'WQ', E'202', True, False, False, False, 7729885, E'fw', True),
+  (E'014', E'EFF', E'EK', E'202', True, False, False, False, 7729889, E'fe', True),
+  (E'017', E'MFF', E'MJ', E'202', True, False, False, False, 7729886, E'fc', True),
+  (E'018', E'SFF', E'ZF', E'202', True, False, False, False, 9406051, E'fs', True),
+  (E'830', E'IMC', E'IA', E'154', True, False, False, False, 3042400, NULL, True),
+  (E'021', E'NNM', E'NM', E'003', True, False, False, False, 7729890, E'n', True),
+  (E'029', E'CRB', E'CB', E'419', True, False, False, False, 7729891, E'cc', True),
+  (E'013', E'CAA', E'CE', E'419', True, False, False, False, 7729892, E'nc', True),
+  (E'005', E'SRR', E'SW', E'419', True, False, False, False, 6255150, E's', True),
+  (E'143', E'ADS', E'DS', E'062', True, False, False, False, 7729893, E'ac', True),
+  (E'034', E'ADA', E'DA', E'062', True, False, False, False, 7729895, E'az', True);
 
 /* Data for the 'lc.t001ar15' table  (Records 1 - 138) */
 

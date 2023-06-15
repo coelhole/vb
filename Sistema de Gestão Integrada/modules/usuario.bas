@@ -13,7 +13,7 @@ Public Enum AuthStatus
 End Enum
 
 Public Function auth(username_, password_ As String) As AuthStatus
-    On Error GoTo auth_error:
+On Error GoTo auth_error
 
     auth = AUTH_INTERNAL
 
@@ -34,8 +34,7 @@ Public Function auth(username_, password_ As String) As AuthStatus
         End If
     End If
 
-    GoTo fim
-
+GoTo fim
 auth_error:
     If (Err.Number = -2147467259) And (Not extensionExists("pgcrypto")) Then
         databaseConnectionExecute "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
@@ -43,7 +42,6 @@ auth_error:
     Else
         Err.Raise Err.Number, Err.Source, Err.Description, Err.HelpFile, Err.HelpContext
     End If
-
 fim:
     freeRecordset rsUsuario
 End Function
