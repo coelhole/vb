@@ -7,6 +7,7 @@ Begin VB.Form frmSplashScreen
    ClientTop       =   0
    ClientWidth     =   10425
    LinkTopic       =   "Form1"
+   LockControls    =   -1  'True
    ScaleHeight     =   4635
    ScaleWidth      =   10425
    ShowInTaskbar   =   0   'False

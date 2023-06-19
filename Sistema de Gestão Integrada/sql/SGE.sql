@@ -41,6 +41,12 @@ CREATE DOMAIN public.positive AS
   integer
     CONSTRAINT positive_chk CHECK ((VALUE > 0));
 --
+-- Definition for type cctld : 
+--
+CREATE DOMAIN public.cctld AS
+  char(3) NULL
+    CONSTRAINT cctld_chk CHECK (VALUE ~ '.[a-z][a-z]'::text);
+--
 -- Definition for function t001_bfr_trg_func : 
 --
 SET search_path = usr, pg_catalog;
@@ -84,8 +90,8 @@ BEGIN
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
-		IF NEW.rid<>OLD.rid THEN
-			RAISE EXCEPTION 'O campo rid é imutável!';
+		IF NEW.id<>OLD.id THEN
+			RAISE EXCEPTION 'O campo id é imutável!';
         END IF;
 
 		IF NEW.num3<>OLD.num3 THEN
@@ -139,8 +145,8 @@ BEGIN
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
-		IF NEW.rid<>OLD.rid THEN
-			RAISE EXCEPTION 'O campo rid é imutável!';
+		IF NEW.id<>OLD.id THEN
+			RAISE EXCEPTION 'O campo id é imutável!';
         END IF;
 
 		IF NEW.num3<>OLD.num3 THEN
@@ -210,8 +216,8 @@ BEGIN
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
-		IF NEW.rid<>OLD.rid THEN
-			RAISE EXCEPTION 'O campo rid é imutável!';
+		IF NEW.id<>OLD.id THEN
+			RAISE EXCEPTION 'O campo id é imutável!';
         END IF;
 
 		IF NEW.num3<>OLD.num3 THEN
@@ -266,7 +272,7 @@ LANGUAGE plpgsql;
 -- Structure for table t001ar01 : 
 --
 CREATE TABLE lc.t001ar01 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar01_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar01_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -284,9 +290,9 @@ CREATE TABLE lc.t001ar01 (
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar01_rid : 
+-- Definition for sequence seq_t001ar01_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar01_rid
+CREATE SEQUENCE lc.seq_t001ar01_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -318,7 +324,7 @@ CREATE SEQUENCE usr.seq_t001_usrid
 --
 SET search_path = lc, pg_catalog;
 CREATE TABLE lc.t001ar13 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar13_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar13_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -329,15 +335,20 @@ CREATE TABLE lc.t001ar13 (
     al2iso boolean NOT NULL,
     gnmid public.positive,
     marc char(3),
+    itu char(3),
+    wmo public."AL2",
     edgar public."ALNUM2",
+    ioc public."AL3",
+    fifa public."AL3",
+    tld public.cctld,
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar13_rid : 
+-- Definition for sequence seq_t001ar13_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar13_rid
+CREATE SEQUENCE lc.seq_t001ar13_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -347,7 +358,7 @@ CREATE SEQUENCE lc.seq_t001ar13_rid
 -- Structure for table t840ar03 : 
 --
 CREATE TABLE lc.t840ar03 (
-  rid integer DEFAULT nextval(('lc.seq_t840ar03_rid'::text)::regclass) NOT NULL,
+  id integer DEFAULT nextval(('lc.seq_t840ar03_id'::text)::regclass) NOT NULL,
   edgar public."ALNUM2" NOT NULL,
   caption VARCHAR(64) NOT NULL,
   artp SMALLINT NOT NULL,
@@ -357,9 +368,9 @@ CREATE TABLE lc.t840ar03 (
 ) 
 WITH (oids = false);
 --
--- Definition for sequence seq_t840ar03_rid : 
+-- Definition for sequence seq_t840ar03_id : 
 --
-CREATE SEQUENCE lc.seq_t840ar03_rid
+CREATE SEQUENCE lc.seq_t840ar03_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -369,7 +380,7 @@ CREATE SEQUENCE lc.seq_t840ar03_rid
 -- Structure for table t001ar05 : 
 --
 CREATE TABLE lc.t001ar05 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar05_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar05_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -384,9 +395,9 @@ CREATE TABLE lc.t001ar05 (
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar05_rid : 
+-- Definition for sequence seq_t001ar05_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar05_rid
+CREATE SEQUENCE lc.seq_t001ar05_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -396,7 +407,7 @@ CREATE SEQUENCE lc.seq_t001ar05_rid
 -- Structure for table t001ar07 : 
 --
 CREATE TABLE lc.t001ar07 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar07_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar07_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -406,15 +417,15 @@ CREATE TABLE lc.t001ar07 (
     al3iso boolean NOT NULL,
     al2iso boolean NOT NULL,
     gnmid public.positive,
-    marc char(2),
+    marc char(4),
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar07_rid : 
+-- Definition for sequence seq_t001ar07_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar07_rid
+CREATE SEQUENCE lc.seq_t001ar07_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -424,7 +435,7 @@ CREATE SEQUENCE lc.seq_t001ar07_rid
 -- Structure for table t001ar09 : 
 --
 CREATE TABLE lc.t001ar09 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar09_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar09_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -440,10 +451,10 @@ CREATE TABLE lc.t001ar09 (
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar09_rid : 
+-- Definition for sequence seq_t001ar09_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar09_rid
-    START WITH 1
+CREATE SEQUENCE lc.seq_t001ar09_id
+    START WITH 10
     INCREMENT BY 1
     MAXVALUE 2147483647
     NO MINVALUE
@@ -452,7 +463,7 @@ CREATE SEQUENCE lc.seq_t001ar09_rid
 -- Structure for table t001ar11 : 
 --
 CREATE TABLE lc.t001ar11 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar11_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar11_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -468,44 +479,20 @@ CREATE TABLE lc.t001ar11 (
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar11_rid : 
+-- Definition for sequence seq_t001ar11_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar11_rid
-    START WITH 1
+CREATE SEQUENCE lc.seq_t001ar11_id
+    START WITH 50
     INCREMENT BY 1
     MAXVALUE 2147483647
     NO MINVALUE
     CACHE 1;
---
--- Definition for view vcc : 
---
-CREATE VIEW lc.vcc
-AS
-SELECT t001ar13.num3,
-    t001ar13.al3,
-    t001ar13.al2
-FROM t001ar13
-WHERE (t001ar13.actv = true)
-ORDER BY t001ar13.num3;
-
---
--- Definition for view vedcc : 
---
-CREATE VIEW lc.vedcc
-AS
-SELECT t001ar13.edgar,
-    t001ar13.num3,
-    t001ar13.al3,
-    t001ar13.al2
-FROM t001ar13
-WHERE ((t001ar13.actv = true) AND (t001ar13.edgar IS NOT NULL))
-ORDER BY t001ar13.edgar, t001ar13.num3;
 
 --
 -- Structure for table t001ar15 : 
 --
 CREATE TABLE lc.t001ar15 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar15_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar15_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -516,16 +503,21 @@ CREATE TABLE lc.t001ar15 (
     al2iso boolean NOT NULL,
     gnmid public.positive,
     marc char(3),
+    itu char(3),
+    wmo public."AL2",
     edgar public."ALNUM2",
+    ioc public."AL3",
+    fifa public."AL3",
+    tld public.cctld,
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar15_rid : 
+-- Definition for sequence seq_t001ar15_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar15_rid
-    START WITH 1
+CREATE SEQUENCE lc.seq_t001ar15_id
+    START WITH 100
     INCREMENT BY 1
     MAXVALUE 2147483647
     NO MINVALUE
@@ -534,7 +526,7 @@ CREATE SEQUENCE lc.seq_t001ar15_rid
 -- Structure for table t001ar17 : 
 --
 CREATE TABLE lc.t001ar17 (
-    rid integer DEFAULT nextval(('lc.seq_t001ar17_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t001ar17_id'::text)::regclass) NOT NULL,
     num3 public.num3 NOT NULL,
     al3 public."AL3" NOT NULL,
     al2 public."AL2" NOT NULL,
@@ -545,68 +537,40 @@ CREATE TABLE lc.t001ar17 (
     al2iso boolean NOT NULL,
     gnmid public.positive,
     marc char(3),
+    itu char(3),
+    wmo public."AL2",
     edgar public."ALNUM2",
+    ioc public."AL3",
+    fifa public."AL3",
+    tld public.cctld,
     actv boolean NOT NULL,
     t timestamp without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar17_rid : 
+-- Definition for sequence seq_t001ar17_id : 
 --
-CREATE SEQUENCE lc.seq_t001ar17_rid
-    START WITH 1
+CREATE SEQUENCE lc.seq_t001ar17_id
+    START WITH 500
     INCREMENT BY 1
     MAXVALUE 2147483647
     NO MINVALUE
     CACHE 1;
---
--- Definition for type cctld : 
---
-SET search_path = public, pg_catalog;
-CREATE DOMAIN public.cctld AS 
-  char(3)
-    CONSTRAINT cctld_chk CHECK ((VALUE ~ '.[a-z][a-z]'::text));
---
--- Definition for view vmrccc : 
---
-SET search_path = lc, pg_catalog;
-CREATE VIEW lc.vmrccc
-AS
-SELECT t001ar13.marc,
-    t001ar13.num3,
-    t001ar13.al3,
-    t001ar13.al2
-FROM t001ar13
-WHERE ((t001ar13.actv = true) AND (t001ar13.marc IS NOT NULL))
-ORDER BY t001ar13.marc, t001ar13.num3;
-
---
--- Definition for view vmrcgc : 
---
-CREATE VIEW lc.vmrcgc
-AS
-SELECT t001ar01.marc,
-    t001ar01.num3,
-    t001ar01.al3,
-    t001ar01.al2
-FROM t001ar01
-WHERE ((t001ar01.actv = true) AND (t001ar01.marc IS NOT NULL))
-ORDER BY t001ar01.marc, t001ar01.num3;
 
 --
 -- Structure for table t840ar01 : 
 --
 CREATE TABLE lc.t840ar01 (
-    rid integer DEFAULT nextval(('lc.seq_t840ar01_rid'::text)::regclass) NOT NULL,
+    id integer DEFAULT nextval(('lc.seq_t840ar01_id'::text)::regclass) NOT NULL,
     marc char(8) NOT NULL,
     caption varchar(64) NOT NULL,
     t timestamp(0) without time zone DEFAULT now() NOT NULL
 )
 WITH (oids = false);
 --
--- Definition for sequence seq_t001ar17_rid : 
+-- Definition for sequence seq_t001ar17_id : 
 --
-CREATE SEQUENCE lc.seq_t840ar01_rid
+CREATE SEQUENCE lc.seq_t840ar01_id
     START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
@@ -617,7 +581,7 @@ CREATE SEQUENCE lc.seq_t840ar01_rid
 --
 ALTER TABLE ONLY t001ar01
     ADD CONSTRAINT u01_lc_t001ar01
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_usr_t001 : 
 --
@@ -649,7 +613,7 @@ ALTER TABLE ONLY t001ar13
 --
 ALTER TABLE ONLY t001ar13
     ADD CONSTRAINT u01_lc_t001ar13
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar05 : 
 --
@@ -661,7 +625,7 @@ ALTER TABLE ONLY t001ar05
 --
 ALTER TABLE ONLY t001ar05
     ADD CONSTRAINT u01_lc_t001ar05
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar07 : 
 --
@@ -673,7 +637,7 @@ ALTER TABLE ONLY t001ar07
 --
 ALTER TABLE ONLY t001ar07
     ADD CONSTRAINT u01_lc_t001ar07
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar09 : 
 --
@@ -685,7 +649,7 @@ ALTER TABLE ONLY t001ar09
 --
 ALTER TABLE ONLY t001ar09
     ADD CONSTRAINT u01_lc_t001ar09
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar11 : 
 --
@@ -697,7 +661,7 @@ ALTER TABLE ONLY t001ar11
 --
 ALTER TABLE ONLY t001ar11
     ADD CONSTRAINT u01_lc_t001ar11
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar15 : 
 --
@@ -709,7 +673,7 @@ ALTER TABLE ONLY t001ar15
 --
 ALTER TABLE ONLY t001ar15
     ADD CONSTRAINT u01_lc_t001ar15
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t001ar17 : 
 --
@@ -721,7 +685,7 @@ ALTER TABLE ONLY t001ar17
 --
 ALTER TABLE ONLY t001ar17
     ADD CONSTRAINT u01_lc_t001ar17
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t840ar03 : 
 --
@@ -733,13 +697,13 @@ ALTER TABLE ONLY t840ar03
 --
 ALTER TABLE ONLY t840ar03
     ADD CONSTRAINT u01_t840ar03
-    UNIQUE (rid);
+    UNIQUE (id);
 --
 -- Definition for index pk_lc_t840ar01 : 
 --
 ALTER TABLE ONLY t840ar01
     ADD CONSTRAINT pk_lc_t840ar01
-    PRIMARY KEY (rid);
+    PRIMARY KEY (id);
 --
 -- Definition for index u01_lc_t840ar01 : 
 --
@@ -759,35 +723,35 @@ CREATE TRIGGER usr_t001_bfr_trg
 --
 SET search_path = lc, pg_catalog;
 CREATE TRIGGER lc_t001ar11_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, actv ON t001ar11
+    BEFORE INSERT OR UPDATE OF id, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, actv ON t001ar11
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar09_11_bfr_trg_func ();
 --
 -- Definition for trigger lc_t001ar15_bfr_trg : 
 --
 CREATE TRIGGER lc_t001ar15_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, marc, edgar, actv ON t001ar15
+    BEFORE INSERT OR UPDATE OF id, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, marc, edgar, actv ON t001ar15
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar15_17_bfr_trg_func ();
 --
 -- Definition for trigger lc_t001ar17_bfr_trg : 
 --
 CREATE TRIGGER lc_t001ar17_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, marc, edgar, actv ON t001ar17
+    BEFORE INSERT OR UPDATE OF id, num3, al3, al2, gnmid, num3spr, num3m49, num3iso, al3iso, al2iso, marc, edgar, actv ON t001ar17
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar15_17_bfr_trg_func ();
 --
 -- Definition for trigger lc_t001ar05_bfr_trg : 
 --
 CREATE TRIGGER lc_t001ar05_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar05
+    BEFORE INSERT OR UPDATE OF id, num3, al3, al2, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar05
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar05_bfr_trg_func ();
 --
 -- Definition for trigger lc_t001ar09_bfr_trg : 
 --
 CREATE TRIGGER lc_t001ar09_bfr_trg
-    BEFORE INSERT OR UPDATE OF rid, num3, al3, al2, num3spr, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar09
+    BEFORE INSERT OR UPDATE OF id, num3, al3, al2, num3spr, num3m49, num3iso, al3iso, al2iso, gnmid, marc, actv ON t001ar09
     FOR EACH ROW
     EXECUTE PROCEDURE t001ar09_11_bfr_trg_func ();
 --
@@ -802,9 +766,10 @@ COMMENT ON DOMAIN "AL3" IS '3-upper case letters [3 letras em caixa alta]';
 COMMENT ON DOMAIN num3 IS '3-numeric digit [3 dígitos numéricos]';
 COMMENT ON DOMAIN "ALNUM2" IS '2-alphanumeric string [string alfanumérica de dois caracteres]';
 COMMENT ON DOMAIN positive IS 'positive integer [inteiro positivo]';
+COMMENT ON DOMAIN cctld IS 'country code top-level domain (ccTLD) [domínio de nível superior, ou domínio de primeiro nível, nacional]';
 SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar01 IS 'country or area codes [códigos para países ou áreas geográficas]';
-COMMENT ON COLUMN lc.t001ar01.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar01.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar01.num3 IS 'country or area numeric-3 code [código de país ou área de 3 dígitos numéricos]';
 COMMENT ON COLUMN lc.t001ar01.al3 IS 'alpha-3 code [código de país ou área de 3 letras]';
 COMMENT ON COLUMN lc.t001ar01.al2 IS 'alpha-2 code [código de país ou área de 2 letras]';
@@ -834,7 +799,7 @@ COMMENT ON COLUMN usr.t001.actv IS 'active [o usuário está ativo?]';
 COMMENT ON COLUMN usr.t001.t IS 'insert/last update timestamp [marca temporal da inserção/última atualização]';
 SET search_path = lc, pg_catalog;
 COMMENT ON TABLE lc.t001ar13 IS 'country/territory codes [códigos de países/territórios]';
-COMMENT ON COLUMN lc.t001ar13.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar13.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar13.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar13.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar13.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -845,11 +810,16 @@ COMMENT ON COLUMN lc.t001ar13.al3iso IS 'is alpha-3 key an ISO 3166-1 alpha-3 co
 COMMENT ON COLUMN lc.t001ar13.al2iso IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
 COMMENT ON COLUMN lc.t001ar13.gnmid IS 'geoname ID [ID do nome geográfico]';
 COMMENT ON COLUMN lc.t001ar13.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
+COMMENT ON COLUMN lc.t001ar13.itu IS 'ITU (International Telecommunication Union) [União Internacional de Telecomunicações]';
+COMMENT ON COLUMN lc.t001ar13.wmo IS 'WMO (World Meteorological Organization) [Organização Meteorológica Mundial]';
 COMMENT ON COLUMN lc.t001ar13.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
+COMMENT ON COLUMN lc.t001ar13.ioc IS 'IOC (International Olympic Committee) [COI (Comitê Olímpico Internacional)]';
+COMMENT ON COLUMN lc.t001ar13.fifa IS 'FIFA [Federação Internacional de Futebol]';
+COMMENT ON COLUMN lc.t001ar13.tld IS 'top-level domain (TLD) [domínio de topo]';
 COMMENT ON COLUMN lc.t001ar13.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar13.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t840ar03 IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) state and country codes [códigos EDGAR para estados e países]';
-COMMENT ON COLUMN lc.t840ar03.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t840ar03.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t840ar03.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
 COMMENT ON COLUMN lc.t840ar03.caption IS 'code caption [legenda do código]';
 COMMENT ON COLUMN lc.t840ar03.artp IS 'area type [tipo de área]
@@ -866,7 +836,7 @@ IS '1 = Estado dos Estados Unidos da América
 3 = País
 4 = Outro';
 COMMENT ON TABLE lc.t001ar05 IS 'continent codes [códigos para continentes]';
-COMMENT ON COLUMN lc.t001ar05.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar05.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar05.num3 IS 'continent numeric-3 code [código de 3 dígitos numéricos para o continente]';
 COMMENT ON COLUMN lc.t001ar05.al3 IS 'continent alpha-3 code [código de 3 letras para o continente]';
 COMMENT ON COLUMN lc.t001ar05.al2 IS 'continent alpha-2 code [código de 2 letras para o continente]';
@@ -879,7 +849,7 @@ COMMENT ON COLUMN lc.t001ar05.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar05.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar05.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar07 IS 'subcontinent codes [códigos para subcontinentes]';
-COMMENT ON COLUMN lc.t001ar07.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar07.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar07.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar07.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar07.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -893,7 +863,7 @@ COMMENT ON COLUMN lc.t001ar07.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar07.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar07.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar09 IS 'subcontinent codes - table 1 [códigos para subcontinentes - tabela 1]';
-COMMENT ON COLUMN lc.t001ar09.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar09.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar09.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar09.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar09.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -907,7 +877,7 @@ COMMENT ON COLUMN lc.t001ar09.marc IS 'MARC (Machine Readable Cataloging) code [
 COMMENT ON COLUMN lc.t001ar09.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar09.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar11 IS 'subcontinent codes - table 2 [códigos para subcontinentes - tabela 2]';
-COMMENT ON COLUMN lc.t001ar11.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar11.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar11.num3 IS 'subcontinent numeric-3 code [código de 3 dígitos numéricos para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar11.al3 IS 'subcontinent alpha-3 code [código de 3 letras para o subcontinente]';
 COMMENT ON COLUMN lc.t001ar11.al2 IS 'subcontinent alpha-2 code [código de 2 letras para o subcontinente]';
@@ -920,10 +890,8 @@ COMMENT ON COLUMN lc.t001ar11.gnmid IS 'geoname ID [ID do nome geográfico]';
 COMMENT ON COLUMN lc.t001ar11.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
 COMMENT ON COLUMN lc.t001ar11.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar11.t IS 'timestamp [marca de tempo]';
-COMMENT ON VIEW lc.vcc IS 'country and territory codes [código de países e territórios]';
-COMMENT ON VIEW lc.vedcc IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) country codes';
 COMMENT ON TABLE lc.t001ar15 IS 'country or territory codes - table 1 [códigos de países ou territórios - tabela 1]';
-COMMENT ON COLUMN lc.t001ar15.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar15.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar15.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar15.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar15.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -934,11 +902,16 @@ COMMENT ON COLUMN lc.t001ar15.al3iso IS 'is alpha-3 key an ISO 3166-1 alpha-3 co
 COMMENT ON COLUMN lc.t001ar15.al2iso IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
 COMMENT ON COLUMN lc.t001ar15.gnmid IS 'geoname ID [ID do nome geográfico]';
 COMMENT ON COLUMN lc.t001ar15.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
+COMMENT ON COLUMN lc.t001ar15.itu IS 'ITU (International Telecommunication Union) [União Internacional de Telecomunicações]';
+COMMENT ON COLUMN lc.t001ar15.wmo IS 'WMO (World Meteorological Organization) [Organização Meteorológica Mundial]';
 COMMENT ON COLUMN lc.t001ar15.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
+COMMENT ON COLUMN lc.t001ar15.ioc IS 'IOC (International Olympic Committee) [COI (Comitê Olímpico Internacional)]';
+COMMENT ON COLUMN lc.t001ar15.fifa IS 'FIFA [Federação Internacional de Futebol]';
+COMMENT ON COLUMN lc.t001ar15.tld IS 'top-level domain (TLD) [domínio de topo]';
 COMMENT ON COLUMN lc.t001ar15.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar15.t IS 'timestamp [marca de tempo]';
 COMMENT ON TABLE lc.t001ar17 IS 'country or territory codes - table 2 [códigos de países ou territórios - tabela 2]';
-COMMENT ON COLUMN lc.t001ar17.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t001ar17.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t001ar17.num3 IS 'country/territory numeric-3 code [código de 3 dígitos numéricos para o país/território]';
 COMMENT ON COLUMN lc.t001ar17.al3 IS 'country/territory alpha-3 code [código de 3 letras para o país/território]';
 COMMENT ON COLUMN lc.t001ar17.al2 IS 'country/territory alpha-2 code [código de 2 letras para o país/território]';
@@ -949,16 +922,16 @@ COMMENT ON COLUMN lc.t001ar17.al3iso IS 'is alpha-3 key an ISO 3166-1 alpha-3 co
 COMMENT ON COLUMN lc.t001ar17.al2iso IS 'is alpha-2 key an ISO 3166-1 alpha-2 code? [o código de 2 letras é um código ISO 3166-1 de 2 letras?]';
 COMMENT ON COLUMN lc.t001ar17.gnmid IS 'geoname ID [ID do nome geográfico]';
 COMMENT ON COLUMN lc.t001ar17.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
+COMMENT ON COLUMN lc.t001ar17.itu IS 'ITU (International Telecommunication Union) [União Internacional de Telecomunicações]';
+COMMENT ON COLUMN lc.t001ar17.wmo IS 'WMO (World Meteorological Organization) [Organização Meteorológica Mundial]';
 COMMENT ON COLUMN lc.t001ar17.edgar IS 'EDGAR (Electronic Data Gathering, Analysis, and Retrieval) code [código para Coleta, Análise e Recuperação Eletrônica de Dados]';
+COMMENT ON COLUMN lc.t001ar17.ioc IS 'IOC (International Olympic Committee) [COI (Comitê Olímpico Internacional)]';
+COMMENT ON COLUMN lc.t001ar17.fifa IS 'FIFA [Federação Internacional de Futebol]';
+COMMENT ON COLUMN lc.t001ar17.tld IS 'top-level domain (TLD) [domínio de topo]';
 COMMENT ON COLUMN lc.t001ar17.actv IS 'active [ativo]';
 COMMENT ON COLUMN lc.t001ar17.t IS 'timestamp [marca de tempo]';
-SET search_path = public, pg_catalog;
-COMMENT ON DOMAIN cctld IS 'country code top-level domain (ccTLD) [domínio de nível superior, ou domínio de primeiro nível, nacional]';
-SET search_path = lc, pg_catalog;
-COMMENT ON VIEW lc.vmrccc IS 'MARC (Machine Readable Cataloging) country codes';
-COMMENT ON VIEW lc.vmrcgc IS 'MARC (Machine Readable Cataloging) geographic area codes';
 COMMENT ON TABLE lc.t840ar01 IS 'MARC (Machine Readable Cataloging) Code List for Geographic Areas [lista de códigos MARC para áreas geográficas]';
-COMMENT ON COLUMN lc.t840ar01.rid IS 'record/row identifier [identificador (ID) do/a registro/linha]';
+COMMENT ON COLUMN lc.t840ar01.id IS 'record identifier [identificador (ID) do registro]';
 COMMENT ON COLUMN lc.t840ar01.marc IS 'MARC (Machine Readable Cataloging) code [código para catalogação legível por computador]';
 COMMENT ON COLUMN lc.t840ar01.caption IS 'code caption [legenda do código]';
 COMMENT ON COLUMN lc.t840ar01.t IS 'timestamp [marca de tempo]';

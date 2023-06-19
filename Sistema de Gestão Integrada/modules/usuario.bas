@@ -45,3 +45,9 @@ auth_error:
 fim:
     freeRecordset rsUsuario
 End Function
+
+Public Sub resetPassword(newPassword As String, Optional userid_ As Long)
+    If userid_ < 0 Then Err.Raise CODE_INVALID_USERID, "usuario.resetPassword(string,long)", MSG_INVALID_USERID
+    userid_ = IIf(userid_ = 0, userid, userid_)
+    databaseConnectionExecute "UPDATE usr.t001 SET pwdhsh = encode(digest('" & newPassword & "', 'sha1'), 'hex') WHERE usrid = " & userid_
+End Sub

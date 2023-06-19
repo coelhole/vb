@@ -54,6 +54,9 @@ Begin VB.Form frmMain
       Begin VB.Menu mnUsuario_Relogar 
          Caption         =   "Sair e entrar com outro usuário"
       End
+      Begin VB.Menu mnUsuario_AlterarSenha 
+         Caption         =   "Alterar senha"
+      End
    End
 End
 Attribute VB_Name = "frmMain"
@@ -71,6 +74,10 @@ Private Sub mnArquivo_Sair_Click()
     Unload Me
     Set frmMain = Nothing
     End
+End Sub
+
+Private Sub mnUsuario_AlterarSenha_Click()
+    frmAlterarSenha.Show vbModal, Me
 End Sub
 
 Private Sub mnUsuario_Relogar_Click()
