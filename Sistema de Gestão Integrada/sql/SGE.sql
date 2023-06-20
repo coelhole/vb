@@ -85,8 +85,8 @@ AS
 $body$
 BEGIN
 	IF (TG_OP = 'INSERT') THEN
-		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,'001',NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,1,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar01(id,num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
+		VALUES (NEW.id,NEW.num3,NEW.al3,NEW.al2,'001',NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,1,NEW.actv,NEW.t);
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
@@ -137,11 +137,11 @@ AS
 $body$
 BEGIN
 	IF (TG_OP = 'INSERT') THEN
-		INSERT INTO lc.t001ar07(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar07(id,num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,actv,t)
+		VALUES (NEW.id,NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.actv,NEW.t);
 
-		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,2,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar01(id,num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
+		VALUES (NEW.id,NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,2,NEW.actv,NEW.t);
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
@@ -208,11 +208,11 @@ AS
 $body$
 BEGIN
 	IF (TG_OP = 'INSERT') THEN
-		INSERT INTO lc.t001ar13(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,edgar,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.edgar,NEW.actv, NEW.t);
+		INSERT INTO lc.t001ar13(id,num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,itu,wmo,edgar,ioc,fifa,tld,actv,t)
+		VALUES (NEW.id,NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,NEW.itu,NEW.wmo,NEW.edgar,NEW.ioc,NEW.fifa,NEW.tld,NEW.actv,NEW.t);
 
-		INSERT INTO lc.t001ar01(num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
-		VALUES (NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,3,NEW.actv,NEW.t);
+		INSERT INTO lc.t001ar01(id,num3,al3,al2,num3spr,num3m49,num3iso,al3iso,al2iso,gnmid,marc,artp,actv,t)
+		VALUES (NEW.id,NEW.num3,NEW.al3,NEW.al2,NEW.num3spr,NEW.num3m49,NEW.num3iso,NEW.al3iso,NEW.al2iso,NEW.gnmid,NEW.marc,3,NEW.actv,NEW.t);
 	END IF;
 
 	IF (TG_OP = 'UPDATE') THEN
@@ -242,7 +242,12 @@ BEGIN
 			al2iso = NEW.al2iso,
 			gnmid = NEW.gnmid,
             marc = NEW.marc,
+            itu = NEW.itu,
+            wmo = NEW.wmo,
             edgar = NEW.edgar,
+			ioc = NEW.ioc,
+            fifa = NEW.fifa,
+            tld = NEW.tld,
 			actv = NEW.actv,
 			t = NEW.t
 		WHERE
