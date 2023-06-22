@@ -93,7 +93,20 @@ Private Sub cmdAlterarSenha_Click()
         MsgExcl "Repita a nova senha"
         ControlSetFocus txtRepetirSenha
     Else
-        '
+        If auth(username, txtSenhaAtual.Text) = AUTH_OK Then
+            If txtNovaSenha.Text = txtRepetirSenha.Text Then
+                resetPassword txtNovaSenha.Text
+                MsgInfo "Senha alterada com sucesso!"
+                Unload Me
+                Set frmAlterarSenha = Nothing
+            Else
+                MsgExcl "Senha nova e senha nova repetida não conferem"
+                ControlSetFocus txtRepetirSenha
+            End If
+        Else
+            MsgExcl "Senha atual fornecida inválida!"
+            ControlSetFocus txtSenhaAtual
+        End If
     End If
 End Sub
 

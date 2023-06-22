@@ -146,7 +146,7 @@ Private Sub cmdEntrar_Click()
             Unload Me
             frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
             frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
-            frmMain.Show vbModeless
+            frmMain.Show
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"
             ControlSetFocus txtUsuario

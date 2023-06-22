@@ -13,11 +13,14 @@ Public Function newDatabaseConnection() As ADODB.Connection
     newDatabaseConnection.ConnectionString = "DRIVER={PostgreSQL Unicode};SERVER=" & databaseHost & ";port=" & databasePort & ";DATABASE=" & databaseName & ";UID=" & databaseUser & ";PWD=" & databasePassword
 End Function
 
-Public Sub openDatabaseConnection(databaseConnection_ As ADODB.Connection)
+Public Sub openDatabaseConnection(databaseConnection_ As ADODB.Connection, Optional instanciarSeNaoExiste As Boolean = True)
     If Not (databaseConnection_ Is Nothing) Then
         If databaseConnection_.State = adStateClosed Then
             databaseConnection_.Open
         End If
+    Else
+        Set databaseConnection_ = newDatabaseConnection
+        databaseConnection_.Open
     End If
 End Sub
 
@@ -56,12 +59,7 @@ Public Sub closeRecordset(recordset_ As ADODB.Recordset)
 End Sub
 
 Public Sub freeRecordset(recordset_ As ADODB.Recordset)
-    If Not (recordset_ Is Nothing) Then
-        If recordset_.State = adStateOpen Then
-            recordset_.Close
-        End If
-    End If
-
+    closeRecordset recordset_
     Set recordset_ = Nothing
 End Sub
 
@@ -70,16 +68,9 @@ Public Function databaseConnectionExecute(CommandText As String, Optional Record
     Set databaseConnectionExecute = databaseConnection.Execute(CommandText, RecordsAffected, Options)
 End Function
 
-Public Function vDBMS() As String
-    Dim rsVersion As ADODB.Recordset
-    Set rsVersion = databaseConnectionExecute("select version()")
-    vDBMS = rsVersion.Fields(0).Value
-    freeRecordset rsVersion
-End Function
-
 Public Function extensionExists(extensionName As String) As Boolean
     Dim rsExtensionExists As ADODB.Recordset
-    Set rsExtensionExists = databaseConnectionExecute("SELECT true as ext_exists FROM pg_extension WHERE extname = '" & extensionName & "'")
+    Set rsExtensionExists = databaseConnectionExecute("SELECT True as ext_exists FROM pg_extension WHERE extname = '" & extensionName & "'")
     extensionExists = Not rsExtensionExists.BOF
     If extensionExists Then extensionExists = rsExtensionExists.Fields(0).Value
     freeRecordset rsExtensionExists

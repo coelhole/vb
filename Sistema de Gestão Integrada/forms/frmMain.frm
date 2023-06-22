@@ -51,11 +51,11 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnUsuario 
       Caption         =   "Usuário"
-      Begin VB.Menu mnUsuario_Relogar 
-         Caption         =   "Sair e entrar com outro usuário"
-      End
       Begin VB.Menu mnUsuario_AlterarSenha 
          Caption         =   "Alterar senha"
+      End
+      Begin VB.Menu mnUsuario_Relogar 
+         Caption         =   "Sair e entrar com outro usuário"
       End
    End
 End

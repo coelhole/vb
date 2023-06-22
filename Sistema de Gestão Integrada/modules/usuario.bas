@@ -18,7 +18,7 @@ On Error GoTo auth_error
     auth = AUTH_INTERNAL
 
     Dim rsUsuario As ADODB.Recordset
-    Set rsUsuario = databaseConnection.Execute("SELECT usrid, pwdhsh, actv FROM usr.t001 WHERE usrnm = '" & username_ & "'")
+    Set rsUsuario = databaseConnectionExecute("SELECT usrid, pwdhsh, actv FROM usr.t001 WHERE usrnm = '" & username_ & "'")
 
     If rsUsuario.BOF Then
         auth = AUTH_USERNOTFOUND

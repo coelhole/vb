@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin VB.Form FrmAppInfo 
    Caption         =   "AppInfo"
-   ClientHeight    =   3600
+   ClientHeight    =   2790
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   7875
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
-   ScaleHeight     =   3600
+   ScaleHeight     =   2790
    ScaleWidth      =   7875
    StartUpPosition =   2  'CenterScreen
    Begin VB.Label InfoThreadId 

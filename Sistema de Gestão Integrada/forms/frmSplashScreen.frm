@@ -17,7 +17,7 @@ Begin VB.Form frmSplashScreen
       Left            =   390
       Top             =   420
    End
-   Begin VB.Label Label4 
+   Begin VB.Label Label3 
       Alignment       =   1  'Right Justify
       Caption         =   "v. 1.2.5"
       BeginProperty Font 
@@ -31,16 +31,16 @@ Begin VB.Form frmSplashScreen
       EndProperty
       Height          =   285
       Left            =   8070
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   4200
       Width           =   2220
    End
-   Begin VB.Label Label3 
+   Begin VB.Label Label2 
       Alignment       =   2  'Center
       Caption         =   "Sistema de Gestão Empresarial"
       BeginProperty Font 
          Name            =   "Tahoma"
-         Size            =   14.25
+         Size            =   27.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -49,28 +49,9 @@ Begin VB.Form frmSplashScreen
       EndProperty
       Height          =   705
       Left            =   240
-      TabIndex        =   2
-      Top             =   2850
-      Width           =   9945
-   End
-   Begin VB.Label Label2 
-      Alignment       =   2  'Center
-      BackColor       =   &H00C0C0C0&
-      Caption         =   "SGE"
-      BeginProperty Font 
-         Name            =   "Microsoft Sans Serif"
-         Size            =   24
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   555
-      Left            =   4590
       TabIndex        =   1
-      Top             =   2040
-      Width           =   1245
+      Top             =   1965
+      Width           =   9945
    End
    Begin VB.Label Label1 
       Caption         =   "Carregando configurações do banco de dados..."
@@ -112,13 +93,13 @@ Private Sub Form_Load()
     splashScreenBorder.Height = Me.Height - 32
     Label1.BackColor = Me.BackColor
     Label2.BackColor = Me.BackColor
+    Label2.Caption = SOFTWARE_NAME
     Label3.BackColor = Me.BackColor
-    Label4.BackColor = Me.BackColor
-    Label4.Caption = " v. " & App.Major & "." & App.Minor & "." & App.Revision
+    Label3.Caption = " v. " & App.Major & "." & App.Minor & "." & App.Revision
 End Sub
 
 Private Sub Timer1_Timer()
     Unload Me
     Set frmSplashScreen = Nothing
-    frmLogin.Show vbModeless
+    frmLogin.Show
 End Sub

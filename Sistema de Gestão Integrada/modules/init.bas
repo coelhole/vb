@@ -2,7 +2,7 @@ Attribute VB_Name = "init"
 Option Explicit
 
 Sub Main()
-    frmSplashScreen.Show vbModeless
+    frmSplashScreen.Show
 
     DoEvents
 
@@ -12,6 +12,5 @@ Sub Main()
     databaseUser = "postgres"
     databasePassword = "masterkey"
 
-    Set databaseConnection = newDatabaseConnection
-    databaseConnection.Open
+    openDatabaseConnection databaseConnection
 End Sub

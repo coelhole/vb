@@ -27,6 +27,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Command1_Click()
+    Unload Me
     End
 End Sub
 
