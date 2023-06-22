@@ -33,12 +33,7 @@ Public Sub closeDatabaseConnection(databaseConnection_ As ADODB.Connection)
 End Sub
 
 Public Sub freeDatabaseConnection(databaseConnection_ As ADODB.Connection)
-    If Not (databaseConnection_ Is Nothing) Then
-        If databaseConnection_.State = adStateOpen Then
-            databaseConnection_.Close
-        End If
-    End If
-
+    closeDatabaseConnection databaseConnection_
     Set databaseConnection_ = Nothing
 End Sub
 
