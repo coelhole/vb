@@ -84,13 +84,13 @@ Attribute VB_Exposed = False
 
 Private Sub cmdAlterarSenha_Click()
     If txtSenhaAtual.Text = EMPTY_STRING Then
-        MsgExcl "Forneça sua senha atual"
+        MsgExcl "Forneça sua senha atual!"
         ControlSetFocus txtSenhaAtual
     ElseIf txtNovaSenha.Text = EMPTY_STRING Then
-        MsgExcl "Forneça a nova senha"
+        MsgExcl "Forneça a nova senha!"
         ControlSetFocus txtNovaSenha
     ElseIf txtRepetirSenha.Text = EMPTY_STRING Then
-        MsgExcl "Repita a nova senha"
+        MsgExcl "Repita a nova senha!"
         ControlSetFocus txtRepetirSenha
     Else
         If auth(username, txtSenhaAtual.Text) = AUTH_OK Then
@@ -100,7 +100,7 @@ Private Sub cmdAlterarSenha_Click()
                 Unload Me
                 Set frmAlterarSenha = Nothing
             Else
-                MsgExcl "Senha nova e senha nova repetida não conferem"
+                MsgExcl "Senha nova e senha nova repetida não conferem!"
                 ControlSetFocus txtRepetirSenha
             End If
         Else

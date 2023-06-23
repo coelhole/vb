@@ -10,7 +10,12 @@ Public databaseConnection As ADODB.Connection
 
 Public Function newDatabaseConnection() As ADODB.Connection
     Set newDatabaseConnection = New ADODB.Connection
-    newDatabaseConnection.ConnectionString = "DRIVER={PostgreSQL Unicode};SERVER=" & databaseHost & ";port=" & databasePort & ";DATABASE=" & databaseName & ";UID=" & databaseUser & ";PWD=" & databasePassword
+    newDatabaseConnection.ConnectionString = "DRIVER={PostgreSQL Unicode}" _
+        & ";SERVER=" & databaseHost _
+        & ";PORT=" & databasePort _
+        & ";DATABASE=" & databaseName _
+        & ";UID=" & databaseUser _
+        & ";PWD=" & databasePassword
 End Function
 
 Public Sub openDatabaseConnection(databaseConnection_ As ADODB.Connection, Optional instanciarSeNaoExiste As Boolean = True)
