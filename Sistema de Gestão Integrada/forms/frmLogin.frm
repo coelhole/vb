@@ -99,26 +99,27 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
+    If KeyAscii = vbKeyReturn Then
+        If Len(txtUsuario.Text) > 1 Then
+            ControlSetFocus txtSenha
+        End If
+    End If
+
     If KeyAscii <> 8 And (KeyAscii < 65 Or KeyAscii > 90) And (KeyAscii < 97 Or KeyAscii > 122) Then
         KeyAscii = 0
     End If
 End Sub
 
-Private Sub txtUsuario_KeyUp(KeyCode As Integer, Shift As Integer)
-    If Len(txtUsuario.Text) > 1 And KeyCode = vbKeyReturn Then
-        ControlSetFocus txtSenha
-    End If
-End Sub
-
 Private Sub txtSenha_KeyPress(KeyAscii As Integer)
+    If KeyAscii = vbKeyReturn Then
+        If Len(txtUsuario.Text) > 1 And Len(txtSenha.Text) > 0 Then
+            ControlSetFocus cmdEntrar
+            cmdEntrar_Click
+        End If
+    End If
+
     If KeyAscii = 32 Then
         KeyAscii = 0
-    End If
-End Sub
-
-Private Sub txtSenha_KeyUp(KeyCode As Integer, Shift As Integer)
-    If Len(txtUsuario.Text) > 1 And Len(txtSenha.Text) > 0 And KeyCode = vbKeyReturn Then
-        ControlSetFocus cmdEntrar
     End If
 End Sub
 
