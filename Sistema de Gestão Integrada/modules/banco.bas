@@ -23,7 +23,7 @@ Public Sub openDatabaseConnection(databaseConnection_ As ADODB.Connection, Optio
         If databaseConnection_.State = adStateClosed Then
             databaseConnection_.Open
         End If
-    Else
+    ElseIf instanciarSeNaoExiste Then
         Set databaseConnection_ = newDatabaseConnection
         databaseConnection_.Open
     End If
@@ -70,7 +70,7 @@ End Function
 
 Public Function extensionExists(extensionName As String) As Boolean
     Dim rsExtensionExists As ADODB.Recordset
-    Set rsExtensionExists = databaseConnectionExecute("SELECT True as ext_exists FROM pg_extension WHERE extname = '" & extensionName & "'")
+    Set rsExtensionExists = databaseConnectionExecute("SELECT True AS ext_exists FROM pg_extension WHERE extname = '" & extensionName & "'")
     extensionExists = Not rsExtensionExists.BOF
     If extensionExists Then extensionExists = rsExtensionExists.Fields(0).Value
     freeRecordset rsExtensionExists

@@ -101,5 +101,5 @@ End Sub
 Private Sub Timer1_Timer()
     Unload Me
     Set frmSplashScreen = Nothing
-    frmLogin.Show
+    frmLogin.Show vbModal
 End Sub

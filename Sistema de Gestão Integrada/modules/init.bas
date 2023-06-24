@@ -2,7 +2,7 @@ Attribute VB_Name = "init"
 Option Explicit
 
 Sub Main()
-    frmSplashScreen.Show
+    frmSplashScreen.Show vbModal
 
     DoEvents
 
