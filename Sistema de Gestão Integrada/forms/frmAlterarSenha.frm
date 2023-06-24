@@ -111,13 +111,41 @@ Private Sub cmdAlterarSenha_Click()
 End Sub
 
 Private Sub txtNovaSenha_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then KeyAscii = 0
+    If KeyAscii = 32 Then
+        KeyAscii = 0
+    End If
+
+    If KeyAscii = vbKeyReturn Then
+        If Len(txtNovaSenha.Text) > 0 Then
+            ControlSetFocus txtRepetirSenha
+        End If
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtRepetirSenha_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then KeyAscii = 0
+    If KeyAscii = 32 Then
+        KeyAscii = 0
+    End If
+
+    If KeyAscii = vbKeyReturn Then
+        If Len(txtRepetirSenha.Text) > 0 Then
+            ControlSetFocus cmdAlterarSenha
+            cmdAlterarSenha_Click
+        End If
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtSenhaAtual_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then KeyAscii = 0
+    If KeyAscii = 32 Then
+        KeyAscii = 0
+    End If
+
+    If KeyAscii = vbKeyReturn Then
+        If Len(txtSenhaAtual.Text) > 0 Then
+            ControlSetFocus txtNovaSenha
+        End If
+        KeyAscii = 0
+    End If
 End Sub

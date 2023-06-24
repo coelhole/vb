@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.Form frmSplashScreen 
+Begin VB.Form frmInit 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   0  'None
    ClientHeight    =   4635
@@ -12,11 +12,6 @@ Begin VB.Form frmSplashScreen
    ScaleWidth      =   10425
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Timer Timer1 
-      Interval        =   2000
-      Left            =   390
-      Top             =   420
-   End
    Begin VB.Label Label3 
       Alignment       =   1  'Right Justify
       Caption         =   "v. 1.2.5"
@@ -70,7 +65,7 @@ Begin VB.Form frmSplashScreen
       Top             =   4200
       Width           =   5385
    End
-   Begin VB.Shape splashScreenBorder 
+   Begin VB.Shape bdr 
       BorderColor     =   &H8000000A&
       Height          =   4515
       Left            =   60
@@ -78,28 +73,39 @@ Begin VB.Form frmSplashScreen
       Width           =   10335
    End
 End
-Attribute VB_Name = "frmSplashScreen"
+Attribute VB_Name = "frmInit"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Sub CheckDatabaseConnection()
+    databaseHost = "localhost"
+    databasePort = 5432
+    databaseName = "SGE"
+    databaseUser = "postgres"
+    databasePassword = "masterkey"
+    openDatabaseConnection databaseConnection
+End Sub
+
+Private Sub Form_Activate()
+    DoEvents
+    CheckDatabaseConnection
+    Unload Me
+    Set frmInit = Nothing
+    frmLogin.Show vbModal
+End Sub
+
 Private Sub Form_Load()
     Me.Caption = "Seja bem-vindo ao " & SOFTWARE_NAME
-    splashScreenBorder.Left = 8
-    splashScreenBorder.Top = 8
-    splashScreenBorder.Width = Me.Width - 32
-    splashScreenBorder.Height = Me.Height - 32
+    bdr.Left = 8
+    bdr.Top = 8
+    bdr.Width = Me.Width - 32
+    bdr.Height = Me.Height - 32
     Label1.BackColor = Me.BackColor
     Label2.BackColor = Me.BackColor
     Label2.Caption = SOFTWARE_NAME
     Label3.BackColor = Me.BackColor
     Label3.Caption = " v. " & App.Major & "." & App.Minor & "." & App.Revision
-End Sub
-
-Private Sub Timer1_Timer()
-    Unload Me
-    Set frmSplashScreen = Nothing
-    frmLogin.Show vbModal
 End Sub

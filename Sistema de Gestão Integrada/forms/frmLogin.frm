@@ -116,6 +116,7 @@ Private Sub txtSenha_KeyPress(KeyAscii As Integer)
             ControlSetFocus cmdEntrar
             cmdEntrar_Click
         End If
+        KeyAscii = 0
     End If
 
     If KeyAscii = 32 Then
