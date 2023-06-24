@@ -155,7 +155,7 @@ Private Sub cmdEntrar_Click()
             MsgExcl "Senha inválida!"
             ControlSetFocus txtSenha
         Case AUTH_USERINACTIVE
-            MsgExcl "Usuário não ativo!"
+            MsgExcl "Usuário inativo!"
             ControlSetFocus txtUsuario
         Case AUTH_INTERNAL
             '

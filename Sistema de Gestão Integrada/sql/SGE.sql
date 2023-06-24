@@ -245,7 +245,7 @@ BEGIN
             itu = NEW.itu,
             wmo = NEW.wmo,
             edgar = NEW.edgar,
-			ioc = NEW.ioc,
+            ioc = NEW.ioc,
             fifa = NEW.fifa,
             tld = NEW.tld,
 			actv = NEW.actv,
