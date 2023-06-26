@@ -2,30 +2,31 @@ VERSION 5.00
 Begin VB.Form frmAlterarSenha 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Alterar senha"
-   ClientHeight    =   2520
+   ClientHeight    =   2430
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   5415
+   Icon            =   "frmAlterarSenha.frx":0000
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2520
+   ScaleHeight     =   2430
    ScaleWidth      =   5415
    StartUpPosition =   1  'CenterOwner
    Begin VB.CommandButton cmdAlterarSenha 
       Caption         =   "&OK"
-      Height          =   488
-      Left            =   3540
+      Height          =   400
+      Left            =   3707
       TabIndex        =   6
-      Top             =   1820
-      Width           =   1695
+      Top             =   1800
+      Width           =   1500
    End
    Begin VB.TextBox txtSenhaAtual 
       Height          =   345
       IMEMode         =   3  'DISABLE
       Left            =   1982
-      PasswordChar    =   "#"
+      PasswordChar    =   "*"
       TabIndex        =   1
       Top             =   180
       Width           =   3225
@@ -34,7 +35,7 @@ Begin VB.Form frmAlterarSenha
       Height          =   345
       IMEMode         =   3  'DISABLE
       Left            =   1982
-      PasswordChar    =   "#"
+      PasswordChar    =   "*"
       TabIndex        =   5
       Top             =   1200
       Width           =   3225
@@ -43,7 +44,7 @@ Begin VB.Form frmAlterarSenha
       Height          =   345
       IMEMode         =   3  'DISABLE
       Left            =   1982
-      PasswordChar    =   "#"
+      PasswordChar    =   "*"
       TabIndex        =   3
       Top             =   690
       Width           =   3225

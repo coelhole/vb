@@ -40,7 +40,7 @@ auth_error:
         databaseConnectionExecute "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
         auth = auth(username_, password_)
     Else
-        Err.Raise Err.Number, Err.Source, Err.Description, Err.HelpFile, Err.HelpContext
+        ReRaise Err
     End If
 fim:
     freeRecordset rsUsuario

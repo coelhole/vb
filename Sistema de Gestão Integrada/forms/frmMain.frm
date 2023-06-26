@@ -11,6 +11,14 @@ Begin VB.Form frmMain
    ScaleWidth      =   20085
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
+   Begin VB.CommandButton Command1 
+      Caption         =   "Command1"
+      Height          =   1665
+      Left            =   5760
+      TabIndex        =   1
+      Top             =   2130
+      Width           =   5835
+   End
    Begin MSComctlLib.StatusBar statusbar 
       Align           =   2  'Align Bottom
       Height          =   285
@@ -65,6 +73,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+
+Private Sub Command1_Click()
+    frmSetDB.Show vbModal, Me
+End Sub
 
 Private Sub Form_Load()
     Me.Caption = SOFTWARE_NAME & " v. " & App.Major & "." & App.Minor & "." & App.Revision

@@ -2,16 +2,17 @@ VERSION 5.00
 Begin VB.Form frmLogin 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Seja bem-vindo ao Sistema de Gestão Empresarial"
-   ClientHeight    =   1455
+   ClientHeight    =   1830
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   8400
+   ClientWidth     =   6390
+   Icon            =   "frmLogin.frx":0000
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1455
-   ScaleWidth      =   8400
+   ScaleHeight     =   1830
+   ScaleWidth      =   6390
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtSenha 
@@ -24,15 +25,15 @@ Begin VB.Form frmLogin
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   340
+      Height          =   360
       IMEMode         =   3  'DISABLE
-      Left            =   1200
+      Left            =   1290
       MaxLength       =   64
       PasswordChar    =   "*"
       TabIndex        =   3
       ToolTipText     =   "Forneça aqui a senha do usuário informado"
-      Top             =   720
-      Width           =   4935
+      Top             =   1290
+      Width           =   2800
    End
    Begin VB.TextBox txtUsuario 
       BeginProperty Font 
@@ -44,46 +45,54 @@ Begin VB.Form frmLogin
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   340
-      Left            =   1200
+      Height          =   360
+      Left            =   1290
       MaxLength       =   32
       TabIndex        =   1
       ToolTipText     =   "Informe um nome de usuário válido (apenas letras, maiúsculas ou minúsculas, duas ou mais, mas não mais do que 32)"
-      Top             =   200
-      Width           =   4935
+      Top             =   765
+      Width           =   2800
    End
    Begin VB.CommandButton cmdSair 
-      Caption         =   "Sair"
-      Height          =   495
-      Left            =   6360
+      Caption         =   "Cancelar"
+      Height          =   400
+      Left            =   4590
       TabIndex        =   5
       Top             =   720
-      Width           =   1815
+      Width           =   1500
    End
    Begin VB.CommandButton cmdEntrar 
       Caption         =   "OK"
-      Height          =   495
-      Left            =   6360
+      Height          =   400
+      Left            =   4590
       TabIndex        =   4
       Top             =   120
-      Width           =   1815
+      Width           =   1500
+   End
+   Begin VB.Label lblInfo 
+      Caption         =   "Forneça seus dados de acesso, nome e senha, para acessar o Sistema de Gestão Empresarial."
+      Height          =   465
+      Left            =   330
+      TabIndex        =   6
+      Top             =   120
+      Width           =   4065
    End
    Begin VB.Label lblSenha 
       Alignment       =   1  'Right Justify
       Caption         =   "Senha"
-      Height          =   248
-      Left            =   240
+      Height          =   255
+      Left            =   330
       TabIndex        =   2
-      Top             =   760
+      Top             =   1335
       Width           =   855
    End
    Begin VB.Label lblUsuario 
       Alignment       =   1  'Right Justify
       Caption         =   "Usuário"
-      Height          =   248
-      Left            =   240
+      Height          =   255
+      Left            =   330
       TabIndex        =   0
-      Top             =   240
+      Top             =   810
       Width           =   855
    End
 End
@@ -96,6 +105,7 @@ Option Explicit
 
 Private Sub Form_Load()
     Me.Caption = "Seja bem-vindo ao " & SOFTWARE_NAME
+    Me.lblInfo.Caption = "Forneça seus dados de acesso, nome e senha, para acessar o " & SOFTWARE_NAME & "."
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
@@ -146,9 +156,10 @@ Private Sub cmdEntrar_Click()
     Select Case auth(txtUsuario.Text, txtSenha.Text)
         Case AUTH_OK
             Unload Me
-            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
-            frmMain.Show
+            Set frmLogin = Nothing
+            frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.Show vbModal
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"
             ControlSetFocus txtUsuario
