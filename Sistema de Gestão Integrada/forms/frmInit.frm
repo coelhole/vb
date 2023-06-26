@@ -144,6 +144,7 @@ connect_fail:
             frmSetDB.Tag = "frmInit"
             frmSetDB.Show vbModal, frmInit
             tryAgain = (frmInit.Tag = "frmSetDB_OK")
+            frmInit.Tag = EMPTY_STRING
             If tryAgain Then
                 Resume db_connecting
             End If
