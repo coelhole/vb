@@ -157,11 +157,8 @@ End Function 'exit -1
 Private Sub Form_Activate()
     If Not screenSplashDisplayed Then
         screenSplashDisplayed = True
-
         DoEvents
-
         connectionOK = connect
-
         Me.Visible = False
         Unload Me
         Set frmInit = Nothing
@@ -184,6 +181,6 @@ End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
     If connectionOK Then
-        frmLogin.Show vbModal
+        ShowModal frmLogin
     End If
 End Sub

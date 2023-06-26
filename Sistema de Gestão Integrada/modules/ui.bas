@@ -6,6 +6,12 @@ Public Sub ControlSetFocus(ctrl As Control)
     If ctrl.Visible And ctrl.Enabled Then ctrl.SetFocus
 End Sub
 
+Public Sub ShowModal(frm As Form, Optional OwnerForm)
+    If Not (frm Is Nothing) Then
+        frm.Show vbModal, OwnerForm
+    End If
+End Sub
+
 Public Function MsgExcl(Prompt, Optional Title = SOFTWARE_NAME, Optional HelpFile, Optional Context) As VbMsgBoxResult
     MsgExcl = MsgBox(Prompt, vbExclamation + vbOKOnly, Title, HelpFile, Context)
 End Function
