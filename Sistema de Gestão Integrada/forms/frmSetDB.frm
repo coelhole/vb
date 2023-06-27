@@ -18,7 +18,7 @@ Begin VB.Form frmSetDB
       Caption         =   "OK"
       Height          =   400
       Left            =   3447
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   4575
       Width           =   2000
    End
@@ -29,39 +29,55 @@ Begin VB.Form frmSetDB
       TabIndex        =   0
       Top             =   90
       Width           =   5240
+      Begin VB.CheckBox chkMostrarSenha 
+         Caption         =   "Mostrar senha"
+         Height          =   285
+         Left            =   3120
+         TabIndex        =   9
+         Top             =   2850
+         Width           =   1400
+      End
       Begin VB.TextBox txtBanco 
          Height          =   350
          Left            =   180
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   3540
-         Width           =   3800
+         Width           =   2880
       End
       Begin VB.TextBox txtSenha 
          Height          =   350
+         IMEMode         =   3  'DISABLE
          Left            =   180
+         PasswordChar    =   "*"
          TabIndex        =   8
          Top             =   2820
-         Width           =   3800
+         Width           =   2880
       End
       Begin VB.TextBox txtUsuario 
          Height          =   350
          Left            =   180
          TabIndex        =   6
+         Text            =   "postgres"
+         ToolTipText     =   "Nome do usuário do banco de dados (postgres é o nome padrão do superusuário)"
          Top             =   2100
-         Width           =   3800
+         Width           =   2880
       End
       Begin VB.TextBox txtPorta 
          Height          =   350
          Left            =   180
          MaxLength       =   5
          TabIndex        =   4
+         Text            =   "5432"
+         ToolTipText     =   "Número da porta em que a instância do Postgres está ouvindo (5432 é o número da porta padrão)"
          Top             =   1395
-         Width           =   1400
+         Width           =   1000
       End
       Begin VB.TextBox txtHost 
          Height          =   350
          Left            =   180
          TabIndex        =   2
+         Text            =   "localhost"
+         ToolTipText     =   "Hostname (nome do host) ou endereço IP do servidor onde a instância do Postgres está em execução"
          Top             =   675
          Width           =   4880
       End
@@ -69,7 +85,7 @@ Begin VB.Form frmSetDB
          Caption         =   "Banco"
          Height          =   195
          Left            =   180
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   3255
          Width           =   1515
       End
@@ -111,7 +127,7 @@ Begin VB.Form frmSetDB
       ForeColor       =   &H000000FF&
       Height          =   600
       Left            =   280
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   4420
       Visible         =   0   'False
       Width           =   3000
@@ -125,6 +141,14 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private focCtrl As Control
+
+Private Sub chkMostrarSenha_Click()
+    If chkMostrarSenha.Value = 1 Then
+        txtSenha.PasswordChar = ""
+    Else
+        txtSenha.PasswordChar = "*"
+    End If
+End Sub
 
 Private Sub cmdOK_Click()
     databaseHost = txtHost.Text

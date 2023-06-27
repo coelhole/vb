@@ -80,7 +80,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private connectionOK As Boolean
+Private initializationOK As Boolean
 Private screenSplashDisplayed As Boolean
 
 Private Sub infomsg(msg As String)
@@ -91,7 +91,7 @@ End Sub
 
 Private Sub errmsg(msg As String, Optional errObj As ErrObject)
     If Not (errObj Is Nothing) Then
-        err_logfile "frmInit: ShowLogin: Erro " & err.Number & ": " & err.Source & ": " & err.Description
+        logError "frmInit: initialize: Erro " & Err.Number & ": " & Err.Source & ": " & Err.Description
     End If
 
     frmInit.lblInfo.ForeColor = vbRed
@@ -99,9 +99,9 @@ Private Sub errmsg(msg As String, Optional errObj As ErrObject)
     frmInit.Refresh
 End Sub
 
-Private Function connect() As Boolean
-connect = False
-On Error GoTo connect_fail
+Private Function initialize() As Boolean
+initialize = False
+On Error GoTo initialize_error
 
     Dim lonPort As Long
     Dim postgresFail As Boolean
@@ -120,21 +120,21 @@ db_connecting:
     infomsg "Estabelecendo conexão com o banco de dados..."
     openDatabaseConnection databaseConnection
 
-connect = True
+initialize = True
 Exit Function 'exit 0
 
-connect_fail:
+initialize_error:
     Set databaseConnection = Nothing
 
-    postgresFail = False Or ((InStr(1, err.Description, "banco de dados") + InStr(1, err.Description, "não existe")) > 1) 'nome de banco de dados invalido/inexistente
-    postgresFail = postgresFail Or (InStr(1, err.Description, "invalid port number") > 0) 'numero de porta invalido: nao-positivo
-    postgresFail = postgresFail Or (InStr(1, err.Description, "could not connect to server") > 0) 'servidor fora do ar ou nome de usuario do banco de dados ou senha invalidos
-    postgresFail = postgresFail Or (InStr(1, err.Description, "could not translate host") > 0) 'nao foi possivel mapear o hostname para um endereco valido na rede: host desconhecido
-    postgresFail = postgresFail And (err.Number = -2147467259) 'todos os erros acima tem por numero -2147467259
-    postgresFail = postgresFail Or ((err.Number = 6) And (lonPort > CLng((2 ^ 15) - 1))) 'overflow: o numero da porta excede o valor maximo
+    postgresFail = False Or ((InStr(1, Err.Description, "banco de dados") + InStr(1, Err.Description, "não existe")) > 1) 'nome de banco de dados invalido/inexistente
+    postgresFail = postgresFail Or (InStr(1, Err.Description, "invalid port number") > 0) 'numero de porta invalido: nao-positivo
+    postgresFail = postgresFail Or (InStr(1, Err.Description, "could not connect to server") > 0) 'servidor fora do ar ou nome de usuario do banco de dados ou senha invalidos
+    postgresFail = postgresFail Or (InStr(1, Err.Description, "could not translate host") > 0) 'nao foi possivel mapear o hostname para um endereco valido na rede: host desconhecido
+    postgresFail = postgresFail And (Err.Number = -2147467259) 'todos os erros acima tem por numero -2147467259
+    postgresFail = postgresFail Or ((Err.Number = 6) And (lonPort > CLng((2 ^ 15) - 1))) 'overflow: o numero da porta excede o valor maximo
 
     If postgresFail Then
-        errmsg DB_CONN_FAIL, err
+        errmsg DB_CONN_FAIL, Err
         If MsgCritYN(DB_CONN_FAIL & vbCrLf & "Gostaria de corrigir/especificar os dados de configuração do banco de dados?") = vbYes Then
             frmSetDB.txtHost = databaseHost
             frmSetDB.txtPorta = CStr(databasePort)
@@ -150,7 +150,7 @@ connect_fail:
             End If
         End If
     Else
-        errmsg "Erro: " & err.Number, err
+        errmsg "Erro: " & Err.Number, Err
     End If
 
 End Function 'exit -1
@@ -159,7 +159,7 @@ Private Sub Form_Activate()
     If Not screenSplashDisplayed Then
         screenSplashDisplayed = True
         DoEvents
-        connectionOK = connect
+        initializationOK = initialize
         Me.Visible = False
         Unload Me
         Set frmInit = Nothing
@@ -181,7 +181,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    If connectionOK Then
+    If initializationOK Then
         ShowModal frmLogin
     End If
 End Sub

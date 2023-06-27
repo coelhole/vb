@@ -6,9 +6,9 @@ Public Sub ControlSetFocus(ctrl As Control)
     If ctrl.Visible And ctrl.Enabled Then ctrl.SetFocus
 End Sub
 
-Public Sub ShowModal(frm As Form, Optional OwnerForm)
+Public Sub ShowModal(frm As Form, Optional owner = Nothing)
     If Not (frm Is Nothing) Then
-        frm.Show vbModal, OwnerForm
+        frm.Show vbModal, owner
     End If
 End Sub
 

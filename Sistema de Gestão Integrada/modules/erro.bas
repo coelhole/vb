@@ -9,16 +9,21 @@ Public Const MSG_INVALID_USERID As String = "UserID inválido: negativo"
 'other error strings
 Public Const DB_CONN_FAIL As String = "A tentativa de conexão ao banco de dados falhou."
 
-'error to logfile
-Public Sub err_logfile(err As String)
-    Debug.Print err
+'LogError (write error to logfile)
+Public Sub logError(errStr As String)
+    Debug.Print errStr
 End Sub
 
-'reraise
-Public Sub ReRaise(errObj As ErrObject)
+'raiseError
+Public Sub raiseError(Number As Long, Optional Source, Optional Description, Optional HelpFile, Optional HelpContext)
+    Err.raise Number, Source, Description, HelpFile, HelpContext
+End Sub
+
+'reraiseError
+Public Sub reraiseError(errObj As ErrObject)
     If Not (errObj Is Nothing) Then
-        errObj.Raise errObj.Number, errObj.Source, errObj.Description, errObj.HelpFile, errObj.HelpContext
+        errObj.raise errObj.Number, errObj.Source, errObj.Description, errObj.HelpFile, errObj.HelpContext
     Else
-        err_logfile "erro: ReRaise(ErrObject): errObj is Nothing"
+        logError "erro: reraiseError(ErrObject): obj is Nothing"
     End If
 End Sub

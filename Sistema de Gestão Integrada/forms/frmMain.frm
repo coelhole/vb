@@ -85,7 +85,6 @@ End Sub
 Private Sub mnArquivo_Sair_Click()
     Unload Me
     Set frmMain = Nothing
-    End
 End Sub
 
 Private Sub mnUsuario_AlterarSenha_Click()
