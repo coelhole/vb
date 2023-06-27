@@ -157,8 +157,8 @@ Private Sub cmdEntrar_Click()
         Case AUTH_OK
             Unload Me
             Set frmLogin = Nothing
-            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
             ShowModal frmMain
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"
@@ -179,5 +179,4 @@ End Sub
 Private Sub cmdSair_Click()
     Unload Me
     Set frmLogin = Nothing
-    End
 End Sub

@@ -41,6 +41,7 @@ Begin VB.Form frmSetDB
          Height          =   350
          Left            =   180
          TabIndex        =   11
+         ToolTipText     =   "Nome do banco de dados"
          Top             =   3540
          Width           =   2880
       End
@@ -50,6 +51,7 @@ Begin VB.Form frmSetDB
          Left            =   180
          PasswordChar    =   "*"
          TabIndex        =   8
+         ToolTipText     =   "Senha do usuário do banco de dados"
          Top             =   2820
          Width           =   2880
       End
