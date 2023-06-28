@@ -11,6 +11,51 @@ Public Sub Fcs(ctrl As Control)
     End If
 End Sub
 
+Public Function IsTextControl(ctrl As Control) As Boolean
+    IsTextControl = False
+
+    If TypeOf ctrl Is TextBox Then
+        If Not ctrl.Locked Then
+            IsTextControl = True
+        End If
+    ElseIf TypeOf ctrl Is ComboBox Then
+        If (Not ctrl.Locked) And (ctrl.Style <> 2) Then
+            IsTextControl = True
+        End If
+    End If
+End Function
+
+Public Sub FcsEnd(ctrl As Control)
+    If ctrl.Visible And ctrl.Enabled Then
+        ctrl.SetFocus
+
+        If IsTextControl(ctrl) Then
+            ctrl.SelStart = Len(ctrl.Text)
+        End If
+    End If
+End Sub
+
+Public Sub TrmFcs(ctrl As Control)
+    If ctrl.Visible And ctrl.Enabled Then
+        If IsTextControl(ctrl) Then
+            ctrl.Text = Trim(ctrl.Text)
+        End If
+
+        ctrl.SetFocus
+    End If
+End Sub
+
+Public Sub TrmFcsEnd(ctrl As Control)
+    If ctrl.Visible And ctrl.Enabled Then
+        ctrl.SetFocus
+
+        If IsTextControl(ctrl) Then
+            ctrl.Text = Trim(ctrl.Text)
+            ctrl.SelStart = Len(ctrl.Text)
+        End If
+    End If
+End Sub
+
 Public Sub ShowModal(frm As Form, Optional owner = Nothing)
     If Not (frm Is Nothing) Then
         frm.Show vbModal, owner

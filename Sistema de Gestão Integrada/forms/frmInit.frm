@@ -91,7 +91,7 @@ End Sub
 
 Private Sub errmsg(msg As String, Optional errObj As ErrObject)
     If Not (errObj Is Nothing) Then
-        logError "frmInit: initialize: Erro " & Err.Number & ": " & Err.Source & ": " & Err.Description
+        LogError "frmInit: initialize: Erro " & Err.Number & ": " & Err.Source & ": " & Err.Description
     End If
 
     frmInit.lblInfo.ForeColor = vbRed
@@ -142,7 +142,7 @@ initialize_error:
             frmSetDB.txtSenha = databasePassword
             frmSetDB.txtBanco = databaseName
             frmSetDB.Tag = "frmInit"
-            frmSetDB.Show vbModal, frmInit
+            ShowModal frmSetDB, frmInit
             tryAgain = (frmInit.Tag = "frmSetDB_OK")
             frmInit.Tag = EMPTY_STRING
             If tryAgain Then

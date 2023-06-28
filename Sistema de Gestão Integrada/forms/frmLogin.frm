@@ -106,6 +106,7 @@ Option Explicit
 Private Sub Form_Load()
     Me.Caption = "Seja bem-vindo ao " & SOFTWARE_NAME
     Me.lblInfo.Caption = "Forneça seus dados de acesso, nome e senha, para acessar o " & SOFTWARE_NAME & "."
+    txtSenha.PasswordChar = PASSWORD_CHAR
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
@@ -157,8 +158,8 @@ Private Sub cmdEntrar_Click()
         Case AUTH_OK
             Unload Me
             Set frmLogin = Nothing
-            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
             ShowModal frmMain
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"

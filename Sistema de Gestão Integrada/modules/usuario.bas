@@ -40,14 +40,14 @@ auth_error:
         databaseConnectionExecute "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
         auth = auth(username_, password_)
     Else
-        reraiseError Err
+        ReraiseError Err
     End If
 fim:
     freeRecordset rsUsuario
 End Function
 
 Public Sub resetPassword(newPassword As String, Optional userid_ As Long)
-    If userid_ < 0 Then raiseError CODE_INVALID_USERID, "usuario: resetPassword(String,Long)", MSG_INVALID_USERID
+    If userid_ < 0 Then RaiseError CODE_INVALID_USERID, "usuario: resetPassword(String,Long)", MSG_INVALID_USERID
     userid_ = IIf(userid_ = 0, userid, userid_)
     databaseConnectionExecute "UPDATE usr.t001 SET pwdhsh = encode(digest('" & newPassword & "', 'sha1'), 'hex') WHERE usrid = " & userid_
 End Sub

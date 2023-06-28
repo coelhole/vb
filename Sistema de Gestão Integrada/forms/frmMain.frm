@@ -75,7 +75,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Command1_Click()
-    frmSetDB.Show vbModal, Me
+    ShowModal frmSetDB, Me
 End Sub
 
 Private Sub Form_Load()
@@ -88,11 +88,11 @@ Private Sub mnArquivo_Sair_Click()
 End Sub
 
 Private Sub mnUsuario_AlterarSenha_Click()
-    frmAlterarSenha.Show vbModal, Me
+    ShowModal frmAlterarSenha, Me
 End Sub
 
 Private Sub mnUsuario_Relogar_Click()
     Unload Me
     Set frmMain = Nothing
-    frmLogin.Show vbModal
+    ShowModal frmLogin
 End Sub
