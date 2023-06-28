@@ -16,14 +16,14 @@ End Sub
 
 'raiseError
 Public Sub raiseError(Number As Long, Optional Source, Optional Description, Optional HelpFile, Optional HelpContext)
-    Err.raise Number, Source, Description, HelpFile, HelpContext
+    Err.Raise Number, Source, Description, HelpFile, HelpContext
 End Sub
 
 'reraiseError
 Public Sub reraiseError(errObj As ErrObject)
     If Not (errObj Is Nothing) Then
-        errObj.raise errObj.Number, errObj.Source, errObj.Description, errObj.HelpFile, errObj.HelpContext
+        errObj.Raise errObj.Number, errObj.Source, errObj.Description, errObj.HelpFile, errObj.HelpContext
     Else
-        logError "erro: reraiseError(ErrObject): obj is Nothing"
+        logError "erro: reraiseError(ErrObject): errObj is Nothing"
     End If
 End Sub

@@ -111,7 +111,7 @@ End Sub
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
     If KeyAscii = vbKeyReturn Then
         If Len(txtUsuario.Text) > 1 Then
-            ControlSetFocus txtSenha
+            Fcs txtSenha
         End If
     End If
 
@@ -123,7 +123,7 @@ End Sub
 Private Sub txtSenha_KeyPress(KeyAscii As Integer)
     If KeyAscii = vbKeyReturn Then
         If Len(txtUsuario.Text) > 1 And Len(txtSenha.Text) > 0 Then
-            ControlSetFocus cmdEntrar
+            Fcs cmdEntrar
             cmdEntrar_Click
         End If
         KeyAscii = 0
@@ -137,19 +137,19 @@ End Sub
 Private Sub cmdEntrar_Click()
     If txtUsuario.Text = EMPTY_STRING Then
         MsgInfo "Informe um usuário!"
-        ControlSetFocus txtUsuario
+        Fcs txtUsuario
         Exit Sub
     End If
 
     If Len(txtUsuario) = 1 Then
         MsgInfo "Nome de usuário inválido: uma só letra!"
-        ControlSetFocus txtUsuario
+        Fcs txtUsuario
         Exit Sub
     End If
 
     If txtSenha.Text = EMPTY_STRING Then
         MsgInfo "Informe a senha do usuário!"
-        ControlSetFocus txtSenha
+        Fcs txtSenha
         Exit Sub
     End If
 
@@ -157,18 +157,18 @@ Private Sub cmdEntrar_Click()
         Case AUTH_OK
             Unload Me
             Set frmLogin = Nothing
-            frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-            frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
             ShowModal frmMain
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"
-            ControlSetFocus txtUsuario
+            Fcs txtUsuario
         Case AUTH_WRONGPASSWORD
             MsgExcl "Senha inválida!"
-            ControlSetFocus txtSenha
+            Fcs txtSenha
         Case AUTH_USERINACTIVE
             MsgExcl "Usuário inativo!"
-            ControlSetFocus txtUsuario
+            Fcs txtUsuario
         Case AUTH_INTERNAL
             '
         Case Else

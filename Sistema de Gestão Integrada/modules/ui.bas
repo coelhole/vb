@@ -1,9 +1,14 @@
 Attribute VB_Name = "ui"
 Option Explicit
 
-Public Sub ControlSetFocus(ctrl As Control)
-    If ctrl Is Nothing Then Exit Sub
-    If ctrl.Visible And ctrl.Enabled Then ctrl.SetFocus
+Public Sub Fcs(ctrl As Control)
+    If ctrl Is Nothing Then
+        Exit Sub
+    End If
+
+    If ctrl.Visible And ctrl.Enabled Then
+        ctrl.SetFocus
+    End If
 End Sub
 
 Public Sub ShowModal(frm As Form, Optional owner = Nothing)

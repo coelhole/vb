@@ -86,13 +86,13 @@ Attribute VB_Exposed = False
 Private Sub cmdAlterarSenha_Click()
     If txtSenhaAtual.Text = EMPTY_STRING Then
         MsgExcl "Forneça sua senha atual!"
-        ControlSetFocus txtSenhaAtual
+        Fcs txtSenhaAtual
     ElseIf txtNovaSenha.Text = EMPTY_STRING Then
         MsgExcl "Forneça a nova senha!"
-        ControlSetFocus txtNovaSenha
+        Fcs txtNovaSenha
     ElseIf txtRepetirSenha.Text = EMPTY_STRING Then
         MsgExcl "Repita a nova senha!"
-        ControlSetFocus txtRepetirSenha
+        Fcs txtRepetirSenha
     Else
         If auth(username, txtSenhaAtual.Text) = AUTH_OK Then
             If txtNovaSenha.Text = txtRepetirSenha.Text Then
@@ -102,13 +102,19 @@ Private Sub cmdAlterarSenha_Click()
                 Set frmAlterarSenha = Nothing
             Else
                 MsgExcl "Senha nova e senha nova repetida não conferem!"
-                ControlSetFocus txtRepetirSenha
+                Fcs txtRepetirSenha
             End If
         Else
             MsgExcl "Senha atual fornecida inválida!"
-            ControlSetFocus txtSenhaAtual
+            Fcs txtSenhaAtual
         End If
     End If
+End Sub
+
+Private Sub Form_Load()
+    txtSenhaAtual.PasswordChar = PASSWORD_CHAR
+    txtNovaSenha.PasswordChar = PASSWORD_CHAR
+    txtRepetirSenha.PasswordChar = PASSWORD_CHAR
 End Sub
 
 Private Sub txtNovaSenha_KeyPress(KeyAscii As Integer)
@@ -118,7 +124,7 @@ Private Sub txtNovaSenha_KeyPress(KeyAscii As Integer)
 
     If KeyAscii = vbKeyReturn Then
         If Len(txtNovaSenha.Text) > 0 Then
-            ControlSetFocus txtRepetirSenha
+            Fcs txtRepetirSenha
         End If
         KeyAscii = 0
     End If
@@ -131,7 +137,7 @@ Private Sub txtRepetirSenha_KeyPress(KeyAscii As Integer)
 
     If KeyAscii = vbKeyReturn Then
         If Len(txtRepetirSenha.Text) > 0 Then
-            ControlSetFocus cmdAlterarSenha
+            Fcs cmdAlterarSenha
             cmdAlterarSenha_Click
         End If
         KeyAscii = 0
@@ -145,7 +151,7 @@ Private Sub txtSenhaAtual_KeyPress(KeyAscii As Integer)
 
     If KeyAscii = vbKeyReturn Then
         If Len(txtSenhaAtual.Text) > 0 Then
-            ControlSetFocus txtNovaSenha
+            Fcs txtNovaSenha
         End If
         KeyAscii = 0
     End If
