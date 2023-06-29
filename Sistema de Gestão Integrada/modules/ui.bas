@@ -56,6 +56,16 @@ Public Sub TrmFcsEnd(ctrl As Control)
     End If
 End Sub
 
+Public Sub chk_revelar_senha_click(txtbx As TextBox, chkbx As CheckBox)
+    If chkbx.Value = 1 Then
+        txtbx.PasswordChar = EMPTY_STRING
+        chkbx.ToolTipText = TOOLTIP_OCULTAR_SENHA
+    Else
+        txtbx.PasswordChar = PASSWORD_CHAR
+        chkbx.ToolTipText = TOOLTIP_REVELAR_SENHA
+    End If
+End Sub
+
 Public Sub ShowModal(frm As Form, Optional owner = Nothing)
     If Not (frm Is Nothing) Then
         frm.Show vbModal, owner

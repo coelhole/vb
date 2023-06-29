@@ -29,12 +29,12 @@ Begin VB.Form frmSetDB
       TabIndex        =   0
       Top             =   90
       Width           =   5240
-      Begin VB.CheckBox chkMostrarSenha 
-         Caption         =   "Mostrar senha"
+      Begin VB.CheckBox chkRevelarSenha 
+         Caption         =   "Revelar senha"
          Height          =   285
          Left            =   3120
          TabIndex        =   9
-         ToolTipText     =   "Marque para exibir a senha"
+         ToolTipText     =   "Marque para revelar a senha"
          Top             =   2850
          Width           =   1400
       End
@@ -143,19 +143,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Const TOOLTIP_EXIBIR_SENHA As String = "Marque para exibir a senha"
-Private Const TOOLTIP_OCULTAR_SENHA As String = "Desmarque para ocultar a senha"
-
 Private focCtrl As Control
 
-Private Sub chkMostrarSenha_Click()
-    If chkMostrarSenha.Value = 1 Then
-        txtSenha.PasswordChar = EMPTY_STRING
-        chkMostrarSenha.ToolTipText = TOOLTIP_OCULTAR_SENHA
-    Else
-        txtSenha.PasswordChar = PASSWORD_CHAR
-        chkMostrarSenha.ToolTipText = TOOLTIP_EXIBIR_SENHA
-    End If
+Private Sub chkRevelarSenha_Click()
+    chk_revelar_senha_click txtSenha, chkRevelarSenha
 End Sub
 
 Private Sub cmdOK_Click()
@@ -177,7 +168,7 @@ End Sub
 Private Sub Form_Load()
     Set focCtrl = txtHost
     txtSenha.PasswordChar = PASSWORD_CHAR
-    chkMostrarSenha.ToolTipText = TOOLTIP_EXIBIR_SENHA
+    chkRevelarSenha.ToolTipText = TOOLTIP_REVELAR_SENHA
 End Sub
 
 Private Sub txtBanco_GotFocus()

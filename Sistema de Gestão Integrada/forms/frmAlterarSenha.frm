@@ -5,20 +5,44 @@ Begin VB.Form frmAlterarSenha
    ClientHeight    =   2430
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5415
+   ClientWidth     =   5715
    Icon            =   "frmAlterarSenha.frx":0000
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   2430
-   ScaleWidth      =   5415
+   ScaleWidth      =   5715
    StartUpPosition =   1  'CenterOwner
+   Begin VB.CheckBox chkRevelarSenhaRepetida 
+      Height          =   225
+      Left            =   5310
+      TabIndex        =   8
+      TabStop         =   0   'False
+      Top             =   1260
+      Width           =   280
+   End
+   Begin VB.CheckBox chkRevelarSenhaNova 
+      Height          =   225
+      Left            =   5310
+      TabIndex        =   5
+      TabStop         =   0   'False
+      Top             =   750
+      Width           =   280
+   End
+   Begin VB.CheckBox chkRevelarSenhaAtual 
+      Height          =   225
+      Left            =   5310
+      TabIndex        =   2
+      TabStop         =   0   'False
+      Top             =   240
+      Width           =   280
+   End
    Begin VB.CommandButton cmdAlterarSenha 
       Caption         =   "&OK"
       Height          =   400
       Left            =   3707
-      TabIndex        =   6
+      TabIndex        =   9
       Top             =   1800
       Width           =   1500
    End
@@ -31,21 +55,21 @@ Begin VB.Form frmAlterarSenha
       Top             =   180
       Width           =   3225
    End
-   Begin VB.TextBox txtRepetirSenha 
+   Begin VB.TextBox txtSenhaRepetida 
       Height          =   345
       IMEMode         =   3  'DISABLE
       Left            =   1982
       PasswordChar    =   "*"
-      TabIndex        =   5
+      TabIndex        =   7
       Top             =   1200
       Width           =   3225
    End
-   Begin VB.TextBox txtNovaSenha 
+   Begin VB.TextBox txtSenhaNova 
       Height          =   345
       IMEMode         =   3  'DISABLE
       Left            =   1982
       PasswordChar    =   "*"
-      TabIndex        =   3
+      TabIndex        =   4
       Top             =   690
       Width           =   3225
    End
@@ -63,7 +87,7 @@ Begin VB.Form frmAlterarSenha
       Caption         =   "Repetir nova senha"
       Height          =   285
       Left            =   207
-      TabIndex        =   4
+      TabIndex        =   6
       Top             =   1230
       Width           =   1600
    End
@@ -72,7 +96,7 @@ Begin VB.Form frmAlterarSenha
       Caption         =   "Nova senha"
       Height          =   285
       Left            =   207
-      TabIndex        =   2
+      TabIndex        =   3
       Top             =   720
       Width           =   1600
    End
@@ -82,61 +106,75 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub chkRevelarSenhaAtual_Click()
+    chk_revelar_senha_click txtSenhaAtual, chkRevelarSenhaAtual
+End Sub
+
+Private Sub chkRevelarSenhaNova_Click()
+    chk_revelar_senha_click txtSenhaNova, chkRevelarSenhaNova
+End Sub
+
+Private Sub chkRevelarSenhaRepetida_Click()
+    chk_revelar_senha_click txtSenhaRepetida, chkRevelarSenhaRepetida
+End Sub
 
 Private Sub cmdAlterarSenha_Click()
     If txtSenhaAtual.Text = EMPTY_STRING Then
         MsgExcl "Forneça sua senha atual!"
         Fcs txtSenhaAtual
-    ElseIf txtNovaSenha.Text = EMPTY_STRING Then
+    ElseIf txtSenhaNova.Text = EMPTY_STRING Then
         MsgExcl "Forneça a nova senha!"
-        Fcs txtNovaSenha
-    ElseIf txtRepetirSenha.Text = EMPTY_STRING Then
+        Fcs txtSenhaNova
+    ElseIf txtSenhaRepetida.Text = EMPTY_STRING Then
         MsgExcl "Repita a nova senha!"
-        Fcs txtRepetirSenha
+        Fcs txtSenhaRepetida
     Else
         If auth(username, txtSenhaAtual.Text) = AUTH_OK Then
-            If txtNovaSenha.Text = txtRepetirSenha.Text Then
-                resetPassword txtNovaSenha.Text
+            If txtSenhaNova.Text = txtSenhaRepetida.Text Then
+                resetPassword txtSenhaNova.Text
                 MsgInfo "Senha alterada com sucesso!"
                 Unload Me
                 Set frmAlterarSenha = Nothing
             Else
                 MsgExcl "Senha nova e senha nova repetida não conferem!"
-                Fcs txtRepetirSenha
+                FcsEnd txtSenhaRepetida
             End If
         Else
             MsgExcl "Senha atual fornecida inválida!"
-            Fcs txtSenhaAtual
+            FcsEnd txtSenhaAtual
         End If
     End If
 End Sub
 
 Private Sub Form_Load()
     txtSenhaAtual.PasswordChar = PASSWORD_CHAR
-    txtNovaSenha.PasswordChar = PASSWORD_CHAR
-    txtRepetirSenha.PasswordChar = PASSWORD_CHAR
+    chkRevelarSenhaAtual.ToolTipText = TOOLTIP_REVELAR_SENHA
+    txtSenhaNova.PasswordChar = PASSWORD_CHAR
+    chkRevelarSenhaNova.ToolTipText = TOOLTIP_REVELAR_SENHA
+    txtSenhaRepetida.PasswordChar = PASSWORD_CHAR
+    chkRevelarSenhaRepetida.ToolTipText = TOOLTIP_REVELAR_SENHA
 End Sub
 
-Private Sub txtNovaSenha_KeyPress(KeyAscii As Integer)
+Private Sub txtSenhaNova_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
         KeyAscii = 0
     End If
 
     If KeyAscii = vbKeyReturn Then
-        If Len(txtNovaSenha.Text) > 0 Then
-            Fcs txtRepetirSenha
+        If Len(txtSenhaNova.Text) > 0 Then
+            FcsEnd txtSenhaRepetida
         End If
         KeyAscii = 0
     End If
 End Sub
 
-Private Sub txtRepetirSenha_KeyPress(KeyAscii As Integer)
+Private Sub txtSenhaRepetida_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
         KeyAscii = 0
     End If
 
     If KeyAscii = vbKeyReturn Then
-        If Len(txtRepetirSenha.Text) > 0 Then
+        If Len(txtSenhaRepetida.Text) > 0 Then
             Fcs cmdAlterarSenha
             cmdAlterarSenha_Click
         End If
@@ -151,7 +189,7 @@ Private Sub txtSenhaAtual_KeyPress(KeyAscii As Integer)
 
     If KeyAscii = vbKeyReturn Then
         If Len(txtSenhaAtual.Text) > 0 Then
-            Fcs txtNovaSenha
+            FcsEnd txtSenhaNova
         End If
         KeyAscii = 0
     End If
