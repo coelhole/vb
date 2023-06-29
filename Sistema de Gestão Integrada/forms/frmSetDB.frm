@@ -143,13 +143,43 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private focCtrl As Control
+Private formDisplayed As Boolean
 
 Private Sub chkRevelarSenha_Click()
     chk_revelar_senha_click txtSenha, chkRevelarSenha
 End Sub
 
 Private Sub cmdOK_Click()
+    If txtHost.Text = EMPTY_STRING Then
+        MsgExcl "Forneça o hostname do servidor Postgres!"
+        Fcs txtHost
+        Exit Sub
+    End If
+
+    If (txtPorta.Text = EMPTY_STRING) Or (ToLong(txtPorta.Text) = 0) Or (ToLong(txtPorta.Text) > CLng((2 ^ 15) - 1)) Then
+        MsgExcl IIf(txtPorta.Text = EMPTY_STRING, "Forneça a porta do servidor Postgres!", "Número de porta inválido!")
+        FcsEnd txtPorta
+        Exit Sub
+    End If
+
+    If txtUsuario.Text = EMPTY_STRING Then
+        MsgExcl "Forneça o usuário do servidor Postgres!"
+        Fcs txtUsuario
+        Exit Sub
+    End If
+
+    If txtSenha.Text = EMPTY_STRING Then
+        MsgExcl "Forneça a senha do usuário do servidor Postgres!"
+        Fcs txtSenha
+        Exit Sub
+    End If
+
+    If txtBanco.Text = EMPTY_STRING Then
+        MsgExcl "Forneça o nome do banco de dados!"
+        Fcs txtBanco
+        Exit Sub
+    End If
+
     databaseHost = txtHost.Text
     databasePort = CInt(txtPorta.Text)
     databaseName = txtBanco.Text
@@ -162,59 +192,72 @@ Private Sub cmdOK_Click()
 End Sub
 
 Private Sub Form_Activate()
-    Fcs focCtrl
+    If Not formDisplayed Then
+        FcsEnd txtHost
+        formDisplayed = True
+    End If
 End Sub
 
 Private Sub Form_Load()
-    Set focCtrl = txtHost
     txtSenha.PasswordChar = PASSWORD_CHAR
     chkRevelarSenha.ToolTipText = TOOLTIP_REVELAR_SENHA
 End Sub
 
-Private Sub txtBanco_GotFocus()
-    Set focCtrl = txtBanco
+Private Sub Form_Unload(Cancel As Integer)
+    formDisplayed = False
 End Sub
 
 Private Sub txtBanco_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
         KeyAscii = 0
     End If
-End Sub
 
-Private Sub txtHost_GotFocus()
-    Set focCtrl = txtHost
+    If KeyAscii = vbKeyReturn Then
+        Fcs cmdOK
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtHost_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
         KeyAscii = 0
     End If
-End Sub
 
-Private Sub txtPorta_GotFocus()
-    Set focCtrl = txtPorta
+    If KeyAscii = vbKeyReturn Then
+        FcsEnd txtPorta
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtPorta_KeyPress(KeyAscii As Integer)
-    If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then KeyAscii = 0
-End Sub
+    If KeyAscii = vbKeyReturn Then
+        FcsEnd txtUsuario
+        KeyAscii = 0
+    End If
 
-Private Sub txtSenha_GotFocus()
-    Set focCtrl = txtSenha
+    If (KeyAscii < 48 Or KeyAscii > 57) And (KeyAscii <> 8) Then
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtSenha_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
         KeyAscii = 0
     End If
-End Sub
 
-Private Sub txtUsuario_GotFocus()
-    Set focCtrl = txtUsuario
+    If KeyAscii = vbKeyReturn Then
+        FcsEnd txtBanco
+        KeyAscii = 0
+    End If
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
     If KeyAscii = 32 Then
+        KeyAscii = 0
+    End If
+
+    If KeyAscii = vbKeyReturn Then
+        FcsEnd txtSenha
         KeyAscii = 0
     End If
 End Sub

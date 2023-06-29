@@ -12,6 +12,7 @@ Form=forms\frmAlterarSenha.frm
 Module=ui; modules\ui.bas
 Form=forms\frmSetDB.frm
 Module=erro; modules\erro.bas
+Module=utils; modules\utils.bas
 IconForm="frmMain"
 Startup="frmInit"
 HelpFile=""
