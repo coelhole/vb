@@ -156,7 +156,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub txtSenhaNova_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
@@ -169,7 +169,7 @@ Private Sub txtSenhaNova_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtSenhaRepetida_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
@@ -183,7 +183,7 @@ Private Sub txtSenhaRepetida_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtSenhaAtual_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 

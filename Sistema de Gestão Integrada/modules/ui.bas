@@ -19,7 +19,7 @@ Public Function IsTextControl(ctrl As Control) As Boolean
             IsTextControl = True
         End If
     ElseIf TypeOf ctrl Is ComboBox Then
-        If (Not ctrl.Locked) And (ctrl.Style <> 2) Then
+        If (Not ctrl.Locked) And (ctrl.Style <> vbComboDropdownList) Then
             IsTextControl = True
         End If
     End If
@@ -57,7 +57,7 @@ Public Sub TrmFcsEnd(ctrl As Control)
 End Sub
 
 Public Sub chk_revelar_senha_click(txtbx As TextBox, chkbx As CheckBox)
-    If chkbx.Value = 1 Then
+    If chkbx.Value = vbChecked Then
         txtbx.PasswordChar = EMPTY_STRING
         chkbx.ToolTipText = TOOLTIP_OCULTAR_SENHA
     Else

@@ -130,7 +130,7 @@ Private Sub txtSenha_KeyPress(KeyAscii As Integer)
         KeyAscii = 0
     End If
 
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 End Sub
@@ -158,8 +158,8 @@ Private Sub cmdEntrar_Click()
         Case AUTH_OK
             Unload Me
             Set frmLogin = Nothing
-            frmMain.StatusBar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
-            frmMain.StatusBar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
+            frmMain.statusbar.Panels(1).Text = "Banco: " & databaseHost & ":" & databasePort & "\" & databaseName & "@" & databaseUser & "  "
+            frmMain.statusbar.Panels(2).Text = "Usuário: " & userid & " " & username & "  "
             ShowModal frmMain
         Case AUTH_USERNOTFOUND
             MsgExcl "Usuário não encontrado!"

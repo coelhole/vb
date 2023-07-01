@@ -208,7 +208,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub txtBanco_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
@@ -219,7 +219,7 @@ Private Sub txtBanco_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtHost_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
@@ -241,7 +241,7 @@ Private Sub txtPorta_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtSenha_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
@@ -252,7 +252,7 @@ Private Sub txtSenha_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtUsuario_KeyPress(KeyAscii As Integer)
-    If KeyAscii = 32 Then
+    If KeyAscii = vbKeySpace Then
         KeyAscii = 0
     End If
 
